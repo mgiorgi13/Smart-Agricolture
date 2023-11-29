@@ -22,7 +22,6 @@ public class Main {
         // MQTT
 
         try {
-            System.out.println("MQTT"); 
             MQTThandler mc = new MQTThandler();
         } catch (MqttException me) {
             me.printStackTrace();
