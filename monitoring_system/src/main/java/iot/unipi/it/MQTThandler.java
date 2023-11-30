@@ -56,7 +56,7 @@ public class MQTThandler implements MqttCallback {
 
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         byte[] payload = message.getPayload();
-
+        System.out.println("Received message: " + new String(payload));
         try {
             JSONObject sensorMessage = (JSONObject) JSONValue.parseWithException(new String(payload));
 

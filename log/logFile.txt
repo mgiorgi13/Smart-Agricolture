@@ -1,0 +1,3 @@
+2023-11-30T15:02:07.909Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-11-30T15:02:07.464Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-11-30T15:12:36.733Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
