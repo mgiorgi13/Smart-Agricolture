@@ -1,6 +1,5 @@
 build/cooja/obj/coap-engine.o: \
  ../../../../os/net/app-layer/coap/coap-engine.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/net/app-layer/coap/coap-engine.h \
  ../../../../os/net/app-layer/coap/coap.h \
@@ -31,7 +30,6 @@ build/cooja/obj/coap-engine.o: \
  ../../../../os/net/app-layer/coap/coap-observe-client.h \
  ../../../../os/lib/list.h ../../../../os/net/app-layer/coap/coap-log.h \
  ../../../../os/sys/log.h ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/app-layer/coap/coap-engine.h:
 ../../../../os/net/app-layer/coap/coap.h:

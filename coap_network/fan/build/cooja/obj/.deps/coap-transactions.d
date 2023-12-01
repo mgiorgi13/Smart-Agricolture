@@ -1,6 +1,5 @@
 build/cooja/obj/coap-transactions.o: \
  ../../../../os/net/app-layer/coap/coap-transactions.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/net/app-layer/coap/coap-transactions.h \
  ../../../../os/net/app-layer/coap/coap.h \
@@ -32,7 +31,6 @@ build/cooja/obj/coap-transactions.o: \
  ../../../../os/lib/memb.h ../../../../os/lib/list.h \
  ../../../../os/net/app-layer/coap/coap-log.h ../../../../os/sys/log.h \
  ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/app-layer/coap/coap-transactions.h:
 ../../../../os/net/app-layer/coap/coap.h:

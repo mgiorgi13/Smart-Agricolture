@@ -1,5 +1,4 @@
 build/cooja/obj/tcpip.o: ../../../../os/net/ipv6/tcpip.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -47,7 +46,6 @@ build/cooja/obj/tcpip.o: ../../../../os/net/ipv6/tcpip.c \
  ../../../../os/net/netstack.h ../../../../os/net/ipv6/uip-ds6.h \
  ../../../../os/net/routing/routing.h ../../../../os/sys/log.h \
  ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/contiki.h:
 ../../../../arch/platform/cooja/./contiki-conf.h:

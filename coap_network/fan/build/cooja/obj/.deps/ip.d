@@ -1,5 +1,4 @@
 build/cooja/obj/ip.o: ../../../../arch/platform/cooja/dev/ip.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../arch/platform/cooja/./dev/ip.h \
  ../../../../arch/platform/cooja/./lib/simEnvChange.h \
@@ -19,7 +18,6 @@ build/cooja/obj/ip.o: ../../../../arch/platform/cooja/dev/ip.c \
  ../../../../os/sys/clock.h ../../../../os/net/ipv6/uip.h \
  ../../../../os/net/ipv6/uipopt.h ../../../../os/net/ipv6/uipbuf.h \
  ../../../../os/net/linkaddr.h ../../../../os/net/ipv6/tcpip.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../arch/platform/cooja/./dev/ip.h:
 ../../../../arch/platform/cooja/./lib/simEnvChange.h:

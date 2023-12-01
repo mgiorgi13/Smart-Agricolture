@@ -1,5 +1,4 @@
 build/cooja/obj/ccm-star.o: ../../../../os/lib/ccm-star.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/lib/ccm-star.h ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -15,7 +14,6 @@ build/cooja/obj/ccm-star.o: ../../../../os/lib/ccm-star.c \
  ../../../../arch/platform/cooja/./lib/simEnvChange.h \
  ../../../../arch/platform/cooja/./sys/cooja_mt.h ../../../../os/sys/pt.h \
  ../../../../os/sys/clock.h ../../../../os/lib/aes-128.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/lib/ccm-star.h:
 ../../../../os/contiki.h:

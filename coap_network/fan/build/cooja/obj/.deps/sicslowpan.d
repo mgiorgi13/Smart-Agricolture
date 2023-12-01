@@ -1,5 +1,4 @@
 build/cooja/obj/sicslowpan.o: ../../../../os/net/ipv6/sicslowpan.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -39,7 +38,6 @@ build/cooja/obj/sicslowpan.o: ../../../../os/net/ipv6/sicslowpan.c \
  ../../../../os/net/mac/tsch/tsch-conf.h ../../../../os/net/queuebuf.h \
  ../../../../os/net/routing/routing.h ../../../../os/net/ipv6/uip-sr.h \
  ../../../../os/sys/log.h ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/contiki.h:
 ../../../../arch/platform/cooja/./contiki-conf.h:

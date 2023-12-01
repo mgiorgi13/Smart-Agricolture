@@ -1,6 +1,5 @@
 build/cooja/obj/coap-keystore-simple.o: \
  ../../../../os/net/app-layer/coap/coap-keystore-simple.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/net/app-layer/coap/coap-endpoint.h \
  ../../../../os/contiki.h \
@@ -20,7 +19,6 @@ build/cooja/obj/coap-keystore-simple.o: \
  ../../../../os/net/ipv6/uipopt.h ../../../../os/net/ipv6/uipbuf.h \
  ../../../../os/net/linkaddr.h ../../../../os/net/ipv6/tcpip.h \
  ../../../../os/net/app-layer/coap/coap-keystore.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/app-layer/coap/coap-endpoint.h:
 ../../../../os/contiki.h:

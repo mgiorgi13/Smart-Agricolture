@@ -1,5 +1,4 @@
 build/cooja/obj/mutex.o: ../../../../os/sys/mutex.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -17,7 +16,6 @@ build/cooja/obj/mutex.o: ../../../../os/sys/mutex.c \
  ../../../../os/sys/clock.h ../../../../os/sys/mutex.h \
  ../../../../os/sys/critical.h ../../../../os/sys/memory-barrier.h \
  ../../../../os/sys/int-master.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/contiki.h:
 ../../../../arch/platform/cooja/./contiki-conf.h:

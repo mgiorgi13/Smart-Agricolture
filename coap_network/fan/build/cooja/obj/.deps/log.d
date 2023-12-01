@@ -1,5 +1,4 @@
 build/cooja/obj/log.o: ../../../../os/sys/log.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/sys/log.h ../../../../os/net/linkaddr.h \
  ../../../../os/contiki.h \
@@ -21,7 +20,6 @@ build/cooja/obj/log.o: ../../../../os/sys/log.c \
  ../../../../os/net/ipv6/ip64-addr.h ../../../../os/net/ipv6/uiplib.h \
  ../../../../os/services/deployment/deployment.h \
  ../../../../os/sys/node-id.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/sys/log.h:
 ../../../../os/net/linkaddr.h:

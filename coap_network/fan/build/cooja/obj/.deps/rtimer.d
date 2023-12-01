@@ -1,5 +1,4 @@
 build/cooja/obj/rtimer.o: ../../../../os/sys/rtimer.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/sys/rtimer.h ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -15,7 +14,6 @@ build/cooja/obj/rtimer.o: ../../../../os/sys/rtimer.c \
  ../../../../arch/platform/cooja/./rtimer-arch.h \
  ../../../../arch/platform/cooja/./lib/simEnvChange.h \
  ../../../../arch/platform/cooja/./sys/cooja_mt.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/sys/rtimer.h:
 ../../../../os/contiki.h:
