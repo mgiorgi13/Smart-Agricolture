@@ -69,7 +69,7 @@ static bool registered = false;
 
 static struct etimer wait_connectivity;
 static struct etimer wait_registration;
-static struct etimer simulation;
+// static struct etimer simulation;
 
 extern coap_resource_t heater_actuator;
 // extern coap_resource_t temperature_switch;
@@ -120,13 +120,15 @@ PROCESS_THREAD(heater_server, ev, data)
     static coap_message_t request[1]; // This way the packet can be treated as pointer as usual
     
     etimer_set(&wait_connectivity, CLOCK_SECOND * CONN_TRY_INTERVAL);
-    
+
+    //try to connect to BR router
     while (!connected) {
         PROCESS_WAIT_UNTIL(etimer_expired(&wait_connectivity));
         check_connection();
     }
     LOG_INFO("CONNECTED\n");
     
+    // try to register to the coap server
     while (!registered) {
         LOG_INFO("Sending registration message\n");
         
@@ -147,16 +149,16 @@ PROCESS_THREAD(heater_server, ev, data)
     // coap_activate_resource(&temperature_switch, "temperature_switch");
     
     // SIMULATION
-    etimer_set(&simulation, CLOCK_SECOND * SIMULATION_INTERVAL);
+    // etimer_set(&simulation, CLOCK_SECOND * SIMULATION_INTERVAL);
     LOG_INFO("Simulation\n");
     
     while (1) {
         PROCESS_WAIT_EVENT();
         
-        if (ev == PROCESS_EVENT_TIMER && data == &simulation) {
-            heater_actuator.trigger();
-            etimer_set(&simulation, CLOCK_SECOND * SIMULATION_INTERVAL);
-        }
+        // if (ev == PROCESS_EVENT_TIMER && data == &simulation) {
+        //     heater_actuator.trigger();
+        //     etimer_set(&simulation, CLOCK_SECOND * SIMULATION_INTERVAL);
+        // }
     }
     
     PROCESS_END();

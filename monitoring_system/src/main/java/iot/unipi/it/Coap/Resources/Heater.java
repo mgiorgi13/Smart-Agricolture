@@ -17,7 +17,7 @@ import iot.unipi.it.Logger.Logger;
 //controllare HEATER
 public class Heater {
     private List<CoapClient> clientHeaderList = new ArrayList<>();
-    private List<CoapObserveRelation> observeActuatorList = new ArrayList<>();
+    // private List<CoapObserveRelation> observeActuatorList = new ArrayList<>();
     private int temperatureDetected = 24;
 
     // SERVER SIDE
@@ -26,16 +26,16 @@ public class Heater {
 
         // Add the header actuator to the list
         CoapClient newHeaderActuator = new CoapClient("coap://[" + ip + "]/heater_actuator");
-        observeActuatorList.add(newHeaderActuator.observe(
-                new CoapHandler() {
-                    public void onLoad(CoapResponse response) {
-                        getHandler(response);
-                    }
+        // observeActuatorList.add(newHeaderActuator.observe(
+        //         new CoapHandler() {
+        //             public void onLoad(CoapResponse response) {
+        //                 getHandler(response);
+        //             }
 
-                    public void onError() {
-                        System.err.println("OBSERVING FAILED");
-                    }
-                }));
+        //             public void onError() {
+        //                 System.err.println("OBSERVING FAILED");
+        //             }
+        //         }));
         // IrrigationSystemDbManager.insertTemperature(temperatureDetected);
         clientHeaderList.add(newHeaderActuator);
     }
@@ -44,8 +44,8 @@ public class Heater {
         for (int i = 0; i < clientHeaderList.size(); i++) {
             if (clientHeaderList.get(i).getURI().equals(ip)) {
                 clientHeaderList.remove(i);
-                observeActuatorList.get(i).proactiveCancel();
-                observeActuatorList.remove(i);
+                // observeActuatorList.get(i).proactiveCancel();
+                // observeActuatorList.remove(i);
                 // remove from db
             }
         }

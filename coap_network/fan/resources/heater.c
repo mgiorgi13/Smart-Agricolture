@@ -19,15 +19,15 @@ static int temperature = 24;
 /**************** REST: Temperature **********************/
 static void get_temperature_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 static void put_temperature_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
-static void temperature_event_handler(void);
+// static void temperature_event_handler(void);
 
 EVENT_RESOURCE(heater_actuator,
-               "</heater_actuator>;title=\"Heater Actuator\";obs",
+               "</heater_actuator>;title=\"Heater Actuator\";",
                get_temperature_handler,
                NULL,
                put_temperature_handler,
                NULL,
-               temperature_event_handler);
+               NULL);
 
 static void get_temperature_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset)
 {
@@ -88,30 +88,31 @@ static void put_temperature_handler(coap_message_t *request, coap_message_t *res
   }
 }
 
-static void temperature_event_handler(void)
-{
-  // if (!isActive)
-  // {
-  //   return; // DOES NOTHING SINCE IT IS TURNED OFF
-  // }
+// static void temperature_event_handler(void)
+// {
+//   LOG_INFO("Event_Handler\n");
+//   if (!isActive)
+//   {
+//     return; // DOES NOTHING SINCE IT IS TURNED OFF
+//   }
 
-  // // extimate new temperature
-  // srand(time(NULL));
-  // int new_temp = temperature;
-  // int random = rand() % 8; // generate 0, 1, 2, 3, 4, 5, 6, 7
+//   // extimate new temperature
+//   srand(time(NULL));
+//   int new_temp = temperature;
+//   int random = rand() % 8; // generate 0, 1, 2, 3, 4, 5, 6, 7
 
-  // if (random < 2)
-  // {                  // 25% of changing the value
-  //   if (random == 0) // decrease
-  //     new_temp -= VARIATION;
-  //   else // increase
-  //     new_temp += VARIATION;
-  // }
+//   if (random < 2)
+//   {                  // 25% of changing the value
+//     if (random == 0) // decrease
+//       new_temp -= VARIATION;
+//     else // increase
+//       new_temp += VARIATION;
+//   }
 
-  // // if not equal
-  // if (new_temp != temperature)
-  // {
-  //   temperature = new_temp;
-  //   coap_notify_observers(&heater_actuator);
-  // }
-}
+//   // if not equal
+//   if (new_temp != temperature)
+//   {
+//     temperature = new_temp;
+//     coap_notify_observers(&heater_actuator);
+//   }
+// }
