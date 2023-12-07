@@ -111,7 +111,8 @@ static struct mqtt_connection conn;
 mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-static int temperature = 0;
+static int soil_umidity = 0;
+
 
 /*---------------------------------------------------------------------------*/
 PROCESS(mqtt_client_process, "MQTT Client");
@@ -282,11 +283,11 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
       {
         LOG_INFO("I try to publish a message\n");
         // Publish something
-        sprintf(pub_topic, "%s", "temperature");
+        sprintf(pub_topic, "%s", "soilHumidity");
 
-        temperature = 25 + (rand() % 10);
+        soil_umidity = 30 + (rand() % 50);
 
-        sprintf(app_buffer, "{\"nodeId\": %d, \"temperature\": %d, \"unit\": \"Celsius\"}", node_id, temperature);
+        sprintf(app_buffer, "{\"nodeId\": %d,\"soil_umidity\": %d,\"type\": \"percentage\"}", node_id, soil_umidity);
 
         mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                      strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
