@@ -1,6 +1,5 @@
 build/cooja/obj/rpl-timers.o: \
  ../../../../os/net/routing/rpl-lite/rpl-timers.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -48,7 +47,6 @@ build/cooja/obj/rpl-timers.o: \
  ../../../../os/net/ipv6/uip-sr.h ../../../../os/net/link-stats.h \
  ../../../../os/lib/random.h ../../../../os/sys/log.h \
  ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/contiki.h:
 ../../../../arch/platform/cooja/./contiki-conf.h:

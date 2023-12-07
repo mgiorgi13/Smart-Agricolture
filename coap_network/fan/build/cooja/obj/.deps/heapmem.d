@@ -1,5 +1,4 @@
 build/cooja/obj/heapmem.o: ../../../../os/lib/heapmem.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/sys/log.h ../../../../os/net/linkaddr.h \
  ../../../../os/contiki.h \
@@ -19,7 +18,6 @@ build/cooja/obj/heapmem.o: ../../../../os/lib/heapmem.c \
  ../../../../os/net/ipv6/uip.h ../../../../os/net/ipv6/uipopt.h \
  ../../../../os/net/ipv6/uipbuf.h ../../../../os/net/ipv6/tcpip.h \
  ../../../../os/lib/heapmem.h ../../../../os/lib/assert.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/sys/log.h:
 ../../../../os/net/linkaddr.h:

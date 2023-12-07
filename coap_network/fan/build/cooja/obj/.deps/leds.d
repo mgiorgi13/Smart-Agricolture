@@ -1,5 +1,4 @@
 build/cooja/obj/leds.o: ../../../../os/dev/leds.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -17,7 +16,6 @@ build/cooja/obj/leds.o: ../../../../os/dev/leds.c \
  ../../../../os/sys/clock.h ../../../../os/dev/gpio-hal.h \
  ../../../../arch/platform/cooja/./dev/gpio-hal-arch.h \
  ../../../../os/dev/leds.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/contiki.h:
 ../../../../arch/platform/cooja/./contiki-conf.h:

@@ -1,5 +1,4 @@
 build/cooja/obj/uip-ds6.o: ../../../../os/net/ipv6/uip-ds6.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/lib/random.h ../../../../os/net/ipv6/uip-nd6.h \
  ../../../../os/net/ipv6/uip.h ../../../../os/net/ipv6/uipopt.h \
@@ -34,7 +33,6 @@ build/cooja/obj/uip-ds6.o: ../../../../os/net/ipv6/uip-ds6.c \
  ../../../../os/net/ipv6/multicast/mpl.h \
  ../../../../os/net/ipv6/uip-ds6-route.h ../../../../os/lib/list.h \
  ../../../../os/sys/log.h ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/lib/random.h:
 ../../../../os/net/ipv6/uip-nd6.h:

@@ -1,5 +1,4 @@
 build/cooja/obj/rs232.o: ../../../../arch/platform/cooja/dev/rs232.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/lib/sensors.h ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -17,7 +16,6 @@ build/cooja/obj/rs232.o: ../../../../arch/platform/cooja/dev/rs232.c \
  ../../../../os/sys/clock.h ../../../../arch/platform/cooja/./dev/rs232.h \
  ../../../../os/dev/serial-line.h \
  ../../../../arch/platform/cooja/./lib/simEnvChange.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/lib/sensors.h:
 ../../../../os/contiki.h:

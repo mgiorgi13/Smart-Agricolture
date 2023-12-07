@@ -1,0 +1,78 @@
+2023-12-01T14:46:26.141Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 32.000000 Celsius
+2023-12-01T14:49:12.594Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:49:13.436Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 28.000000 Celsius
+2023-12-01T14:49:14.434Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:15.440Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 31.000000 Celsius
+2023-12-01T14:49:16.431Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 34.000000 Celsius
+2023-12-01T14:49:17.432Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 30.000000 Celsius
+2023-12-01T14:49:18.447Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 31.000000 Celsius
+2023-12-01T14:49:19.468Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 34.000000 Celsius
+2023-12-01T14:49:20.435Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:21.435Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 34.000000 Celsius
+2023-12-01T14:49:22.449Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:23.472Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 31.000000 Celsius
+2023-12-01T14:49:24.426Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 33.000000 Celsius
+2023-12-01T14:49:25.434Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:26.435Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:49:27.429Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:49:28.424Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 30.000000 Celsius
+2023-12-01T14:49:29.435Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 28.000000 Celsius
+2023-12-01T14:49:30.454Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:31.444Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 32.000000 Celsius
+2023-12-01T14:49:32.452Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 33.000000 Celsius
+2023-12-01T14:49:33.438Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 28.000000 Celsius
+2023-12-01T14:49:34.431Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:35.437Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 26.000000 Celsius
+2023-12-01T14:49:36.444Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 33.000000 Celsius
+2023-12-01T14:49:37.454Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 30.000000 Celsius
+2023-12-01T14:49:38.451Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:49:39.429Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:49:40.457Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:41.412Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 31.000000 Celsius
+2023-12-01T14:49:42.479Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 26.000000 Celsius
+2023-12-01T14:49:43.454Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:49:44.445Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 33.000000 Celsius
+2023-12-01T14:49:45.443Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 31.000000 Celsius
+2023-12-01T14:49:46.442Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 33.000000 Celsius
+2023-12-01T14:49:47.447Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 26.000000 Celsius
+2023-12-01T14:49:48.476Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 34.000000 Celsius
+2023-12-01T14:49:49.459Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:50.448Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 30.000000 Celsius
+2023-12-01T14:49:51.459Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 27.000000 Celsius
+2023-12-01T14:49:52.481Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 34.000000 Celsius
+2023-12-01T14:49:53.439Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 30.000000 Celsius
+2023-12-01T14:49:54.433Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 29.000000 Celsius
+2023-12-01T14:49:55.488Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 33.000000 Celsius
+2023-12-01T14:49:56.458Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 31.000000 Celsius
+2023-12-01T14:49:57.459Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 29.000000 Celsius
+2023-12-01T14:49:58.476Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 31.000000 Celsius
+2023-12-01T14:49:59.476Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 34.000000 Celsius
+2023-12-01T14:50:00.461Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:50:01.469Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 30.000000 Celsius
+2023-12-01T14:50:02.456Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 30.000000 Celsius
+2023-12-01T14:50:03.455Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 32.000000 Celsius
+2023-12-01T14:50:04.449Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 28.000000 Celsius
+2023-12-01T14:50:05.451Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 26.000000 Celsius
+2023-12-01T14:50:06.971Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 26.000000 Celsius
+2023-12-01T14:55:36.840Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 28.000000 Celsius
+2023-12-01T14:55:46.696Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 25.000000 Celsius
+2023-12-01T14:55:56.650Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 34.000000 Celsius
+2023-12-01T14:56:06.741Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 29.000000 Celsius
+2023-12-01T14:56:16.684Z [LOG] [MQTT Java Client]: Received temperature value from node 3: 33.000000 Celsius
+2023-12-03T18:59:23.159Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-03T19:06:07.712Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:10:34.910Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:20:20.354Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:23:41.601Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:26:21.553Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:28:36.101Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:38:21.333Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:48:00.588Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T15:50:34.786Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T16:04:25.764Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T16:05:24.106Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T16:43:54.540Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T16:50:11.497Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-04T16:51:42.506Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-05T17:02:53.958Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-05T17:12:43.544Z [LOG] The header actuator: [fd00:0:0:0:202:2:2:2] is now registered

@@ -1,6 +1,5 @@
 build/cooja/obj/cooja-radio.o: \
  ../../../../arch/platform/cooja/dev/cooja-radio.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -28,7 +27,6 @@ build/cooja/obj/cooja-radio.o: \
  ../../../../os/net/mac/mac.h ../../../../os/dev/radio.h \
  ../../../../os/net/mac/framer/framer.h ../../../../os/sys/energest.h \
  ../../../../arch/platform/cooja/./dev/cooja-radio.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/contiki.h:
 ../../../../arch/platform/cooja/./contiki-conf.h:

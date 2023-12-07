@@ -1,5 +1,4 @@
 build/cooja/obj/tcp-socket.o: ../../../../os/net/ipv6/tcp-socket.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/net/ipv6/uip-debug.h ../../../../os/net/net-debug.h \
  ../../../../os/net/ipv6/uip.h ../../../../os/net/ipv6/uipopt.h \
@@ -46,7 +45,6 @@ build/cooja/obj/tcp-socket.o: ../../../../os/net/ipv6/tcp-socket.c \
  ../../../../os/net/ipv6/udp-socket.h \
  ../../../../os/net/ipv6/tcp-socket.h ../../../../os/net/ipv6/uip.h \
  ../../../../os/net/netstack.h ../../../../os/net/ipv6/tcp-socket.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/ipv6/uip-debug.h:
 ../../../../os/net/net-debug.h:

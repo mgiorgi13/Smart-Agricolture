@@ -1,6 +1,5 @@
 build/cooja/obj/ccm-star-packetbuf.o: \
  ../../../../os/net/mac/csma/ccm-star-packetbuf.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/net/linkaddr.h ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -22,7 +21,6 @@ build/cooja/obj/ccm-star-packetbuf.o: \
  ../../../../os/net/ipv6/uipbuf.h ../../../../os/net/ipv6/tcpip.h \
  ../../../../os/net/mac/csma/csma-security.h \
  ../../../../os/net/mac/tsch/tsch-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/linkaddr.h:
 ../../../../os/contiki.h:

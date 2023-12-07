@@ -1,5 +1,4 @@
 build/cooja/obj/atomic.o: ../../../../os/sys/atomic.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/sys/atomic.h ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -16,7 +15,6 @@ build/cooja/obj/atomic.o: ../../../../os/sys/atomic.c \
  ../../../../arch/platform/cooja/./sys/cooja_mt.h ../../../../os/sys/pt.h \
  ../../../../os/sys/clock.h ../../../../os/sys/critical.h \
  ../../../../os/sys/memory-barrier.h ../../../../os/sys/int-master.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/sys/atomic.h:
 ../../../../os/contiki.h:

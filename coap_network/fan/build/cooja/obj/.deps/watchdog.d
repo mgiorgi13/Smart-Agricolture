@@ -1,6 +1,5 @@
 build/cooja/obj/watchdog.o: \
  ../../../../arch/platform/cooja/dev/watchdog.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/dev/watchdog.h \
  ../../../../arch/platform/cooja/./lib/simEnvChange.h \
@@ -19,7 +18,6 @@ build/cooja/obj/watchdog.o: \
  ../../../../arch/platform/cooja/./sys/cooja_mt.h ../../../../os/sys/pt.h \
  ../../../../os/sys/clock.h \
  ../../../../arch/platform/cooja/./sys/cooja_mt.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/dev/watchdog.h:
 ../../../../arch/platform/cooja/./lib/simEnvChange.h:

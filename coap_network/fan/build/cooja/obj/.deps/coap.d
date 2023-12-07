@@ -1,5 +1,4 @@
 build/cooja/obj/coap.o: ../../../../os/net/app-layer/coap/coap.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/sys/cc.h ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -30,7 +29,6 @@ build/cooja/obj/coap.o: ../../../../os/net/app-layer/coap/coap.c \
  ../../../../os/net/app-layer/coap/coap-observe-client.h \
  ../../../../os/net/app-layer/coap/coap-log.h ../../../../os/sys/log.h \
  ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/sys/cc.h:
 ../../../../os/contiki.h:

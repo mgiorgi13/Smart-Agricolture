@@ -1,5 +1,4 @@
 build/cooja/obj/rpl-dag.o: ../../../../os/net/routing/rpl-lite/rpl-dag.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/net/routing/rpl-lite/rpl.h ../../../../os/net/ipv6/uip.h \
  ../../../../os/net/ipv6/uipopt.h ../../../../os/contiki.h \
@@ -45,7 +44,6 @@ build/cooja/obj/rpl-dag.o: ../../../../os/net/routing/rpl-lite/rpl-dag.c \
  ../../../../os/net/routing/rpl-lite/rpl-timers.h \
  ../../../../os/net/ipv6/uip-sr.h ../../../../os/net/link-stats.h \
  ../../../../os/sys/log.h ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/routing/rpl-lite/rpl.h:
 ../../../../os/net/ipv6/uip.h:

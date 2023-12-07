@@ -1,6 +1,5 @@
 build/cooja/obj/rpl-icmp6.o: \
  ../../../../os/net/routing/rpl-lite/rpl-icmp6.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/net/routing/rpl-lite/rpl.h ../../../../os/net/ipv6/uip.h \
  ../../../../os/net/ipv6/uipopt.h ../../../../os/contiki.h \
@@ -50,7 +49,6 @@ build/cooja/obj/rpl-icmp6.o: \
  ../../../../os/net/mac/csma/csma-security.h \
  ../../../../os/net/mac/tsch/tsch-conf.h ../../../../os/lib/random.h \
  ../../../../os/sys/log.h ../../../../os/sys/log-conf.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/routing/rpl-lite/rpl.h:
 ../../../../os/net/ipv6/uip.h:

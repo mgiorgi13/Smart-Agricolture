@@ -1,6 +1,5 @@
 build/cooja/obj/frame802154.o: \
  ../../../../os/net/mac/framer/frame802154.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/sys/cc.h ../../../../os/contiki.h \
  ../../../../arch/platform/cooja/./contiki-conf.h project-conf.h \
@@ -19,7 +18,6 @@ build/cooja/obj/frame802154.o: \
  ../../../../os/net/linkaddr.h ../../../../os/net/mac/llsec802154.h \
  ../../../../os/net/ipv6/uip.h ../../../../os/net/ipv6/uipopt.h \
  ../../../../os/net/ipv6/uipbuf.h ../../../../os/net/ipv6/tcpip.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/sys/cc.h:
 ../../../../os/contiki.h:

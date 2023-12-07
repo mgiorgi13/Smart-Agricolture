@@ -1,5 +1,4 @@
 build/cooja/obj/assert.o: ../../../../os/lib/assert.c \
- ../../../../os/services/rpl-border-router/module-macros.h \
  ../../../../os/net/app-layer/coap/module-macros.h \
  ../../../../os/lib/assert.h ../../../../os/sys/cc.h \
  ../../../../os/contiki.h \
@@ -15,7 +14,6 @@ build/cooja/obj/assert.o: ../../../../os/lib/assert.c \
  ../../../../arch/platform/cooja/./lib/simEnvChange.h \
  ../../../../arch/platform/cooja/./sys/cooja_mt.h ../../../../os/sys/pt.h \
  ../../../../os/sys/clock.h ../../../../os/sys/cc-gcc.h
-../../../../os/services/rpl-border-router/module-macros.h:
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/lib/assert.h:
 ../../../../os/sys/cc.h:
