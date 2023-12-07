@@ -9,8 +9,7 @@ import org.json.simple.*;
 import iot.unipi.it.Logger.Logger;
 
 public class MQTThandler implements MqttCallback {
-    private String temperatureTopic = "temperature";
-    private String humidityTopic = "humidity";
+    private String temperature_humidityTopic = "temperature_humidity";
     private String soilHumidityTopic = "soilHumidity";
 
     private String broker = "tcp://127.0.0.1:1883";
@@ -34,8 +33,7 @@ public class MQTThandler implements MqttCallback {
             try {
                 this.mqttClient.connect();
 
-                this.mqttClient.subscribe(this.temperatureTopic);
-                this.mqttClient.subscribe(this.humidityTopic);
+                this.mqttClient.subscribe(this.temperature_humidityTopic);
                 this.mqttClient.subscribe(this.soilHumidityTopic);
                 if (!this.mqttClient.isConnected()) {
                     Thread.sleep(timeWindow);
@@ -59,19 +57,30 @@ public class MQTThandler implements MqttCallback {
         System.out.println("Received message: " + new String(payload));
         try {
             JSONObject sensorMessage = (JSONObject) JSONValue.parseWithException(new String(payload));
-
-            if (topic.equals(this.temperatureTopic)) {
+            
+            if (topic.equals(this.temperature_humidityTopic)) {
                 if (sensorMessage.containsKey("nodeId")
                         && sensorMessage.containsKey("temperature")
-                        && sensorMessage.containsKey("unit")) {
-                    Double numericValue = Double.parseDouble(sensorMessage.get("temperature").toString());
+                        && sensorMessage.containsKey("unit")
+                        && sensorMessage.containsKey("umidity")
+                        && sensorMessage.containsKey("type")
+                        ) {
+                    Integer numericTemperatureValue = Integer.parseInt(sensorMessage.get("temperature").toString());
+                    Integer numericUmidityValue = Integer.parseInt(sensorMessage.get("umidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
                 
-                    Logger.log(String.format("[MQTT Java Client]: Received temperature value from node %s: %f %s", nodeId, numericValue, sensorMessage.get("unit").toString()));
+                    Logger.log(String.format("[MQTT Java Client]: Received temperature value from node %s: %f %s, %f %s", nodeId, numericTemperatureValue, sensorMessage.get("unit").toString(),numericUmidityValue, sensorMessage.get("type").toString()));
 
                     //receivedReservoirSamples.put(nodeId, numericValue);
                     //IrrigationSystemDbManager.insertWaterLevReservoir(nodeId, numericValue);
 
+                } else if (sensorMessage.containsKey("nodeId")
+                        && sensorMessage.containsKey("soil_umidity")
+                        && sensorMessage.containsKey("type")) {
+                    Integer numericSoilUmidityValue = Integer.parseInt(sensorMessage.get("soil_umidity").toString());
+                    String nodeId = sensorMessage.get("nodeId").toString();
+                    Logger.log(String.format("[MQTT Java Client]: Received temperature value from node %s: %f %s, %f %s", nodeId, numericSoilUmidityValue, sensorMessage.get("type").toString()));
+                
                 } else {
                     System.out.println("Garbage data from sensor");
                 }
