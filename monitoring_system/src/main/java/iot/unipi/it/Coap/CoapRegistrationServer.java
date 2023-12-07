@@ -49,8 +49,8 @@ public class CoapRegistrationServer extends CoapServer {
             boolean success = true;
 
             switch (deviceType) {
-                case "heater_actuator":
-                    CNH.registerHeater(ip);
+                case "conditioner_actuator":
+                    CNH.registerConditioner(ip);
                     break;
                 // case "rain_sensor":
                 // coapHandler.addRainSensor(ipAddress);
@@ -80,8 +80,8 @@ public class CoapRegistrationServer extends CoapServer {
             boolean success = true;
 
             switch (deviceType) {
-                case "heater_actuator":
-                    CNH.unregisterHeater(ip);
+                case "conditioner_actuator":
+                    CNH.unregisterConditioner(ip);
                     break;
                 // case "rain_sensor":
                 // coapHandler.addRainSensor(ipAddress);

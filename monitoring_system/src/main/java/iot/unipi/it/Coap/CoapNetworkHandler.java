@@ -1,11 +1,11 @@
 package iot.unipi.it.Coap;
-import iot.unipi.it.Coap.Resources.Heater;
+import org.json.simple.JSONObject;
+
+import iot.unipi.it.Coap.Resources.Conditioner;
 
 public class CoapNetworkHandler {
-    // private AirQuality airQuality = new AirQuality();
-    // private Light light = new Light();
-    // private PresenceSensor presenceSensor = new PresenceSensor();
-    private Heater heaterActuator = new Heater();
+    private Conditioner conditioner_actuator = new Conditioner();
+
     private static CoapNetworkHandler instance = null;
 
     public static CoapNetworkHandler getInstance() {
@@ -16,27 +16,42 @@ public class CoapNetworkHandler {
     }
 
     /* REGISTER AND UNREGISTER DEVICES */
-    public void registerHeater(String ip) {
-        heaterActuator.addHeaderActuator(ip);
+    public void registerConditioner(String ip) {
+        conditioner_actuator.addConditionerActuator(ip);
     }
 
-    public void unregisterHeater(String ip) {
-        heaterActuator.deleteHeaderActuator(ip);
+    public void unregisterConditioner(String ip) {
+        conditioner_actuator.deleteConditionerActuator(ip);
     }
     
     /* GET METHODS */
-    public int getTemperature(int index) {
-        return heaterActuator.getTemperature(index);
+    public String getConditionerStatus(int index) {
+        JSONObject json = conditioner_actuator.getStatus(index);
+        return json.toJSONString();
+    }
+
+    public String getConditionerSwitchStatus(int index) {
+        int result = conditioner_actuator.getSwitchStatus(index);
+        if (result == 1)
+            return "on";
+        else if (result == 0)
+            return "off";
+        else
+            return "ERROR";
     }
 
     /* SET METHODS */
-    public void changeTemperature(int value) {
-        heaterActuator.putTemperature(String.valueOf(value));
+    public void changeConditionerStatus(int temperature, int fanSpeed, int humidity) {
+        conditioner_actuator.setStatus(temperature, fanSpeed, humidity);
+    }
+
+    public void changeConditionerSwitchStatus(String status) {
+        conditioner_actuator.setSwitchStatus(status);
     }
 
     // General functions
     public void printAllDevices() {
-        heaterActuator.printDevices();
+        conditioner_actuator.printDevices();
         // rainSensor.printDevice();
         // soilMoistureNetwork.printDevices();
         // tapActuator.printDevice();

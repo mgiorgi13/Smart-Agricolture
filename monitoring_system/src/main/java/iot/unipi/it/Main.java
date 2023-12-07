@@ -41,40 +41,27 @@ public class Main {
             try {
                 command = bufferedReader.readLine();
                 parts = command.split(" ");
-                int temp;
+                String status;
                 switch (parts[0]) {
                     case "!help":
                         helpFunction(parts);
                         break;
-                    case "!get_temperature":
-                        temp = CNH.getTemperature(0);
-                        System.out.println(temp);
+                    case "!get_conditioner_status":
+                        status = CNH.getConditionerStatus(0);
+                        System.out.println(status);
                         break;
-                    case "!put_temperature":
+                    case "!get_conditioner_switch":
+                        status = CNH.getConditionerSwitchStatus(0);
+                        System.out.println(status);
+                        break;
+                    case "!put_conditioner_status":
                         //todo va controllato il parts[1]
-                        CNH.changeTemperature(Integer.parseInt(parts[1]));
+                        CNH.changeConditionerStatus(Integer.parseInt(parts[1]),Integer.parseInt(parts[2]),Integer.parseInt(parts[3]));
                         break;
-                    // case "!set_humidity":
-                    // setHumidityFunction(parts, mqttNetworkHandler.getHumidityCollector());
-                    // break;
-                    // case "!set_temperature":
-                    // setTemperatureFunction(parts, mqttNetworkHandler.getTemperatureCollector());
-                    // break;
-                    // case "!get_air_quality":
-                    // getAirQualityFunction(coapRegistrationServer);
-                    // break;
-                    // case "!set_air_quality":
-                    // setAirQualityFunction(coapRegistrationServer, parts);
-                    // break;
-                    // case "!set_color":
-                    // setColorFunction(coapRegistrationServer, parts);
-                    // break;
-                    // case "!get_number_of_people":
-                    // getNumberOfPeopleFunction(coapRegistrationServer);
-                    // break;
-                    // case "!set_max_number_of_people":
-                    // setMaxNumberOfPeopleFunction(coapRegistrationServer, parts);
-                    // break;
+                    case "!put_conditioner_switch":
+                        //todo va controllato il parts[1]
+                        CNH.changeConditionerSwitchStatus(parts[1]);
+                        break;
                     case "!exit":
                         System.out.println("Bye!");
                         System.exit(0);
@@ -91,20 +78,13 @@ public class Main {
     }
 
     private static void printAvailableCommands() {
-        System.out.println("***************************** SMART SAUNA *****************************\n" +
+        System.out.println("***************************** Smart Agricolture *****************************\n" +
                 "The following commands are available:\n" +
                 "1) !help <command> --> shows the details of a command\n" +
                 "2) !get_humidity --> recovers the last humidity measurement\n" +
-                "3) !set_humidity <lower bound> <upper bound> --> sets the range within which the humidity must stay\n"
-                +
+                "3) !set_humidity <lower bound> <upper bound> --> sets the range within which the humidity must stay\n" +
                 "4) !get_temperature --> recovers the last temperature measurement\n" +
-                "5) !set_temperature <lower bound> <upper_bound> --> sets the range within which the temperature must stay\n"
-                +
-                "6) !get_air_quality --> recovers the last CO2 concentration measurement\n" +
-                "7) !set_air_quality <upper bound> --> sets the limit below which the CO2 concentration must stay\n" +
-                "8) !set_color <color> --> sets the light color (GREEN, YELLOW or RED)\n" +
-                "9) !get_number_of_people --> retrieves the number of people inside the sauna\n" +
-                "10) !set_max_number_of_people <number> --> sets a limit on the number of people who can enter\n" +
+                "5) !set_temperature <lower bound> <upper_bound> --> sets the range within which the temperature must stay\n" +
                 "11) !exit --> terminates the program\n");
     }
 
@@ -140,35 +120,6 @@ public class Main {
                             "!set_temperature allows you to set the range within which the temperature should be inside the sauna.\n"
                                     +
                                     "Two parameters are required: the lower and the upper bounds.\n");
-                    break;
-                case "!get_air_quality":
-                case "get_air_quality":
-                    System.out.println(
-                            "!get_air_quality allows you to retrieve the CO2 level inside the sauna, expressed in parts per million (ppm).\n");
-                    break;
-                case "!set_air_quality":
-                case "set_air_quality":
-                    System.out.println(
-                            "!set_air_quality allows you to set the maximum level of CO2 that can be inside the sauna.\n"
-                                    +
-                                    "One parameter is required: the upper bound.\n");
-                    break;
-                case "!set_color":
-                case "set_color":
-                    System.out.println("!set_color allows you to set the color of the light inside the sauna.\n" +
-                            "A parameter is required, i.e. the color, which can take three values: GREEN, YELLOW or RED. \n");
-                    break;
-                case "!get_number_of_people":
-                case "get_number_of_people":
-                    System.out.println(
-                            "!get_number_of_people allows you to retrieve the number of people who are inside the sauna.\n");
-                    break;
-                case "!set_max_number_of_people":
-                case "set_max_number_of_people":
-                    System.out.println(
-                            "!set_max_number_of_people allows you to set the maximum number of people who can be inside the sauna at the same time.\n"
-                                    +
-                                    "One parameter is required: the maximum number of people\n");
                     break;
                 case "!exit":
                 case "exit":
