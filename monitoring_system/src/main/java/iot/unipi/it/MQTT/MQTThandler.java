@@ -14,7 +14,6 @@ public class MQTThandler implements MqttCallback {
     private String broker = "tcp://127.0.0.1:1883";
     private String clientId = "JavaApp";
     private MqttClient mqttClient = null;
-    private MysqlManager smart_agricoltureDB = new MysqlManager();
 
     public MQTThandler() throws MqttException {
         this.mqttClient = new MqttClient(this.broker, this.clientId);
@@ -70,7 +69,7 @@ public class MQTThandler implements MqttCallback {
                 
                     Logger.log(String.format("[MQTT Java Client]: Received temperature value from node %s: %f %s, %f %s", nodeId, numericTemperatureValue, sensorMessage.get("unit").toString(),numericUmidityValue, sensorMessage.get("type").toString()));
 
-                    smart_agricoltureDB.insertTemperatureAndUmidity(nodeId, numericTemperatureValue, numericUmidityValue);
+                    MysqlManager.insertTemperatureAndUmidity(nodeId, numericTemperatureValue, numericUmidityValue);
 
                 } else if (sensorMessage.containsKey("nodeId")
                         && sensorMessage.containsKey("soil_umidity")
@@ -79,7 +78,7 @@ public class MQTThandler implements MqttCallback {
                     String nodeId = sensorMessage.get("nodeId").toString();
                     Logger.log(String.format("[MQTT Java Client]: Received temperature value from node %s: %f %s, %f %s", nodeId, numericSoilUmidityValue, sensorMessage.get("type").toString()));
                 
-                    smart_agricoltureDB.insertSoilMoistureValue(nodeId, numericSoilUmidityValue);
+                    MysqlManager.insertSoilMoistureValue(nodeId, numericSoilUmidityValue);
                 } else {
                     System.out.println("Garbage data from sensor");
                 }
