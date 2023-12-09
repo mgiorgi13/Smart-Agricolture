@@ -4,6 +4,7 @@
 #include "coap-engine.h"
 #include "dev/leds.h"
 #include "sys/log.h"
+#include "window_control.h"
 
 /* Log configuration */
 #define LOG_MODULE "App"
@@ -67,3 +68,10 @@ static void put_switch_handler(coap_message_t *request, coap_message_t *response
         return;
     }
 }
+
+#pragma GCC diagnostic ignored "-Wunused-function"
+void set_window_switch(bool new_state)
+{
+    isActive = new_state;
+}
+#pragma GCC diagnostic warning "-Wunused-function"

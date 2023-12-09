@@ -1,7 +1,7 @@
 #ifndef CONDITIONER_CONTROL_H
 #define CONDITIONER_CONTROL_H
 
-#include "mode.h"  // Assicurati di includere tutti i file necessari per le dichiarazioni di tipo
+#include "mode.h"  
 
 void set_conditioner_state(int new_temperature, int new_fanSpeed, int new_humidity, Mode new_mode);
 

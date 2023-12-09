@@ -53,6 +53,9 @@
 #define SIMULATION_INTERVAL 8
 #define SENSOR_TYPE "conditioner_actuator"
 #define YOUR_TIMER_DURATION_SECONDS 2
+#define DEFAULT_TEMPERATURE 24
+#define DEFAULT_HUMIDITY 50
+#define DEFAULT_FAN_SPEED 50
 
 /* Log configuration */
 #include "sys/log.h"
@@ -69,11 +72,11 @@ static bool connected = false;
 static bool registered = false;
 static int mode = 0;
 static bool activate = 0;
+static bool blink_state = false;
 
 static struct etimer wait_connectivity;
 static struct etimer wait_registration;
 static struct etimer button_timer;
-// static struct etimer simulation;
 
 extern coap_resource_t conditioner_actuator;
 extern coap_resource_t conditioner_switch;
@@ -121,7 +124,6 @@ PROCESS_THREAD(conditioner_server, ev, data)
 
     static coap_endpoint_t server_ep;
     static coap_message_t request[1]; // This way the packet can be treated as pointer as usual
-    static bool blink_state = false;
     leds_off(LEDS_ALL);
 
     etimer_set(&wait_connectivity, CLOCK_SECOND * CONN_TRY_INTERVAL);
@@ -160,7 +162,7 @@ PROCESS_THREAD(conditioner_server, ev, data)
         }
 
         blink_state = !blink_state;
-        
+
         coap_endpoint_parse(SERVER_EP, strlen(SERVER_EP), &server_ep);
 
         coap_init_message(request, COAP_TYPE_CON, COAP_POST, 0);
@@ -171,18 +173,13 @@ PROCESS_THREAD(conditioner_server, ev, data)
         // wait for the timer to expire
         PROCESS_WAIT_UNTIL(etimer_expired(&wait_registration));
     }
+    LOG_INFO("REGISTERED\nStarting conditioner server");
     leds_off(LEDS_ALL);
     leds_on(LEDS_GREEN);
-
-    LOG_INFO("REGISTERED\nStarting conditioner server");
 
     // RESOURCES ACTIVATION
     coap_activate_resource(&conditioner_actuator, "conditioner_actuator");
     coap_activate_resource(&conditioner_switch, "conditioner_switch");
-
-    // SIMULATION
-    // etimer_set(&simulation, CLOCK_SECOND * SIMULATION_INTERVAL);
-    LOG_INFO("Simulation\n");
 
     while (1)
     {
@@ -200,27 +197,6 @@ PROCESS_THREAD(conditioner_server, ev, data)
                 // Se il timer è scaduto, considera l'evento come una pressione prolungata
                 activate = !activate;
                 set_conditioner_switch(activate);
-                switch (mode + 1)
-                {
-                case 1:
-                    LOG_INFO("Mode: heater\n");
-                    set_conditioner_state(24, 50, 0, 1);
-                    break;
-                case 2:
-                    LOG_INFO("Mode: heater_humidifier\n");
-                    set_conditioner_state(24, 50, 50, 2);
-                    break;
-                case 3:
-                    LOG_INFO("Mode: humidifier\n");
-                    set_conditioner_state(0, 50, 50, 3);
-                    break;
-                case 4:
-                    LOG_INFO("Mode: wind\n");
-                    set_conditioner_state(0, 50, 0, 4);
-                    break;
-                default:
-                    break;
-                }
             }
             else
             {
@@ -235,21 +211,25 @@ PROCESS_THREAD(conditioner_server, ev, data)
                         LOG_INFO("Mode: heater\n");
                         leds_off(LEDS_ALL);
                         leds_on(LEDS_RED);
+                        set_conditioner_state(DEFAULT_TEMPERATURE, DEFAULT_FAN_SPEED, 0, 1);
                         break;
                     case 2:
                         LOG_INFO("Mode: heater_humidifier\n");
                         leds_off(LEDS_ALL);
                         leds_on(LEDS_RED | LEDS_BLUE);
+                        set_conditioner_state(DEFAULT_TEMPERATURE, DEFAULT_FAN_SPEED, DEFAULT_HUMIDITY, 2);
                         break;
                     case 3:
                         LOG_INFO("Mode: humidifier\n");
                         leds_off(LEDS_ALL);
                         leds_on(LEDS_BLUE);
+                        set_conditioner_state(0, DEFAULT_FAN_SPEED, DEFAULT_HUMIDITY, 3);
                         break;
                     case 4:
                         LOG_INFO("Mode: wind\n");
                         leds_off(LEDS_ALL);
-                        leds_on(LEDS_GREEN);
+                        leds_on(LEDS_YELLOW);
+                        set_conditioner_state(0, DEFAULT_FAN_SPEED, 0, 4);
                         break;
                     default:
                         break;
@@ -257,11 +237,6 @@ PROCESS_THREAD(conditioner_server, ev, data)
                 }
             }
         }
-
-        // if (ev == PROCESS_EVENT_TIMER && data == &simulation) {
-        //     heater_actuator.trigger();
-        //     etimer_set(&simulation, CLOCK_SECOND * SIMULATION_INTERVAL);
-        // }
     }
 
     PROCESS_END();
