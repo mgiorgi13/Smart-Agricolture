@@ -13,7 +13,7 @@ import iot.unipi.it.MQTT.MQTThandler;
 
 public class Main {
     public static void main(String[] args) {
-        MQTThandler mqttHandler;
+        MQTThandler mqttHandler = null;
         try {
             mqttHandler = new MQTThandler();
         } catch (MqttException e) {
@@ -103,6 +103,8 @@ public class Main {
                         break;
                     case "!print_all_device":
                         coapNetworkHandler.printAllDevices();
+                        if (mqttHandler!=null)
+                            mqttHandler.printAllDevices();
                         break;
                     case "!exit":
                         System.out.println("Bye!");

@@ -30,7 +30,7 @@ build/cooja/obj/window_switch.o: resources/window_switch.c \
  ../../../../os/net/app-layer/coap/coap-observe-client.h \
  ../../../../os/dev/leds.h ../../../../os/dev/gpio-hal.h \
  ../../../../arch/platform/cooja/./dev/gpio-hal-arch.h \
- ../../../../os/sys/log.h ../../../../os/sys/log-conf.h
+ ../../../../os/sys/log.h ../../../../os/sys/log-conf.h window_control.h
 ../../../../os/net/app-layer/coap/module-macros.h:
 ../../../../os/net/app-layer/coap/coap-engine.h:
 ../../../../os/net/app-layer/coap/coap.h:
@@ -78,3 +78,4 @@ project-conf.h:
 ../../../../arch/platform/cooja/./dev/gpio-hal-arch.h:
 ../../../../os/sys/log.h:
 ../../../../os/sys/log-conf.h:
+window_control.h:
