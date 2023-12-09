@@ -70,10 +70,34 @@ public class Main {
                     case "!turn_off_conditioner":
                         coapNetworkHandler.turnOffConditioner();
                         break;
+                    case "!get_window_switch_status":
+                        status = coapNetworkHandler.getWindowSwitchStatus(0);
+                        System.out.println(status);
+                        break;
+                     case "!turn_on_windows":
+                        coapNetworkHandler.turnOnWindow();
+                        break;
+                    case "!turn_off_windows":
+                        coapNetworkHandler.turnOffWindow();
+                        break;
+                
+                    case "!get_irrigation_switch_status":
+                        coapNetworkHandler.getIrrigationSwitchStatus();
+                        break;
+                     case "!turn_on_irrigation":
+                        coapNetworkHandler.turnOnIrrigation(Integer.parseInt(parts[1]));
+                        break;
+                    case "!turn_off_irrigation":
+                        coapNetworkHandler.turnOffIrrigation(Integer.parseInt(parts[1]));
+                        break;
+                    case "!print_all_device":
+                        coapNetworkHandler.printAllDevices();
+                        break;
                     case "!exit":
                         System.out.println("Bye!");
                         System.exit(0);
                         break;
+                    
                     default:
                         System.out.println("Command not recognized, try again\n");
                         break;
@@ -97,16 +121,23 @@ public class Main {
                 "6) !turn_on_humidifier <fanSpeed> <humidity> --> activates the umidifier\n" +
                 "7) !turn_on_wind <fanSpeed> --> activates the wind\n" +
                 "8) !turn_off_conditioner --> turns off the conditioner\n" +
-                "11) !exit --> terminates the program\n");
+                "9) !get_window_switch_status --> shows the switch status of the window\n" +
+                "10)!turn_on_windows --> open the window \n" +
+                "11)!turn_off_windows --> closed the window\n" +
+                "12)!get_irrigation_switch_status --> shows the switch status of the irrigation\n" +
+                "13)!turn_on_irrigation <index> --> I turn on the index-th irrigation actuator \n" +
+                "14)!turn_off_irrigation <index> --> I turn off the index-th irrigation actuator\n" +
+                "15)!print_all_device --> all device acutator device" +
+                "16) !exit --> terminates the program\n");
+    
+        
     }
-
     private static void helpFunction(String[] parts) {
         if (parts.length != 2) {
             System.out.println("Incorrect use of the command. Please use !help <command>\n");
         } else {
             switch (parts[1]) {
                 case "!help":
-                case "help":
                     System.out.println("!help shows the details of the command passed as parameter.\n");
                     break;
                 case "!get_conditioner_status":
@@ -131,8 +162,28 @@ public class Main {
                 case "!turn_off_conditioner":
                     System.out.println("!turn_off_conditioner turns off the conditioner.\n");
                     break;
+                case "!get_window_switch_status":
+                        System.out.println("!get_window_switch_status shows the switch status of the window.\n");
+                        break;
+                case "!turn_on_windows":
+                    System.out.println("!turn_on_windows open the window.\n");
+                    break;
+                case "!turn_off_windows":
+                    System.out.println("!turn_off_windows closed the window.\n");
+                    break;
+                case "!get_irrigation_switch_status":
+                        System.out.println("!get_irrigation_switch_status shows the switch status of the irrigation\n");
+                        break;
+                case "!turn_on_irrigation":
+                    System.out.println("!turn_on_irrigation I turn on the index-th irrigation actuator\n");
+                    break;
+                case "!turn_off_irrigation":
+                    System.out.println("!turn_off_irrigation I turn on the index-th irrigation actuator.\n");
+                    break;
+                case "!print_all_device":
+                        System.out.println("!print_all_device print all actuator devices.\n");
+                        break;
                 case "!exit":
-                case "exit":
                     System.out.println("!exit allows you to terminate the program.\n");
                     break;
                 default:

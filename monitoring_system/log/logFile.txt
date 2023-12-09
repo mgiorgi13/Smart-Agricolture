@@ -1043,6 +1043,7 @@
 2023-12-09T03:13:19.106Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 76,"type": "percentage"}
 2023-12-09T03:13:29.055Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 76,"type": "percentage"}
 2023-12-09T03:13:39.081Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 68,"type": "percentage"}
+<<<<<<< HEAD
 2023-12-09T05:40:53.519Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 30,"type": "percentage"}
 2023-12-09T05:41:02.404Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
 2023-12-09T05:41:03.218Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 65,"type": "percentage"}
@@ -1476,3 +1477,21 @@
 2023-12-09T07:39:55.527Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 34,"type": "percentage"}
 2023-12-09T07:40:05.587Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 45,"type": "percentage"}
 2023-12-09T07:40:15.668Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 76,"type": "percentage"}
+=======
+2023-12-13T11:53:10.230Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-13T12:26:22.950Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-13T12:38:24.824Z [LOG] The Window actuator: [fd00:0:0:0:203:3:3:3] is now registered
+2023-12-13T12:38:29.178Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-13T15:11:06.355Z [LOG] The Irrigation actuator: [fd00:0:0:0:203:3:3:3] is now registered
+2023-12-13T15:11:32.590Z [LOG] The Window actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-13T15:13:46.810Z [LOG] The Irrigation actuator: [fd00:0:0:0:204:4:4:4] is now registered
+2023-12-13T15:17:15.426Z [LOG] The conditioner actuator: [fd00:0:0:0:205:5:5:5] is now registered
+2023-12-13T17:18:04.473Z [LOG] The Irrigation actuator: [fd00:0:0:0:205:5:5:5] is now registered
+2023-12-13T17:18:08.953Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-13T17:18:10.664Z [LOG] The Window actuator: [fd00:0:0:0:203:3:3:3] is now registered
+2023-12-13T17:18:11.115Z [LOG] The Irrigation actuator: [fd00:0:0:0:204:4:4:4] is now registered
+2023-12-13T17:24:34.644Z [LOG] The Window actuator: [fd00:0:0:0:203:3:3:3] is now registered
+2023-12-13T17:24:34.996Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-13T17:24:38.099Z [LOG] The Irrigation actuator: [fd00:0:0:0:204:4:4:4] is now registered
+2023-12-13T17:24:40.479Z [LOG] The Irrigation actuator: [fd00:0:0:0:205:5:5:5] is now registered
+>>>>>>> salvo

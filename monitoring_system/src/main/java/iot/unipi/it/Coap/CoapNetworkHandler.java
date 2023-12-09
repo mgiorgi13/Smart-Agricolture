@@ -3,10 +3,13 @@ package iot.unipi.it.Coap;
 import org.json.simple.JSONObject;
 
 import iot.unipi.it.Coap.Resources.Conditioner;
+import iot.unipi.it.Coap.Resources.Irrigation;
+import iot.unipi.it.Coap.Resources.Window;
 
 public class CoapNetworkHandler {
     private Conditioner conditioner_actuator = new Conditioner();
-
+    private Window window_actuator = new Window();
+    private Irrigation irrigation_actuator = new Irrigation();
     private static CoapNetworkHandler instance = null;
 
     public static CoapNetworkHandler getInstance() {
@@ -103,10 +106,71 @@ public class CoapNetworkHandler {
         conditioner_actuator.setSwitchStatus("off");
     }
 
-    // General functions
+   
+
+    /* REGISTER AND UNREGISTER DEVICES */
+    public void registerWindow(String ip) {
+        window_actuator.addWindowActuator(ip);
+    }
+
+    public void unregisterWindow(String ip) {
+        window_actuator.deleteWindowActuator(ip);
+    }
+
+    /* GET METHODS */
+
+    public String getWindowSwitchStatus(int index) {
+        int result = window_actuator.getSwitchStatus(index);
+        if (result == 1)
+            return "on";
+        else if (result == 0)
+            return "off";
+        else
+            return "ERROR";
+    }
+
+    /* SET METHODS */
+
+    public void turnOnWindow() {  
+        window_actuator.setSwitchStatus("on");
+    }
+
+
+    public void turnOffWindow(){
+        window_actuator.setSwitchStatus("off");
+    }
+
+    /* REGISTER AND UNREGISTER DEVICES */
+    public void registerIrrigation(String ip) {
+        irrigation_actuator.addIrrigationActuator(ip);
+    }
+
+    public void unregisterIrrigation(String ip) {
+        irrigation_actuator.deleteIrrigationActuator(ip);
+    }
+
+    /* GET METHODS */
+
+    public void getIrrigationSwitchStatus() {
+        irrigation_actuator.getSwitchStatus();
+    }
+
+    /* SET METHODS */
+
+    public void turnOnIrrigation(int index) {  
+        irrigation_actuator.setSwitchStatus("on",index);
+    }
+
+
+    public void turnOffIrrigation(int index){
+        irrigation_actuator.setSwitchStatus("off",index);
+    }
+
+     // General functions
     public void printAllDevices() {
         conditioner_actuator.printDevices();
-        // rainSensor.printDevice();
+        window_actuator.printDevices();
+        irrigation_actuator.printDevices();
         // soilMoistureNetwork.printDevices();
         // tapActuator.printDevice();
     }
