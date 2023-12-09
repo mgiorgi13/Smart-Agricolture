@@ -12,8 +12,9 @@ import iot.unipi.it.MQTT.MQTThandler;
 
 public class Main {
     public static void main(String[] args) {
+        MQTThandler mqttHandler;
         try {
-            MQTThandler mqttHandler = new MQTThandler();
+            mqttHandler = new MQTThandler();
         } catch (MqttException e) {
             // TODO: handle exception
             e.printStackTrace();
@@ -54,7 +55,8 @@ public class Main {
                         System.out.println(status);
                         break;
                     case "!turn_on_heater_humidifier":
-                        coapNetworkHandler.activateHeaterHumidifier(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+                        coapNetworkHandler.activateHeaterHumidifier(Integer.parseInt(parts[1]),
+                                Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
                         break;
                     case "!turn_on_heater":
                         coapNetworkHandler.activateHeater(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
@@ -90,7 +92,8 @@ public class Main {
                 "2) !get_conditioner_status --> shows the status of the conditioner\n" +
                 "3) !get_conditioner_switch --> shows the switch status of the conditioner\n" +
                 "4) !turn_on_heater <temperature> <fanSpeed> --> activates the heater\n" +
-                "5) !turn_on_heater_humidifier <temperature> <fanSpeed> <humidity>--> activates the heater-humidifier\n" +    
+                "5) !turn_on_heater_humidifier <temperature> <fanSpeed> <humidity>--> activates the heater-humidifier\n"
+                +
                 "6) !turn_on_humidifier <fanSpeed> <humidity> --> activates the umidifier\n" +
                 "7) !turn_on_wind <fanSpeed> --> activates the wind\n" +
                 "8) !turn_off_conditioner --> turns off the conditioner\n" +
@@ -116,7 +119,8 @@ public class Main {
                     System.out.println("!turn_on_heater <temperature> <fanSpeed> activates the heater.\n");
                     break;
                 case "!turn_on_heater_humidifier":
-                    System.out.println("!turn_on_heater_humidifier <temperature> <fanSpeed> <humidity> activates the heater-humidifier.\n");
+                    System.out.println(
+                            "!turn_on_heater_humidifier <temperature> <fanSpeed> <humidity> activates the heater-humidifier.\n");
                     break;
                 case "!turn_on_humidifier":
                     System.out.println("!turn_on_humidifier <fanSpeed> <humidity> activates the umidifier.\n");
