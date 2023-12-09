@@ -37,7 +37,6 @@
 #include "sys/etimer.h"
 #include "sys/ctimer.h"
 #include "lib/sensors.h"
-#include "dev/button-hal.h"
 #include "dev/leds.h"
 #include "os/sys/log.h"
 #include "mqtt-client.h"
@@ -112,7 +111,6 @@ mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
 static int soil_umidity = 0;
-
 
 /*---------------------------------------------------------------------------*/
 PROCESS(mqtt_client_process, "MQTT Client");
@@ -244,6 +242,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
       {
         if (have_connectivity() == true)
           state = STATE_NET_OK;
+        leds_off(LEDS_ALL);
       }
 
       if (state == STATE_NET_OK)
@@ -257,6 +256,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                      (DEFAULT_PUBLISH_INTERVAL * 3) / CLOCK_SECOND,
                      MQTT_CLEAN_SESSION_ON);
         state = STATE_CONNECTING;
+        leds_on(LEDS_YELLOW);
       }
 
       // if (state == STATE_CONNECTED)
@@ -293,6 +293,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                      strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
         PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
         STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
+        leds_off(LEDS_ALL);
+        leds_on(LEDS_GREEN);
       }
 
       else if (state == STATE_DISCONNECTED)
@@ -300,6 +302,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         LOG_ERR("Disconnected form MQTT broker\n");
         // Recover from error
         state = STATE_INIT;
+        leds_off(LEDS_ALL);
+        leds_on(LEDS_RED);
       }
 
       etimer_set(&periodic_timer, STATE_MACHINE_PERIODIC);
