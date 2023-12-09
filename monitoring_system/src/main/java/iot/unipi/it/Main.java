@@ -122,12 +122,12 @@ public class Main {
                 "7) !turn_on_wind <fanSpeed> --> activates the wind\n" +
                 "8) !turn_off_conditioner --> turns off the conditioner\n" +
                 "9) !get_window_switch_status --> shows the switch status of the window\n" +
-                "10)!turn_on_windows --> open the window \n" +
-                "11)!turn_off_windows --> closed the window\n" +
-                "12)!get_irrigation_switch_status --> shows the switch status of the irrigation\n" +
-                "13)!turn_on_irrigation <index> --> I turn on the index-th irrigation actuator \n" +
-                "14)!turn_off_irrigation <index> --> I turn off the index-th irrigation actuator\n" +
-                "15)!print_all_device --> all device acutator device" +
+                "10) !turn_on_windows --> open the window \n" +
+                "11) !turn_off_windows --> closed the window\n" +
+                "12) !get_irrigation_switch_status --> shows the switch status of the irrigation\n" +
+                "13) !turn_on_irrigation <index> --> I turn on the index-th irrigation actuator \n" +
+                "14) !turn_off_irrigation <index> --> I turn off the index-th irrigation actuator\n" +
+                "15) !print_all_device --> all device acutator device\n" +
                 "16) !exit --> terminates the program\n");
     
         
