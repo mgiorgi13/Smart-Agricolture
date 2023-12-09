@@ -8,3 +8,5 @@
 2023-12-09T09:05:50.748Z [LOG] [MQTT Java Client]: Received temperature value from node 4: 41.000000 percentage
 2023-12-09T09:06:00.771Z [LOG] [MQTT Java Client]: Received temperature value from node 4: 32.000000 percentage
 2023-12-09T09:06:10.801Z [LOG] [MQTT Java Client]: Received temperature value from node 4: 74.000000 percentage
+2023-12-09T09:19:53.220Z [LOG] The conditioner actuator: [fd00:0:0:0:f6ce:36fe:4909:2bfe] is now registered
+2023-12-09T09:22:16.200Z [LOG] The conditioner actuator: [fd00:0:0:0:f6ce:36fe:4909:2bfe] is now registered

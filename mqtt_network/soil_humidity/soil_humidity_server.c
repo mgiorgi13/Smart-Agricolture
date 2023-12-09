@@ -111,7 +111,7 @@ static struct mqtt_connection conn;
 mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-static int soil_umidity = 0;
+static double soil_umidity = 0;
 
 
 /*---------------------------------------------------------------------------*/
