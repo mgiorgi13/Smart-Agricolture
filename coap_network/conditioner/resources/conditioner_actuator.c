@@ -17,7 +17,7 @@
 static int temperature = 0;
 static int fanSpeed = 0;
 static int humidity = 0;
-static Mode mode = 0; // possible mode : 0:none, 1:heater, 2:cooler, 3:humidifier, 4:wind
+static Mode mode = 0; // possible mode : 0:none, 1:heater, 2:heater_humidifer, 3:humidifier, 4:wind
 
 /**************** REST: Temperature **********************/
 static void get_status_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset);

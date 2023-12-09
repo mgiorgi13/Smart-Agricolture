@@ -10,10 +10,6 @@
 #define LOG_LEVEL LOG_LEVEL_APP
 
 /**************** RESOURCES **********************/
-// #include "global_variables.h"
-
-#define VARIATION 1
-
 static int isActive = 0;
 
 /**************** REST: Temperature **********************/

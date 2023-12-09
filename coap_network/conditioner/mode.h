@@ -5,7 +5,7 @@
 typedef enum {
     NONE = 0,
     HEATER = 1,
-    COOLER = 2,
+    HEATER_HUMIDIFIER = 2,
     HUMIDIFIER = 3,
     WIND = 4
 } Mode;

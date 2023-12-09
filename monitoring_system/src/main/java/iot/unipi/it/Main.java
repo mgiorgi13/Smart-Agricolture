@@ -45,7 +45,7 @@ public class Main {
                         helpFunction(parts);
                         break;
                     case "!get_conditioner_status":
-                    //controllare che la lista di client non sia vuota
+                        // controllare che la lista di client non sia vuota
                         status = coapNetworkHandler.getConditionerStatus(0);
                         System.out.println(status);
                         break;
@@ -53,11 +53,11 @@ public class Main {
                         status = coapNetworkHandler.getConditionerSwitchStatus(0);
                         System.out.println(status);
                         break;
+                    case "!turn_on_heater_humidifier":
+                        coapNetworkHandler.activateHeaterHumidifier(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+                        break;
                     case "!turn_on_heater":
                         coapNetworkHandler.activateHeater(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
-                        break;
-                    case "!turn_on_cooler":
-                        coapNetworkHandler.activateCooler(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
                         break;
                     case "!turn_on_humidifier":
                         coapNetworkHandler.activateHumidifier(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
@@ -90,7 +90,7 @@ public class Main {
                 "2) !get_conditioner_status --> shows the status of the conditioner\n" +
                 "3) !get_conditioner_switch --> shows the switch status of the conditioner\n" +
                 "4) !turn_on_heater <temperature> <fanSpeed> --> activates the heater\n" +
-                "5) !turn_on_cooler <temperature> <fanSpeed> --> activates the cooler\n" +
+                "5) !turn_on_heater_humidifier <temperature> <fanSpeed> <humidity>--> activates the heater-humidifier\n" +    
                 "6) !turn_on_humidifier <fanSpeed> <humidity> --> activates the umidifier\n" +
                 "7) !turn_on_wind <fanSpeed> --> activates the wind\n" +
                 "8) !turn_off_conditioner --> turns off the conditioner\n" +
@@ -111,12 +111,12 @@ public class Main {
                     break;
                 case "!get_conditioner_switch":
                     System.out.println("!get_conditioner_switch shows the switch status of the conditioner.\n");
-                    break;  
+                    break;
                 case "!turn_on_heater":
                     System.out.println("!turn_on_heater <temperature> <fanSpeed> activates the heater.\n");
                     break;
-                case "!turn_on_cooler":
-                    System.out.println("!turn_on_cooler <temperature> <fanSpeed> activates the cooler.\n");
+                case "!turn_on_heater_humidifier":
+                    System.out.println("!turn_on_heater_humidifier <temperature> <fanSpeed> <humidity> activates the heater-humidifier.\n");
                     break;
                 case "!turn_on_humidifier":
                     System.out.println("!turn_on_humidifier <fanSpeed> <humidity> activates the umidifier.\n");

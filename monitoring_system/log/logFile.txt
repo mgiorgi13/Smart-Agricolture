@@ -1009,3 +1009,37 @@
 2023-12-09T02:22:33.378Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 65,"type": "percentage"}
 2023-12-09T02:22:43.394Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 55,"type": "percentage"}
 2023-12-09T02:22:53.317Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 32,"type": "percentage"}
+2023-12-09T03:04:23.478Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 32,"type": "percentage"}
+2023-12-09T03:04:33.355Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 36,"type": "percentage"}
+2023-12-09T03:04:39.237Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-09T03:04:43.337Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 69,"type": "percentage"}
+2023-12-09T03:04:53.360Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 76,"type": "percentage"}
+2023-12-09T03:05:03.378Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 59,"type": "percentage"}
+2023-12-09T03:05:13.371Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 46,"type": "percentage"}
+2023-12-09T03:05:23.341Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 35,"type": "percentage"}
+2023-12-09T03:05:33.409Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 45,"type": "percentage"}
+2023-12-09T03:05:43.308Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 51,"type": "percentage"}
+2023-12-09T03:05:53.420Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 77,"type": "percentage"}
+2023-12-09T03:06:03.521Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 57,"type": "percentage"}
+2023-12-09T03:06:13.438Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 57,"type": "percentage"}
+2023-12-09T03:06:23.436Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 53,"type": "percentage"}
+2023-12-09T03:06:33.425Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 50,"type": "percentage"}
+2023-12-09T03:06:43.401Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 70,"type": "percentage"}
+2023-12-09T03:06:53.413Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 78,"type": "percentage"}
+2023-12-09T03:07:03.437Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 70,"type": "percentage"}
+2023-12-09T03:07:13.457Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 32,"type": "percentage"}
+2023-12-09T03:07:23.445Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 76,"type": "percentage"}
+2023-12-09T03:07:33.417Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 47,"type": "percentage"}
+2023-12-09T03:11:41.839Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2023-12-09T03:11:49.071Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 69,"type": "percentage"}
+2023-12-09T03:11:59.042Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 35,"type": "percentage"}
+2023-12-09T03:12:09.016Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 55,"type": "percentage"}
+2023-12-09T03:12:19.099Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 39,"type": "percentage"}
+2023-12-09T03:12:29.072Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 74,"type": "percentage"}
+2023-12-09T03:12:39.080Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 51,"type": "percentage"}
+2023-12-09T03:12:49.037Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 40,"type": "percentage"}
+2023-12-09T03:12:59.130Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 72,"type": "percentage"}
+2023-12-09T03:13:09.036Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 30,"type": "percentage"}
+2023-12-09T03:13:19.106Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 76,"type": "percentage"}
+2023-12-09T03:13:29.055Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 76,"type": "percentage"}
+2023-12-09T03:13:39.081Z [WARNING] [MQTT Java Client]: Unknown topic: [soilHumidity] {"nodeId": 4,"soil_umidity": 68,"type": "percentage"}

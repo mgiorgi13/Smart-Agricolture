@@ -57,7 +57,7 @@ public class CoapNetworkHandler {
 
     }
 
-    public void activateCooler(int temperature, int fanSpeed) {
+    public void activateHeaterHumidifier(int temperature, int fanSpeed, int humidity) {
         if (temperature < 18 || temperature > 30) {
             System.out.println("Temperature must be between 18 and 30");
             return;
@@ -66,7 +66,11 @@ public class CoapNetworkHandler {
             System.out.println("Fan speed must be between 1 and 100");
             return;
         }
-        conditioner_actuator.setStatus(temperature, fanSpeed, 0, 2);
+        if (humidity <= 0 || humidity > 100) {
+            System.out.println("Humidity must be between 1 and 100");
+            return;
+        }
+        conditioner_actuator.setStatus(temperature, fanSpeed, humidity, 2);
         conditioner_actuator.setSwitchStatus("on");
 
     }
