@@ -4,31 +4,29 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.SocketException;
-
-import org.eclipse.californium.core.CoapClient;
-import org.eclipse.californium.core.CoapResponse;
-import org.eclipse.californium.core.coap.MediaTypeRegistry;
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.californium.core.coap.MediaTypeRegistry;
 
-import io.netty.handler.codec.mqtt.MqttMessage;
 import iot.unipi.it.Coap.CoapNetworkHandler;
 import iot.unipi.it.Coap.CoapRegistrationServer;
+import iot.unipi.it.MQTT.MQTThandler;
 
 public class Main {
     public static void main(String[] args) {
-        CoapRegistrationServer CRS;
         try {
-            CRS = new CoapRegistrationServer();
-            CRS.start();
+            MQTThandler mqttHandler = new MQTThandler();
+        } catch (MqttException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        CoapRegistrationServer coapRegistrationServer;
+        try {
+            coapRegistrationServer = new CoapRegistrationServer();
+            coapRegistrationServer.start();
         } catch (SocketException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        CoapNetworkHandler CNH = CoapNetworkHandler.getInstance();
+        CoapNetworkHandler coapNetworkHandler = CoapNetworkHandler.getInstance();
 
         printAvailableCommands();
 
@@ -47,20 +45,28 @@ public class Main {
                         helpFunction(parts);
                         break;
                     case "!get_conditioner_status":
-                        status = CNH.getConditionerStatus(0);
+                    //controllare che la lista di client non sia vuota
+                        status = coapNetworkHandler.getConditionerStatus(0);
                         System.out.println(status);
                         break;
                     case "!get_conditioner_switch":
-                        status = CNH.getConditionerSwitchStatus(0);
+                        status = coapNetworkHandler.getConditionerSwitchStatus(0);
                         System.out.println(status);
                         break;
-                    case "!put_conditioner_status":
-                        //todo va controllato il parts[1]
-                        CNH.changeConditionerStatus(Integer.parseInt(parts[1]),Integer.parseInt(parts[2]),Integer.parseInt(parts[3]));
+                    case "!turn_on_heater":
+                        coapNetworkHandler.activateHeater(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
                         break;
-                    case "!put_conditioner_switch":
-                        //todo va controllato il parts[1]
-                        CNH.changeConditionerSwitchStatus(parts[1]);
+                    case "!turn_on_cooler":
+                        coapNetworkHandler.activateCooler(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+                        break;
+                    case "!turn_on_humidifier":
+                        coapNetworkHandler.activateHumidifier(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+                        break;
+                    case "!turn_on_wind":
+                        coapNetworkHandler.activateWind(Integer.parseInt(parts[1]));
+                        break;
+                    case "!turn_off_conditioner":
+                        coapNetworkHandler.turnOffConditioner();
                         break;
                     case "!exit":
                         System.out.println("Bye!");
@@ -81,10 +87,13 @@ public class Main {
         System.out.println("***************************** Smart Agricolture *****************************\n" +
                 "The following commands are available:\n" +
                 "1) !help <command> --> shows the details of a command\n" +
-                "2) !get_humidity --> recovers the last humidity measurement\n" +
-                "3) !set_humidity <lower bound> <upper bound> --> sets the range within which the humidity must stay\n" +
-                "4) !get_temperature --> recovers the last temperature measurement\n" +
-                "5) !set_temperature <lower bound> <upper_bound> --> sets the range within which the temperature must stay\n" +
+                "2) !get_conditioner_status --> shows the status of the conditioner\n" +
+                "3) !get_conditioner_switch --> shows the switch status of the conditioner\n" +
+                "4) !turn_on_heater <temperature> <fanSpeed> --> activates the heater\n" +
+                "5) !turn_on_cooler <temperature> <fanSpeed> --> activates the cooler\n" +
+                "6) !turn_on_humidifier <fanSpeed> <humidity> --> activates the umidifier\n" +
+                "7) !turn_on_wind <fanSpeed> --> activates the wind\n" +
+                "8) !turn_off_conditioner --> turns off the conditioner\n" +
                 "11) !exit --> terminates the program\n");
     }
 
@@ -97,29 +106,26 @@ public class Main {
                 case "help":
                     System.out.println("!help shows the details of the command passed as parameter.\n");
                     break;
-                case "!get_humidity":
-                case "get_humidity":
-                    System.out.println(
-                            "!get_humidity allows to retrieve the percentage value of humidity in the air inside the sauna.\n");
+                case "!get_conditioner_status":
+                    System.out.println("!get_conditioner_status shows the status of the conditioner.\n");
                     break;
-                case "!set_humidity":
-                case "set_humidity":
-                    System.out.println(
-                            "!set_humidity allows you to set the range within which the humidity level should be found inside the sauna.\n"
-                                    +
-                                    "Two parameters are required: the lower and the upper bounds.\n");
+                case "!get_conditioner_switch":
+                    System.out.println("!get_conditioner_switch shows the switch status of the conditioner.\n");
+                    break;  
+                case "!turn_on_heater":
+                    System.out.println("!turn_on_heater <temperature> <fanSpeed> activates the heater.\n");
                     break;
-                case "!get_temperature":
-                case "get_temperature":
-                    System.out.println(
-                            "!get_temperature allows to retrieve the temperature inside the sauna, expressed in degrees Celsius.\n");
+                case "!turn_on_cooler":
+                    System.out.println("!turn_on_cooler <temperature> <fanSpeed> activates the cooler.\n");
                     break;
-                case "!set_temperature":
-                case "set_temperature":
-                    System.out.println(
-                            "!set_temperature allows you to set the range within which the temperature should be inside the sauna.\n"
-                                    +
-                                    "Two parameters are required: the lower and the upper bounds.\n");
+                case "!turn_on_humidifier":
+                    System.out.println("!turn_on_humidifier <fanSpeed> <humidity> activates the umidifier.\n");
+                    break;
+                case "!turn_on_wind":
+                    System.out.println("!turn_on_wind <fanSpeed> activates the wind.\n");
+                    break;
+                case "!turn_off_conditioner":
+                    System.out.println("!turn_off_conditioner turns off the conditioner.\n");
                     break;
                 case "!exit":
                 case "exit":

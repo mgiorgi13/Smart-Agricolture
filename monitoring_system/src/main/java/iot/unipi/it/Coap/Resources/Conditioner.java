@@ -72,6 +72,7 @@ public class Conditioner {
     }
 
     public JSONObject getStatusHandler(CoapResponse response) {
+        System.out.println("Response: " + response.getResponseText());
         if (response != null) {
             JSONParser parser = new JSONParser();
             JSONObject json = new JSONObject();
@@ -116,13 +117,14 @@ public class Conditioner {
         }
     }
 
-    public void setStatus(int temp, int fan, int humid) {
+    public void setStatus(int temp, int fan, int humid, int mode) {
         JSONObject json = new JSONObject();
         json.put("temperature", temp);
         json.put("fanSpeed", fan);
         json.put("humidity", humid);
+        json.put("mode", mode);
         String msg = json.toString();
-
+        System.out.println("sending: "+msg);
         for (int i = 0; i < clientConditionerList.size(); i++) {
             CoapClient client = clientConditionerList.get(i);
             client.put(new CoapHandler() {
