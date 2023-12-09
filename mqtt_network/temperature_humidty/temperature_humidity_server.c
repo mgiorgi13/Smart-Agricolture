@@ -111,8 +111,8 @@ static struct mqtt_connection conn;
 mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-static double temperature = 0;
-static double umidity = 0;
+static int temperature = 0;
+static int umidity = 0;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(mqtt_client_process, "MQTT Client");
