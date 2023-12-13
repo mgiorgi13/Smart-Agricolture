@@ -1,11 +1,12 @@
 package iot.unipi.it.Coap;
-import iot.unipi.it.Coap.Resources.Heater;
+
+import org.json.simple.JSONObject;
+
+import iot.unipi.it.Coap.Resources.Conditioner;
 
 public class CoapNetworkHandler {
-    // private AirQuality airQuality = new AirQuality();
-    // private Light light = new Light();
-    // private PresenceSensor presenceSensor = new PresenceSensor();
-    private Heater heaterActuator = new Heater();
+    private Conditioner conditioner_actuator = new Conditioner();
+
     private static CoapNetworkHandler instance = null;
 
     public static CoapNetworkHandler getInstance() {
@@ -16,27 +17,95 @@ public class CoapNetworkHandler {
     }
 
     /* REGISTER AND UNREGISTER DEVICES */
-    public void registerHeater(String ip) {
-        heaterActuator.addHeaderActuator(ip);
+    public void registerConditioner(String ip) {
+        conditioner_actuator.addConditionerActuator(ip);
     }
 
-    public void unregisterHeater(String ip) {
-        heaterActuator.deleteHeaderActuator(ip);
+    public void unregisterConditioner(String ip) {
+        conditioner_actuator.deleteConditionerActuator(ip);
     }
-    
+
     /* GET METHODS */
-    public int getTemperature(int index) {
-        return heaterActuator.getTemperature(index);
+    public String getConditionerStatus(int index) {
+        JSONObject json = conditioner_actuator.getStatus(index);
+        return json.toJSONString();
+    }
+
+    public String getConditionerSwitchStatus(int index) {
+        int result = conditioner_actuator.getSwitchStatus(index);
+        if (result == 1)
+            return "on";
+        else if (result == 0)
+            return "off";
+        else
+            return "ERROR";
     }
 
     /* SET METHODS */
-    public void changeTemperature(int value) {
-        heaterActuator.putTemperature(String.valueOf(value));
+
+    public void activateHeater(int temperature, int fanSpeed) {
+        if (temperature < 18 || temperature > 30) {
+            System.out.println("Temperature must be between 18 and 30");
+            return;
+        }
+        if (fanSpeed <= 0 || fanSpeed > 100) {
+            System.out.println("Fan speed must be between 1 and 100");
+            return;
+        }
+        conditioner_actuator.setStatus(temperature, fanSpeed, 0, 1);
+        conditioner_actuator.setSwitchStatus("on");
+
+    }
+
+    public void activateHeaterHumidifier(int temperature, int fanSpeed, int humidity) {
+        if (temperature < 18 || temperature > 30) {
+            System.out.println("Temperature must be between 18 and 30");
+            return;
+        }
+        if (fanSpeed <= 0 || fanSpeed > 100) {
+            System.out.println("Fan speed must be between 1 and 100");
+            return;
+        }
+        if (humidity <= 0 || humidity > 100) {
+            System.out.println("Humidity must be between 1 and 100");
+            return;
+        }
+        conditioner_actuator.setStatus(temperature, fanSpeed, humidity, 2);
+        conditioner_actuator.setSwitchStatus("on");
+
+    }
+
+    public void activateHumidifier(int fanSpeed, int humidity) {
+        if (fanSpeed <= 0 || fanSpeed > 100) {
+            System.out.println("Fan speed must be between 1 and 100");
+            return;
+        }
+        if (humidity <= 0 || humidity > 100) {
+            System.out.println("Humidity must be between 1 and 100");
+            return;
+        }
+        conditioner_actuator.setStatus(0, fanSpeed, humidity, 3);
+        conditioner_actuator.setSwitchStatus("on");
+
+    }
+
+    public void activateWind(int fanSpeed) {
+        if (fanSpeed <= 0 || fanSpeed > 100) {
+            System.out.println("Fan speed must be between 1 and 100");
+            return;
+        }
+        conditioner_actuator.setStatus(0, fanSpeed, 0, 4);
+        conditioner_actuator.setSwitchStatus("on");
+
+    }
+
+    public void turnOffConditioner() {
+        conditioner_actuator.setSwitchStatus("off");
     }
 
     // General functions
     public void printAllDevices() {
-        heaterActuator.printDevices();
+        conditioner_actuator.printDevices();
         // rainSensor.printDevice();
         // soilMoistureNetwork.printDevices();
         // tapActuator.printDevice();
