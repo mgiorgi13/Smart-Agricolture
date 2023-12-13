@@ -52,6 +52,12 @@ public class CoapRegistrationServer extends CoapServer {
                 case "conditioner_actuator":
                     CNH.registerConditioner(ip);
                     break;
+                case "window_switch":
+                    CNH.registerWindow(ip);
+                    break;
+                case "irrigation_switch":
+                    CNH.registerIrrigation(ip);
+                    break;
                 // case "rain_sensor":
                 // coapHandler.addRainSensor(ipAddress);
                 // break;
@@ -82,6 +88,12 @@ public class CoapRegistrationServer extends CoapServer {
             switch (deviceType) {
                 case "conditioner_actuator":
                     CNH.unregisterConditioner(ip);
+                    break;
+                case "window_switch":
+                    CNH.unregisterWindow(ip);
+                    break;
+                case "irrigation_switch":
+                    CNH.unregisterIrrigation(ip);
                     break;
                 // case "rain_sensor":
                 // coapHandler.addRainSensor(ipAddress);

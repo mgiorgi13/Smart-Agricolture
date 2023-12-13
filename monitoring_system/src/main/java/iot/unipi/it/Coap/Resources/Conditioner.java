@@ -59,9 +59,10 @@ public class Conditioner {
 
     // CLIENT SIDE
     public void printDevices() {
+        int i = 0;
         System.out.println("Conditioner actuators:");
         for (CoapClient cc : clientConditionerList)
-            System.out.println("\t" + cc.getURI());
+            System.out.println("\t" +i +":"+ cc.getURI());
         System.out.println("");
     }
 
