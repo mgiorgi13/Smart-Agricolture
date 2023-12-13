@@ -59,7 +59,9 @@ public class Irrigation {
         int i = 0;
         System.out.println("Irrigation actuators:");
         for (CoapClient cc : clientIrrigationSwitchList)
-            System.out.println("\t"+ i + ": "+ cc.getURI());
+        {   System.out.println("\t"+ i + ": "+ cc.getURI());
+            i++;
+        }
         System.out.println("");
     }
 
