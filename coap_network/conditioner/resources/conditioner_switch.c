@@ -4,13 +4,14 @@
 #include "coap-engine.h"
 #include "dev/leds.h"
 #include "sys/log.h"
+#include "conditioner_control.h"
 
 /* Log configuration */
 #define LOG_MODULE "App"
 #define LOG_LEVEL LOG_LEVEL_APP
 
 /**************** RESOURCES **********************/
-static int isActive = 0;
+static bool isActive = 0;
 
 /**************** REST: Temperature **********************/
 static void get_switch_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
@@ -67,3 +68,10 @@ static void put_switch_handler(coap_message_t *request, coap_message_t *response
         return;
     }
 }
+
+#pragma GCC diagnostic ignored "-Wunused-function"
+void set_conditioner_switch(bool new_state)
+{
+    isActive = new_state;
+}
+#pragma GCC diagnostic warning "-Wunused-function"

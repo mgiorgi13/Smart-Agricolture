@@ -12,7 +12,7 @@ public class MysqlManager {
     private final static String databasePassword = "PASSWORD";
     private final static String databaseName = "smart_agricolture";
 
-    private static Connection makeJDBCConnection() {
+    private static Connection makeConnection() {
         Connection databaseConnection = null;
 
         try {
@@ -41,9 +41,9 @@ public class MysqlManager {
 
     public static void insertTemperatureAndUmidity(String nodeId, double temperature, double umidity) {
         String insertQueryStatementTemperature = "INSERT INTO temperature (nodeId, value) VALUES (?, ?)";
-        String insertQueryStatementUmidity = "INSERT INTO umidity (nodeId,value) VALUES (?, ?)";
+        String insertQueryStatementUmidity = "INSERT INTO humidity (nodeId,value) VALUES (?, ?)";
         
-        try (Connection IrrigationConnection = makeJDBCConnection();
+        try (Connection IrrigationConnection = makeConnection();
                 PreparedStatement prepareStatementTemp = IrrigationConnection
                         .prepareStatement(insertQueryStatementTemperature);
                 PreparedStatement prepareStatementUmid = IrrigationConnection
@@ -60,9 +60,9 @@ public class MysqlManager {
     }
 
     public static void insertSoilMoistureValue(String nodeId, double soilValue) {
-        String insertQueryStatement = "INSERT INTO soilUmidity (nodeId, value) VALUES (?, ?);";
+        String insertQueryStatement = "INSERT INTO soilHumidity (nodeId, value) VALUES (?, ?);";
 
-        try (Connection IrrigationConnection = makeJDBCConnection();
+        try (Connection IrrigationConnection = makeConnection();
                 PreparedStatement prepareStatement = IrrigationConnection.prepareStatement(insertQueryStatement);) {
             prepareStatement.setString(1, nodeId);
             prepareStatement.setDouble(2, soilValue);

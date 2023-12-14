@@ -4,16 +4,13 @@
 #include "coap-engine.h"
 #include "dev/leds.h"
 #include "sys/log.h"
-#include "mode.h"
+#include "conditioner_control.h"
 
 /* Log configuration */
 #define LOG_MODULE "App"
 #define LOG_LEVEL LOG_LEVEL_APP
 
 /**************** RESOURCES **********************/
-
-#define VARIATION 1
-
 static int temperature = 0;
 static int fanSpeed = 0;
 static int humidity = 0;
@@ -69,3 +66,13 @@ static void put_status_handler(coap_message_t *request, coap_message_t *response
     humidity = atoi(humidity_start);
     mode = atoi(mode_start);
 }
+
+#pragma GCC diagnostic ignored "-Wunused-function"
+void set_conditioner_state(int temp, int fan, int hum, Mode m)
+{
+    temperature = temp;
+    fanSpeed = fan;
+    humidity = hum;
+    mode = m;
+}
+#pragma GCC diagnostic warning "-Wunused-function"
