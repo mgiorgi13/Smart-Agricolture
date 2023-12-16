@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simconf>
   <simulation>
-    <title>router+mqtt+coap</title>
+    <title>border+coap+mqtt</title>
     <speedlimit>1.0</speedlimit>
     <randomseed>123456</randomseed>
     <motedelay_us>1000000</motedelay_us>
@@ -17,10 +17,10 @@
     </events>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
-      <identifier>mtype120246190</identifier>
-      <description>Cooja Mote Type #1</description>
-      <source>[CONTIKI_DIR]/examples/Smart-Agricolture/server/border-router/border_router.c</source>
-      <commands>make -j$(CPUS) border_router.cooja TARGET=cooja</commands>
+      <identifier>mtype373248292</identifier>
+      <description>router</description>
+      <source>[CONTIKI_DIR]/examples/Smart-Agricolture/rpl_border_router/border-router.c</source>
+      <commands>make -j$(CPUS) border-router.cooja TARGET=cooja</commands>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.Battery</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiVib</moteinterface>
@@ -41,7 +41,7 @@
     </motetype>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
-      <identifier>mtype869049569</identifier>
+      <identifier>mtype959168602</identifier>
       <description>conditioner</description>
       <source>[CONTIKI_DIR]/examples/Smart-Agricolture/coap_network/conditioner/conditioner_server.c</source>
       <commands>make -j$(CPUS) conditioner_server.cooja TARGET=cooja</commands>
@@ -65,32 +65,8 @@
     </motetype>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
-      <identifier>mtype964148934</identifier>
-      <description>tempHumid</description>
-      <source>[CONTIKI_DIR]/examples/Smart-Agricolture/mqtt_network/temperature_humidty/temperature_humidity_server.c</source>
-      <commands>make -j$(CPUS) temperature_humidity_server.cooja TARGET=cooja</commands>
-      <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
-      <moteinterface>org.contikios.cooja.interfaces.Battery</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiVib</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiMoteID</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRS232</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiBeeper</moteinterface>
-      <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiIPAddress</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRadio</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiButton</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiPIR</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiClock</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiLED</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiCFS</moteinterface>
-      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</moteinterface>
-      <moteinterface>org.contikios.cooja.interfaces.Mote2MoteRelations</moteinterface>
-      <moteinterface>org.contikios.cooja.interfaces.MoteAttributes</moteinterface>
-    </motetype>
-    <motetype>
-      org.contikios.cooja.contikimote.ContikiMoteType
-      <identifier>mtype48921735</identifier>
-      <description>soilHumid</description>
+      <identifier>mtype860782447</identifier>
+      <description>soilhumidity</description>
       <source>[CONTIKI_DIR]/examples/Smart-Agricolture/mqtt_network/soil_humidity/soil_humidity_server.c</source>
       <commands>make -j$(CPUS) soil_humidity_server.cooja TARGET=cooja</commands>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
@@ -114,8 +90,8 @@
     <mote>
       <interface_config>
         org.contikios.cooja.interfaces.Position
-        <x>2.4586627565725605</x>
-        <y>-36.98071673715917</y>
+        <x>28.997487173112603</x>
+        <y>52.36025600862236</y>
         <z>0.0</z>
       </interface_config>
       <interface_config>
@@ -127,13 +103,13 @@
         <bitrate>250.0</bitrate>
       </interface_config>
       <interface_config>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</interface_config>
-      <motetype_identifier>mtype120246190</motetype_identifier>
+      <motetype_identifier>mtype373248292</motetype_identifier>
     </mote>
     <mote>
       <interface_config>
         org.contikios.cooja.interfaces.Position
-        <x>4.283397478547698</x>
-        <y>51.00155931851147</y>
+        <x>3.7322106812289646</x>
+        <y>58.32873411486711</y>
         <z>0.0</z>
       </interface_config>
       <interface_config>
@@ -145,13 +121,13 @@
         <bitrate>250.0</bitrate>
       </interface_config>
       <interface_config>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</interface_config>
-      <motetype_identifier>mtype869049569</motetype_identifier>
+      <motetype_identifier>mtype959168602</motetype_identifier>
     </mote>
     <mote>
       <interface_config>
         org.contikios.cooja.interfaces.Position
-        <x>25.423414577584474</x>
-        <y>32.12654846682998</y>
+        <x>26.488048901124913</x>
+        <y>74.6607909379018</y>
         <z>0.0</z>
       </interface_config>
       <interface_config>
@@ -163,25 +139,7 @@
         <bitrate>250.0</bitrate>
       </interface_config>
       <interface_config>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</interface_config>
-      <motetype_identifier>mtype964148934</motetype_identifier>
-    </mote>
-    <mote>
-      <interface_config>
-        org.contikios.cooja.interfaces.Position
-        <x>-1.0337907858536255</x>
-        <y>-3.169829750122087</y>
-        <z>0.0</z>
-      </interface_config>
-      <interface_config>
-        org.contikios.cooja.contikimote.interfaces.ContikiMoteID
-        <id>4</id>
-      </interface_config>
-      <interface_config>
-        org.contikios.cooja.contikimote.interfaces.ContikiRadio
-        <bitrate>250.0</bitrate>
-      </interface_config>
-      <interface_config>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</interface_config>
-      <motetype_identifier>mtype48921735</motetype_identifier>
+      <motetype_identifier>mtype860782447</motetype_identifier>
     </mote>
   </simulation>
   <plugin>
@@ -200,10 +158,10 @@
       <skin>org.contikios.cooja.plugins.skins.GridVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.TrafficVisualizerSkin</skin>
       <skin>org.contikios.cooja.plugins.skins.UDGMVisualizerSkin</skin>
-      <viewport>3.575100220712935 0.0 0.0 3.575100220712935 136.95296995149752 147.93704129641304</viewport>
+      <viewport>4.492131724682106 0.0 0.0 4.492131724682106 13.375831569962102 -179.20323226997448</viewport>
     </plugin_config>
     <width>400</width>
-    <z>3</z>
+    <z>1</z>
     <height>400</height>
     <location_x>1</location_x>
     <location_y>1</location_y>
@@ -215,8 +173,8 @@
       <formatted_time />
       <coloring />
     </plugin_config>
-    <width>555</width>
-    <z>1</z>
+    <width>773</width>
+    <z>5</z>
     <height>240</height>
     <location_x>400</location_x>
     <location_y>160</location_y>
@@ -227,17 +185,16 @@
       <mote>0</mote>
       <mote>1</mote>
       <mote>2</mote>
-      <mote>3</mote>
       <showRadioRXTX />
       <showRadioHW />
       <showLEDs />
       <zoomfactor>500.0</zoomfactor>
     </plugin_config>
-    <width>500</width>
-    <z>5</z>
+    <width>1173</width>
+    <z>2</z>
     <height>166</height>
     <location_x>0</location_x>
-    <location_y>481</location_y>
+    <location_y>656</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.Notes
@@ -245,9 +202,9 @@
       <notes>Enter notes here</notes>
       <decorations>true</decorations>
     </plugin_config>
-    <width>150</width>
+    <width>493</width>
     <z>4</z>
-    <height>300</height>
+    <height>160</height>
     <location_x>680</location_x>
     <location_y>0</location_y>
   </plugin>
@@ -259,10 +216,10 @@
       <bound>true</bound>
     </plugin_config>
     <width>362</width>
-    <z>2</z>
+    <z>3</z>
     <height>116</height>
     <location_x>710</location_x>
-    <location_y>29</location_y>
+    <location_y>30</location_y>
   </plugin>
 </simconf>
 

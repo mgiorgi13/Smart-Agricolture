@@ -3,6 +3,7 @@ package iot.unipi.it.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MysqlManager {
@@ -39,38 +40,101 @@ public class MysqlManager {
         return databaseConnection;
     }
 
-    public static void insertTemperatureAndUmidity(String nodeId, double temperature, double umidity) {
+    public static void insertTemperatureAndUmidity(String nodeId, int temperature, int umidity) {
         String insertQueryStatementTemperature = "INSERT INTO temperature (nodeId, value) VALUES (?, ?)";
         String insertQueryStatementUmidity = "INSERT INTO humidity (nodeId,value) VALUES (?, ?)";
-        
-        try (Connection IrrigationConnection = makeConnection();
-                PreparedStatement prepareStatementTemp = IrrigationConnection
+
+        try (Connection AgricoltureConnection = makeConnection();
+                PreparedStatement preparedStatementTemp = AgricoltureConnection
                         .prepareStatement(insertQueryStatementTemperature);
-                PreparedStatement prepareStatementUmid = IrrigationConnection
+                PreparedStatement preparedStatementUmid = AgricoltureConnection
                         .prepareStatement(insertQueryStatementUmidity);) {
-            prepareStatementTemp.setString(1, nodeId);
-            prepareStatementTemp.setDouble(2, temperature);
-            prepareStatementTemp.executeUpdate();
-            prepareStatementUmid.setString(1, nodeId);
-            prepareStatementUmid.setDouble(2, umidity);
-            prepareStatementUmid.executeUpdate();
+            preparedStatementTemp.setString(1, nodeId);
+            preparedStatementTemp.setInt(2, temperature);
+            preparedStatementTemp.executeUpdate();
+            preparedStatementUmid.setString(1, nodeId);
+            preparedStatementUmid.setInt(2, umidity);
+            preparedStatementUmid.executeUpdate();
         } catch (SQLException sqlex) {
             sqlex.printStackTrace();
         }
     }
 
-    public static void insertSoilMoistureValue(String nodeId, double soilValue) {
+    public static void insertSoilMoistureValue(String nodeId, int soilValue) {
         String insertQueryStatement = "INSERT INTO soilHumidity (nodeId, value) VALUES (?, ?);";
 
-        try (Connection IrrigationConnection = makeConnection();
-                PreparedStatement prepareStatement = IrrigationConnection.prepareStatement(insertQueryStatement);) {
-            prepareStatement.setString(1, nodeId);
-            prepareStatement.setDouble(2, soilValue);
-            prepareStatement.executeUpdate();
+        try (Connection AgricoltureConnection = makeConnection();
+                PreparedStatement preparedStatement = AgricoltureConnection.prepareStatement(insertQueryStatement);) {
+            preparedStatement.setString(1, nodeId);
+            preparedStatement.setInt(2, soilValue);
+            preparedStatement.executeUpdate();
 
         } catch (SQLException sqlex) {
             sqlex.printStackTrace();
         }
+    }
+
+    public static void selectSoilHumidity(int minutes) {
+        String selectQueryStatement = "SELECT nodeId, AVG(value) AS average_humidity FROM soilHumidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE GROUP BY nodeId";
+
+        try (Connection AgricoltureConnection = makeConnection();
+                PreparedStatement preparedStatement = AgricoltureConnection.prepareStatement(selectQueryStatement);) {
+            preparedStatement.setInt(1, minutes);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int nodeId = resultSet.getInt("nodeId");
+                    double averageHumidity = resultSet.getDouble("average_humidity");
+                    System.out.println("Node ID: " + nodeId + ", Average Humidity: " + averageHumidity);
+                }
+            }
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        return;
+    }
+
+    public static double selectTemperature(int minutes) {
+        String selectQueryStatement = "SELECT AVG(value) AS average_temperature FROM temperature WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
+        double temperature = 0;
+
+        try (Connection agricultureConnection = makeConnection();
+                PreparedStatement preparedStatement = agricultureConnection.prepareStatement(selectQueryStatement)) {
+            preparedStatement.setInt(1, minutes);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    temperature = resultSet.getDouble("average_temperature");
+                } else {
+                    // Il ResultSet è vuoto, gestisci la situazione di conseguenza
+                    System.out.println("Nessun risultato trovato per la query.");
+                }
+            }
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        return temperature;
+    }
+
+    public static double selectHumidity(int minutes) {
+        String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
+        double humidity = 0;
+
+        try (Connection agricultureConnection = makeConnection();
+                PreparedStatement preparedStatement = agricultureConnection.prepareStatement(selectQueryStatement)) {
+            preparedStatement.setInt(1, minutes);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    humidity = resultSet.getDouble("average_humidity");
+                } else {
+                    // Il ResultSet è vuoto, gestisci la situazione di conseguenza
+                    System.out.println("Nessun risultato trovato per la query.");
+                }
+            }
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        return humidity;
     }
 
 }

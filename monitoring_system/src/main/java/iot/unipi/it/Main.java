@@ -8,6 +8,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 import iot.unipi.it.Coap.CoapNetworkHandler;
 import iot.unipi.it.Coap.CoapRegistrationServer;
+import iot.unipi.it.Database.MysqlManager;
 import iot.unipi.it.MQTT.MQTThandler;
 
 public class Main {
@@ -89,6 +90,17 @@ public class Main {
                     case "!turn_off_irrigation":
                         coapNetworkHandler.turnOffIrrigation(Integer.parseInt(parts[1]));
                         break;
+                    case "!get_avg_soil_humidity":
+                        MysqlManager.selectSoilHumidity(Integer.parseInt(parts[1]));
+                        break;
+                    case "!get_avg_temperature":
+                        MysqlManager.selectTemperature(Integer.parseInt(parts[1]));
+                        System.out.println("AVG Temperature: " + MysqlManager.selectTemperature(Integer.parseInt(parts[1])) + "°C\n");
+                        break;
+                    case "!get_avg_humidity":
+                        MysqlManager.selectHumidity(Integer.parseInt(parts[1]));
+                        System.out.println("AVG Humidity: " + MysqlManager.selectHumidity(Integer.parseInt(parts[1])) + "%\n");
+                        break;
                     case "!print_all_device":
                         coapNetworkHandler.printAllDevices();
                         break;
@@ -126,6 +138,10 @@ public class Main {
                 "13) !turn_on_irrigation <index> --> I turn on the index-th irrigation actuator \n" +
                 "14) !turn_off_irrigation <index> --> I turn off the index-th irrigation actuator\n" +
                 "15) !print_all_device --> all device acutator device\n" +
+                "16) !get_avg_soil_humidity <number> --> get the average soil humidity of the last number of minutes for each nodeId\n"
+                +
+                "17) !get_avg_temperature <number> --> get the average temperature of the last number of minutes\n" +
+                "18) !get_avg_humidity <number> --> get the average humidity of the last number of minutes\n" +
                 "16) !exit --> terminates the program\n");
 
     }
@@ -180,6 +196,18 @@ public class Main {
                     break;
                 case "!print_all_device":
                     System.out.println("!print_all_device print all actuator devices.\n");
+                    break;
+                case "!get_avg_soil_humidity":
+                    System.out.println(
+                            "!get_avg_soil_humidity <number> get the average soil humidity of the last number of minutes for each nodeId.\n");
+                    break;
+                case "!get_avg_temperature":
+                    System.out.println(
+                            "!get_avg_temperature <number> get the average temperature of the last number of minutes.\n");
+                    break;
+                case "!get_avg_humidity":
+                    System.out.println(
+                            "!get_avg_humidity <number> get the average humidity of the last number of minutes.\n");
                     break;
                 case "!exit":
                     System.out.println("!exit allows you to terminate the program.\n");

@@ -62,12 +62,12 @@ public class MQTThandler implements MqttCallback {
                         && sensorMessage.containsKey("unit")
                         && sensorMessage.containsKey("umidity")
                         && sensorMessage.containsKey("type")) {
-                    Double numericTemperatureValue = Double.parseDouble(sensorMessage.get("temperature").toString());
-                    Double numericUmidityValue = Double.parseDouble(sensorMessage.get("umidity").toString());
+                    Integer numericTemperatureValue = Integer.parseInt(sensorMessage.get("temperature").toString());
+                    Integer numericUmidityValue = Integer.parseInt(sensorMessage.get("umidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
 
                     Logger.log(String.format(
-                            "[MQTT Java Client]: Received temperature_humidity value from node %s: %f %s, %f %s",
+                            "[MQTT Java Client]: Received temperature_humidity value from node %s: %d %s, %d %s",
                             nodeId, numericTemperatureValue, sensorMessage.get("unit").toString(),
                             numericUmidityValue, sensorMessage.get("type").toString()));
 
@@ -80,10 +80,10 @@ public class MQTThandler implements MqttCallback {
                 if (sensorMessage.containsKey("nodeId")
                         && sensorMessage.containsKey("soil_umidity")
                         && sensorMessage.containsKey("type")) {
-                    Double numericSoilUmidityValue = Double.parseDouble(sensorMessage.get("soil_umidity").toString());
+                    Integer numericSoilUmidityValue = Integer.parseInt(sensorMessage.get("soil_umidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
                     Logger.log(
-                            String.format("[MQTT Java Client]: Received soilHumidity value from node %s: %f %s",
+                            String.format("[MQTT Java Client]: Received soilHumidity value from node %s: %d %s",
                                     nodeId, numericSoilUmidityValue, sensorMessage.get("type").toString()));
 
                     MysqlManager.insertSoilMoistureValue(nodeId, numericSoilUmidityValue);
