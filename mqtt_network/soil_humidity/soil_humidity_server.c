@@ -286,7 +286,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         // Publish something
         sprintf(pub_topic, "%s", "soilHumidity");
 
-        soil_umidity = 30 + (rand() % 50);
+        soil_umidity = (rand() % 99);
 
         sprintf(app_buffer, "{\"nodeId\": %d,\"soil_umidity\": %d,\"type\": \"percentage\"}", node_id, soil_umidity);
 

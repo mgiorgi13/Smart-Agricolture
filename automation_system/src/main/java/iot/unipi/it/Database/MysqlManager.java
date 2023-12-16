@@ -90,7 +90,25 @@ public class MysqlManager {
         } catch (SQLException sqlex) {
             sqlex.printStackTrace();
         }
-        return;
+        return averageHumidity;
+    }
+
+    public static double getSoilHumidity (int minutes){
+        String selectQueryStatement = "SELECT nodeId, AVG(value) AS average_humidity FROM soilHumidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE GROUP BY nodeId";
+
+        try (Connection AgricoltureConnection = makeConnection();
+                PreparedStatement preparedStatement = AgricoltureConnection.prepareStatement(selectQueryStatement);) {
+            preparedStatement.setInt(1, minutes);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int nodeId = resultSet.getInt("nodeId");
+                    double averageHumidity = resultSet.getDouble("average_humidity");
+                                    }
+            }
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        return averageHumidity;
     }
 
     public static double selectTemperature(int minutes) {
@@ -114,6 +132,8 @@ public class MysqlManager {
         }
         return temperature;
     }
+
+    
 
     public static double selectHumidity(int minutes) {
         String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";

@@ -35,10 +35,74 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String command;
         String[] parts;
-
+        double temperature;
+        double low_temperature = 15;
+        double high_temperature = 30;
+        double humidity;
+        double low_humidity = 25;
+        double high_humidity = 75;
+        double soil_humidity;
+        double low_soil_humidity = 20;
+        double high_soil_humidity = 70;
+        
+        int timeMin = 5;
         while (true) {
             System.out.print("> ");
             try {
+                humidity = MysqlManager.selectHumidity(timeMin);
+                temperature = MysqlManager.selectTemperature(timeMin);
+                soil_humidity = MysqlManager.selectSoilHumidity(timeMin);
+                System.out.println("humidity" + humidity);
+                System.out.println("temperature" + temperature);
+                System.out.println("soil_humidity" + soil_humidity);
+
+
+                // se umidità è bassa
+                    //se temperatura è bassa e switch = off
+                        // se windsow è on
+                            // window off
+                        //heater_humidify
+                    //se tempreatura è normale e switch = off
+                        // se windsow è on
+                            // window off
+                        //humidify
+                    //se temperatura è alta e switch = off
+                        // se windsow è off
+                            // window
+                        //humidify
+
+                // se umidità è normale
+                    //se temperatura è bassa e switch = off
+                        // se windsow è on
+                            // window off
+                        //heater
+                    //se tempreatura è normale e switch = off
+                        // se windsow è on
+                            // window off
+                        // se contidioner on
+                            // conditioner of
+                    //se temperatura è alta e switch = off
+                        // se windsow è off
+                            // window on
+                        //wind
+
+                // se umidità è alta
+                    //se temperatura è bassa e switch = off
+                        // se windsow è off
+                            // window on
+                        //heater
+                    //se tempreatura è normale e switch = off
+                        // se windsow è off
+                            // window on
+                        //wind 
+                    //se temperatura è alta e switch = off
+                        // se windsow è off
+                            // window
+                        //wind
+                //se umidità del suolo bassa e switch = off
+                    //attivo irrigazione
+                //se umidità del suolo è alta è switch = om
+                    //spengo l'irrigazione
                 command = bufferedReader.readLine();
                 parts = command.split(" ");
                 String status;
@@ -91,7 +155,7 @@ public class Main {
                         coapNetworkHandler.turnOffIrrigation(Integer.parseInt(parts[1]));
                         break;
                     case "!get_avg_soil_humidity":
-                        MysqlManager.selectSoilHumidity(Integer.parseInt(parts[1]));
+                        System.out.println(MysqlManager.selectSoilHumidity(Integer.parseInt(parts[1])));
                         break;
                     case "!get_avg_temperature":
                         MysqlManager.selectTemperature(Integer.parseInt(parts[1]));
