@@ -171,7 +171,5 @@ public class CoapNetworkHandler {
         conditioner_actuator.printDevices();
         window_actuator.printDevices();
         irrigation_actuator.printDevices();
-        // soilMoistureNetwork.printDevices();
-        // tapActuator.printDevice();
     }
 }

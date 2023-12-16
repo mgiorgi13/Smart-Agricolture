@@ -37,8 +37,9 @@
 #include "sys/etimer.h"
 #include "sys/ctimer.h"
 #include "lib/sensors.h"
-#include "dev/button-hal.h"
-#include "dev/leds.h"
+
+
+#include "os/dev/leds.h"
 #include "os/sys/log.h"
 #include "mqtt-client.h"
 #include "sys/node-id.h"

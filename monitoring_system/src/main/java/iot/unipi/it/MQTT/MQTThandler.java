@@ -3,13 +3,15 @@ package iot.unipi.it.MQTT;
 import org.eclipse.paho.client.mqttv3.*;
 
 import org.json.simple.*;
-
+import java.util.ArrayList;
 import iot.unipi.it.Database.MysqlManager;
 import iot.unipi.it.Logger.Logger;
 
 public class MQTThandler implements MqttCallback {
     private String temperature_humidityTopic = "temperature_humidity";
     private String soilHumidityTopic = "soilHumidity";
+    private ArrayList<Integer> temperature_humidityList;
+    private ArrayList<Integer> soil_humidityList;
 
     private String broker = "tcp://127.0.0.1:1883";
     private String clientId = "JavaApp";
@@ -19,6 +21,8 @@ public class MQTThandler implements MqttCallback {
         this.mqttClient = new MqttClient(this.broker, this.clientId);
         this.mqttClient.setCallback(this);
         this.topicSubscribe();
+        temperature_humidityList = new ArrayList();
+        soil_humidityList = new ArrayList();
     }
 
     public void topicSubscribe() {
@@ -65,7 +69,12 @@ public class MQTThandler implements MqttCallback {
                     Integer numericTemperatureValue = Integer.parseInt(sensorMessage.get("temperature").toString());
                     Integer numericUmidityValue = Integer.parseInt(sensorMessage.get("umidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
-
+                    Integer nodeIdvalue = Integer.parseInt(nodeId);
+                    if (!temperature_humidityList.contains(nodeIdvalue))
+                    {
+                        temperature_humidityList.add(nodeIdvalue);
+                    }
+                            
                     Logger.log(String.format(
                             "[MQTT Java Client]: Received temperature_humidity value from node %s: %d %s, %d %s",
                             nodeId, numericTemperatureValue, sensorMessage.get("unit").toString(),
@@ -82,6 +91,11 @@ public class MQTThandler implements MqttCallback {
                         && sensorMessage.containsKey("type")) {
                     Integer numericSoilUmidityValue = Integer.parseInt(sensorMessage.get("soil_umidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
+                    Integer nodeIdvalue = Integer.parseInt(nodeId);
+                    if (!soil_humidityList.contains(nodeIdvalue))
+                    {
+                        soil_humidityList.add(nodeIdvalue);
+                    }
                     Logger.log(
                             String.format("[MQTT Java Client]: Received soilHumidity value from node %s: %d %s",
                                     nodeId, numericSoilUmidityValue, sensorMessage.get("type").toString()));
@@ -100,6 +114,19 @@ public class MQTThandler implements MqttCallback {
 
     public void deliveryComplete(IMqttDeliveryToken token) {
         // TODO Auto-generated method stub
+    }
+    public void printAllDevices()
+    {
+        System.out.println("Soil Humidity sensors:");
+        for (int i= 0; i < soil_humidityList.size(); i++)
+        {
+            System.out.println("\t"+i +": " + soil_humidityList.get(i));
+        }
+        System.out.println("Temperature and Humidity sensors:");
+        for (int i= 0; i < temperature_humidityList.size(); i++)
+        {
+            System.out.println("\t"+i +": "  + temperature_humidityList.get(i));
+        }
     }
 
 }
