@@ -115,6 +115,10 @@ public class MQTThandler implements MqttCallback {
     public void deliveryComplete(IMqttDeliveryToken token) {
         // TODO Auto-generated method stub
     }
+    public ArrayList<Integer> getSoilHumiditylist()
+    {
+        return soil_humidityList;
+    }
     public void printAllDevices()
     {
         System.out.println("Soil Humidity sensors:");

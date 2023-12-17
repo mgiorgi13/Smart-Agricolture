@@ -125,7 +125,7 @@ public class Conditioner {
         json.put("humidity", humid);
         json.put("mode", mode);
         String msg = json.toString();
-        System.out.println("sending: "+msg);
+        //System.out.println("sending: "+msg);
         for (int i = 0; i < clientConditionerList.size(); i++) {
             CoapClient client = clientConditionerList.get(i);
             client.put(new CoapHandler() {
