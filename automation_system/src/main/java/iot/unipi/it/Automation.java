@@ -60,7 +60,7 @@ public class Automation {
         
         ArrayList<Integer> nodeId = new ArrayList<>();
         ArrayList<Double> get_soil_humidity = new ArrayList<>();
-        int timeMin = 1;
+        int timeSec = 20;
         MysqlManager.deleteAllRecords("humidity");
         MysqlManager.deleteAllRecords("temperature");
         MysqlManager.deleteAllRecords("soilHumidity");
@@ -71,8 +71,8 @@ public class Automation {
             
           
                 
-                get_humidity = MysqlManager.selectHumidity(timeMin);
-                get_temperature = MysqlManager.selectTemperature(timeMin);
+                get_humidity = MysqlManager.selectHumidity(timeSec);
+                get_temperature = MysqlManager.selectTemperature(timeSec);
                 
                 //System.out.println("humidity" + get_humidity);
                 //System.out.println("temperature" + get_temperature);
@@ -199,7 +199,7 @@ public class Automation {
                             // window
                         //wind
                 }
-                MysqlManager.selectSoilHumidity(timeMin,  nodeId, get_soil_humidity);
+                MysqlManager.selectSoilHumidity(timeSec,  nodeId, get_soil_humidity);
                 for(int j=0; j < get_soil_humidity.size(); j++){
                     if (get_humidity == 0.0)
                     {
