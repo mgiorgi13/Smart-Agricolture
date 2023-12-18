@@ -17,8 +17,6 @@ public class Conditioner {
     private List<CoapClient> clientConditionerList = new ArrayList<>();
     private List<CoapClient> clientConditionerSwitchList = new ArrayList<>();
 
-    // private List<CoapObserveRelation> observeActuatorList = new ArrayList<>();
-
     // SERVER SIDE
     public void addConditionerActuator(String ip) {
         Logger.log("The conditioner actuator: [" + ip + "] is now registered");
@@ -26,17 +24,6 @@ public class Conditioner {
         // Add the conditioner actuator to the list
         CoapClient newConditionerActuator = new CoapClient("coap://[" + ip + "]/conditioner_actuator");
         CoapClient newConditionerSwitch = new CoapClient("coap://[" + ip + "]/conditioner_switch");
-        // observeActuatorList.add(newConditionerActuator.observe(
-        // new CoapHandler() {
-        // public void onLoad(CoapResponse response) {
-        // getHandler(response);
-        // }
-
-        // public void onError() {
-        // System.err.println("OBSERVING FAILED");
-        // }
-        // }));
-        // IrrigationSystemDbManager.insertTemperature(temperatureDetected);
         clientConditionerList.add(newConditionerActuator);
         clientConditionerSwitchList.add(newConditionerSwitch);
     }
@@ -46,16 +33,9 @@ public class Conditioner {
             if (clientConditionerList.get(i).getURI().equals(ip)) {
                 clientConditionerList.remove(i);
                 clientConditionerSwitchList.remove(i);
-                // observeActuatorList.get(i).proactiveCancel();
-                // observeActuatorList.remove(i);
-                // remove from db
             }
         }
     }
-
-    // public void cutAllConnection() {
-    // observeSensor.proactiveCancel();
-    // }
 
     // CLIENT SIDE
     public void printDevices() {

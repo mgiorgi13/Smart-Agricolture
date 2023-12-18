@@ -34,7 +34,6 @@
 
 #include "contiki.h"
 #include "sys/etimer.h"
-// #include "dev/leds.h"
 
 #include "node-id.h"
 #include "net/ipv6/simple-udp.h"

@@ -15,28 +15,6 @@ public class CoapRegistrationServer extends CoapServer {
         this.add(new CoapRegistrationResource());
     }
 
-    // // GET measures from sensors
-    // public int getCO2Level() {
-    //     return coapDevicesHandler.getCO2Level();
-    // }
-
-    // public int getNumberOfPeople() {
-    //     return coapDevicesHandler.getNumberOfPeople();
-    // }
-
-    // // SET
-    // public void setLightColor(LightColor lightColor) {
-    //     coapDevicesHandler.setLightColor(lightColor);
-    // }
-
-    // public void setMaxNumberOfPeople(int maxNumberOfPeople0) {
-    //     coapDevicesHandler.setMaxNumberOfPeople(maxNumberOfPeople0);
-    // }
-
-    // public void setCO2UpperBound(int co2UpperBound) {
-    //     coapDevicesHandler.setCO2UpperBound(co2UpperBound);
-    // }
-
     class CoapRegistrationResource extends CoapResource {
         public CoapRegistrationResource() {
             super("registration");
@@ -58,15 +36,6 @@ public class CoapRegistrationServer extends CoapServer {
                 case "irrigation_switch":
                     CNH.registerIrrigation(ip);
                     break;
-                // case "rain_sensor":
-                // coapHandler.addRainSensor(ipAddress);
-                // break;
-                // case "soil_moisture_sensor":
-                // coapHandler.addSoilMoisture(ipAddress);
-                // break;
-                // case "tap_actuator":
-                // coapHandler.addTapActuator(ipAddress);
-                // break;
                 default:
                     success = false;
                     break;
@@ -95,15 +64,6 @@ public class CoapRegistrationServer extends CoapServer {
                 case "irrigation_switch":
                     CNH.unregisterIrrigation(ip);
                     break;
-                // case "rain_sensor":
-                // coapHandler.addRainSensor(ipAddress);
-                // break;
-                // case "soil_moisture_sensor":
-                // coapHandler.addSoilMoisture(ipAddress);
-                // break;
-                // case "tap_actuator":
-                // coapHandler.addTapActuator(ipAddress);
-                // break;
                 default:
                     success = false;
                     break;
