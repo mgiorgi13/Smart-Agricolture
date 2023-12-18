@@ -2,7 +2,6 @@ package iot.unipi.it.Coap.Resources;
 
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapHandler;
-import org.eclipse.californium.core.CoapObserveRelation;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.coap.MediaTypeRegistry;
 import org.json.simple.JSONObject;
@@ -48,24 +47,6 @@ public class Irrigation {
         return index >= 0 && index < clientIrrigationSwitchList.size();
     }
     
-
-    public JSONObject getStatusHandler(CoapResponse response) {
-        if (response != null) {
-            JSONParser parser = new JSONParser();
-            JSONObject json = new JSONObject();
-            try {
-                json = (JSONObject) parser.parse(response.getResponseText());
-                return json;
-            } catch (ParseException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } else {
-            System.out.println("Request failed");
-            return null;
-        }
-    }
-
     public void getSwitchStatus() {
         for (int i = 0; i<clientIrrigationSwitchList.size(); i++) {
             CoapClient client = clientIrrigationSwitchList.get(i);
@@ -99,34 +80,7 @@ public class Irrigation {
         }
     }
 
-    public void setStatus(int temp, int fan, int humid, int mode) {
-        JSONObject json = new JSONObject();
-        json.put("temperature", temp);
-        json.put("fanSpeed", fan);
-        json.put("humidity", humid);
-        json.put("mode", mode);
-        String msg = json.toString();
-        System.out.println("sending: "+msg);
-        for (int i = 0; i < clientIrrigationSwitchList.size(); i++) {
-            CoapClient client = clientIrrigationSwitchList.get(i);
-            client.put(new CoapHandler() {
-
-                public void onLoad(CoapResponse response) {
-                    if (response != null) {
-                        if (!response.isSuccess())
-                            System.out.println("Something went wrong with the actuator");
-                    }
-                }
-
-                public void onError() {
-                    System.err.println("[ERROR: Irrigation " + client.getURI() + "] ");
-                }
-
-            }, msg, MediaTypeRegistry.APPLICATION_JSON);
-        }
-    }
-
-    public void setSwitchStatus(String status, int index) {
+    public void setSwitchStatus(int index,String status) {
         JSONObject json = new JSONObject();
         json.put("switch", status);
         String msg = json.toString();

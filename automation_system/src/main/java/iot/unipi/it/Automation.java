@@ -15,6 +15,8 @@ import iot.unipi.it.MQTT.MQTThandler;
 
 
 public class Automation {
+    private static final int conditionerIndex = 0;
+    private static final int windowIndex = 0;
     public static void main(String[] args) {
         MQTThandler mqttHandler = null;
         try {
@@ -89,10 +91,10 @@ public class Automation {
                         System.out.println("\tCondition: Temperature is low-->" + get_temperature);
                         // se windsow è on
                             // window off
-                            coapNetworkHandler.turnOffWindow();
+                            coapNetworkHandler.turnOffWindow(windowIndex);
                         //heater_humidify
-                        coapNetworkHandler.turnOffConditioner();
-                        coapNetworkHandler.activateHeaterHumidifier(normal_temperature,normal_fan_speed,normal_humidity); //temperature, faanspeed,humidity
+                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateHeaterHumidifier(conditionerIndex, normal_temperature,normal_fan_speed,normal_humidity); //temperature, faanspeed,humidity
                         System.out.println("\t\t Action: [turn off windows] + [turn on heater] + [turn on humidifier] + [turn on fan]");
                     }
                     //se tempreatura è normale e switch = off
@@ -100,10 +102,10 @@ public class Automation {
                         System.out.println("\tCondition: Temperature is normal-->" + get_temperature);
                         // se windsow è on
                             // window off
-                            coapNetworkHandler.turnOffWindow();
+                            coapNetworkHandler.turnOffWindow(windowIndex);
                         //humidify
-                        coapNetworkHandler.turnOffConditioner();
-                        coapNetworkHandler.activateHumidifier(normal_fan_speed, normal_humidity); // fan speed ,humidify
+                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateHumidifier(conditionerIndex,normal_fan_speed, normal_humidity); // fan speed ,humidify
                         System.out.println("\t\t Action: [turn off windows] + [turn off heater] + [turn on humidifier] + [turn on fan]");
                     }
                     //se temperatura è alta e switch = off
@@ -112,10 +114,10 @@ public class Automation {
 
                         // se windsow è off
                             // window
-                            coapNetworkHandler.turnOnWindow();
+                            coapNetworkHandler.turnOnWindow(windowIndex);
                         //humidify
-                        coapNetworkHandler.turnOffConditioner();
-                        coapNetworkHandler.activateHumidifier(normal_fan_speed, normal_humidity);
+                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateHumidifier(conditionerIndex,normal_fan_speed, normal_humidity);
                         System.out.println("\t\t Action: [turn on windows] + [turn off heater] + [turn on humidifier] + [turn on fan]");
 
                     }
@@ -130,10 +132,10 @@ public class Automation {
                         System.out.println("\tCondition: Temperature is low-->" + get_temperature);
                         // se windsow è on
                             // window off
-                            coapNetworkHandler.turnOffWindow();
+                            coapNetworkHandler.turnOffWindow(windowIndex);
                         //heater
-                        coapNetworkHandler.turnOffConditioner();
-                        coapNetworkHandler.activateHeater(normal_temperature,normal_fan_speed); //temperature fanSpeed
+                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateHeater(conditionerIndex,normal_temperature,normal_fan_speed); //temperature fanSpeed
                         System.out.println("\t\t Action: [turn off windows] + [turn on heater] + [turn off humidifier] + [turn on fan]");
 
                     }
@@ -143,10 +145,10 @@ public class Automation {
 
                         // se windsow è on
                             // window off
-                            coapNetworkHandler.turnOffWindow();
+                            coapNetworkHandler.turnOffWindow(windowIndex);
                         // se contidioner on
                             // conditioner off
-                            coapNetworkHandler.turnOffConditioner();
+                            coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         System.out.println("\t\t Action: [turn off windows] + [turn off heater] + [turn off humidifier] + [turn off fan]");
 
                      }
@@ -156,10 +158,10 @@ public class Automation {
 
                         // se windsow è off
                             // window on
-                            coapNetworkHandler.turnOnWindow();
+                            coapNetworkHandler.turnOnWindow(windowIndex);
                         //wind
-                        coapNetworkHandler.turnOffConditioner();
-                        coapNetworkHandler.activateWind(50); //fanSpeed
+                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateWind(conditionerIndex,50); //fanSpeed
                         System.out.println("\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
                     }
                    
@@ -173,19 +175,19 @@ public class Automation {
                         System.out.println("\tCondition: Temperature is low-->" + get_temperature);
                         // se windsow è on
                             // window off
-                            coapNetworkHandler.turnOffWindow();
+                            coapNetworkHandler.turnOffWindow(windowIndex);
                         //heater
-                        coapNetworkHandler.turnOffConditioner();
-                        coapNetworkHandler.activateHeater(normal_temperature,normal_fan_speed);
+                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateHeater(conditionerIndex,normal_temperature,normal_fan_speed);
                         System.out.println("\t\t Action: [turn off windows] + [turn on heater] + [turn off humidifier] + [turn on fan]");
                     }
                     if (get_temperature >= low_temperature)
                         System.out.println("\tCondition: Temperature is not low-->" + get_temperature);
 
                     {
-                        coapNetworkHandler.turnOnWindow();
-                        coapNetworkHandler.turnOffConditioner();
-                        coapNetworkHandler.activateWind(normal_fan_speed); //fan_speed
+                        coapNetworkHandler.turnOnWindow(windowIndex);
+                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateWind(conditionerIndex,normal_fan_speed); //fan_speed
                         System.out.println("\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
                     }
                     //se tempreatura è normale e switch = off

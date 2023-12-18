@@ -76,13 +76,13 @@ public class MysqlManager {
         }
     }
 
-    public static void selectSoilHumidity(int minutes, ArrayList<Integer> nodeId, ArrayList<Double> averageHumidity) {
-        String selectQueryStatement = "SELECT nodeId, AVG(value) AS average_humidity FROM soilHumidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE GROUP BY nodeId";
+    public static void selectSoilHumidity(int seconds, ArrayList<Integer> nodeId, ArrayList<Double> averageHumidity) {
+        String selectQueryStatement = "SELECT nodeId, AVG(value) AS average_humidity FROM soilHumidity WHERE timestamp >= NOW() - INTERVAL ? SECOND GROUP BY nodeId";
         nodeId.clear();
         averageHumidity.clear();
         try (Connection AgricoltureConnection = makeConnection();
                 PreparedStatement preparedStatement = AgricoltureConnection.prepareStatement(selectQueryStatement);) {
-            preparedStatement.setInt(1, minutes);
+            preparedStatement.setInt(1, seconds);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     nodeId.add(resultSet.getInt("nodeId"));
@@ -98,13 +98,13 @@ public class MysqlManager {
 
     
 
-    public static double selectTemperature(int minutes) {
-        String selectQueryStatement = "SELECT AVG(value) AS average_temperature FROM temperature WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
+    public static double selectTemperature(int seconds) {
+        String selectQueryStatement = "SELECT AVG(value) AS average_temperature FROM temperature WHERE timestamp >= NOW() - INTERVAL ? SECOND;";
         double temperature = 0;
 
         try (Connection agricultureConnection = makeConnection();
                 PreparedStatement preparedStatement = agricultureConnection.prepareStatement(selectQueryStatement)) {
-            preparedStatement.setInt(1, minutes);
+            preparedStatement.setInt(1, seconds);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -122,13 +122,13 @@ public class MysqlManager {
 
     
 
-    public static double selectHumidity(int minutes) {
-        String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
+    public static double selectHumidity(int seconds) {
+        String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? SECOND;";
         double humidity = 0;
 
         try (Connection agricultureConnection = makeConnection();
                 PreparedStatement preparedStatement = agricultureConnection.prepareStatement(selectQueryStatement)) {
-            preparedStatement.setInt(1, minutes);
+            preparedStatement.setInt(1, seconds);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {

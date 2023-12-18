@@ -31,6 +31,26 @@ public class CoapNetworkHandler {
     /* GET METHODS */
     public String getConditionerStatus(int index) {
         JSONObject json = conditioner_actuator.getStatus(index);
+        int mode = ((Long) json.get("mode")).intValue();
+
+        switch (mode) {
+            case 1:
+                json.put("mode", "heater");
+                break;
+            case 2:
+                json.put("mode", "heater_humidifier");
+                break;
+            case 3:
+                json.put("mode", "humidifier");
+                break;
+            case 4:
+                json.put("mode", "wind");
+                break;
+            default:
+                json.put("mode", "none");
+                break;
+        }
+
         return json.toJSONString();
     }
 
@@ -46,7 +66,7 @@ public class CoapNetworkHandler {
 
     /* SET METHODS */
 
-    public void activateHeater(int temperature, int fanSpeed) {
+    public void activateHeater(int index, int temperature, int fanSpeed) {
         if (temperature < 18 || temperature > 30) {
             System.out.println("Temperature must be between 18 and 30");
             return;
@@ -55,12 +75,12 @@ public class CoapNetworkHandler {
             System.out.println("Fan speed must be between 1 and 100");
             return;
         }
-        conditioner_actuator.setStatus(temperature, fanSpeed, 0, 1);
-        conditioner_actuator.setSwitchStatus("on");
+        conditioner_actuator.setStatus(index, temperature, fanSpeed, 0, 1);
+        conditioner_actuator.setSwitchStatus(index, "on");
 
     }
 
-    public void activateHeaterHumidifier(int temperature, int fanSpeed, int humidity) {
+    public void activateHeaterHumidifier(int index, int temperature, int fanSpeed, int humidity) {
         if (temperature < 18 || temperature > 30) {
             System.out.println("Temperature must be between 18 and 30");
             return;
@@ -73,12 +93,12 @@ public class CoapNetworkHandler {
             System.out.println("Humidity must be between 1 and 100");
             return;
         }
-        conditioner_actuator.setStatus(temperature, fanSpeed, humidity, 2);
-        conditioner_actuator.setSwitchStatus("on");
+        conditioner_actuator.setStatus(index, temperature, fanSpeed, humidity, 2);
+        conditioner_actuator.setSwitchStatus(index, "on");
 
     }
 
-    public void activateHumidifier(int fanSpeed, int humidity) {
+    public void activateHumidifier(int index, int fanSpeed, int humidity) {
         if (fanSpeed <= 0 || fanSpeed > 100) {
             System.out.println("Fan speed must be between 1 and 100");
             return;
@@ -87,26 +107,24 @@ public class CoapNetworkHandler {
             System.out.println("Humidity must be between 1 and 100");
             return;
         }
-        conditioner_actuator.setStatus(0, fanSpeed, humidity, 3);
-        conditioner_actuator.setSwitchStatus("on");
+        conditioner_actuator.setStatus(index, 0, fanSpeed, humidity, 3);
+        conditioner_actuator.setSwitchStatus(index, "on");
 
     }
 
-    public void activateWind(int fanSpeed) {
+    public void activateWind(int index, int fanSpeed) {
         if (fanSpeed <= 0 || fanSpeed > 100) {
             System.out.println("Fan speed must be between 1 and 100");
             return;
         }
-        conditioner_actuator.setStatus(0, fanSpeed, 0, 4);
-        conditioner_actuator.setSwitchStatus("on");
+        conditioner_actuator.setStatus(index, 0, fanSpeed, 0, 4);
+        conditioner_actuator.setSwitchStatus(index, "on");
 
     }
 
-    public void turnOffConditioner() {
-        conditioner_actuator.setSwitchStatus("off");
+    public void turnOffConditioner(int index) {
+        conditioner_actuator.setSwitchStatus(index, "off");
     }
-
-   
 
     /* REGISTER AND UNREGISTER DEVICES */
     public void registerWindow(String ip) {
@@ -131,13 +149,12 @@ public class CoapNetworkHandler {
 
     /* SET METHODS */
 
-    public void turnOnWindow() {  
-        window_actuator.setSwitchStatus("on");
+    public void turnOnWindow(int index) {
+        window_actuator.setSwitchStatus(index, "on");
     }
 
-
-    public void turnOffWindow(){
-        window_actuator.setSwitchStatus("off");
+    public void turnOffWindow(int index) {
+        window_actuator.setSwitchStatus(index, "off");
     }
 
     /* REGISTER AND UNREGISTER DEVICES */
@@ -157,22 +174,21 @@ public class CoapNetworkHandler {
 
     /* SET METHODS */
 
-    public void turnOnIrrigation(int index) {  
-        irrigation_actuator.setSwitchStatus("on",index);
+    public void turnOnIrrigation(int index) {
+        irrigation_actuator.setSwitchStatus(index, "on");
     }
 
-
-    public void turnOffIrrigation(int index){
-        irrigation_actuator.setSwitchStatus("off",index);
+    public void turnOffIrrigation(int index) {
+        irrigation_actuator.setSwitchStatus(index, "off");
     }
 
-     // General functions
+    // General functions
     public void printAllDevices() {
         conditioner_actuator.printDevices();
         window_actuator.printDevices();
         irrigation_actuator.printDevices();
     }
-    
+
     public boolean checkDeviceSoilHumidity(int index) {
         return irrigation_actuator.checkDeviceSoilHumidity(index);
     }
