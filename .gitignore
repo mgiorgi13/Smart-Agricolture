@@ -1,2 +1,5 @@
 .DS_Store
 .vscode/
+.metadata/
+monitoring_system/target/
+automation_system/target/
