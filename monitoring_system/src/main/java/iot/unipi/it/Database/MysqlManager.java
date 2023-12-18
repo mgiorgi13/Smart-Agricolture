@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class MysqlManager {
     private final static String databaseIP = "localhost";
     private final static String databasePort = "3306";
@@ -95,6 +96,8 @@ public class MysqlManager {
         return;
     }
 
+    
+
     public static double selectTemperature(int minutes) {
         String selectQueryStatement = "SELECT AVG(value) AS average_temperature FROM temperature WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
         double temperature = 0;
@@ -116,6 +119,8 @@ public class MysqlManager {
         }
         return temperature;
     }
+
+    
 
     public static double selectHumidity(int minutes) {
         String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
