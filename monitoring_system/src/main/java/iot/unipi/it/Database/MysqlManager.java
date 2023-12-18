@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 public class MysqlManager {
     private final static String databaseIP = "localhost";
@@ -74,17 +76,18 @@ public class MysqlManager {
         }
     }
 
-    public static void selectSoilHumidity(int minutes) {
+    public static void selectSoilHumidity(int minutes, ArrayList<Integer> nodeId, ArrayList<Double> averageHumidity) {
         String selectQueryStatement = "SELECT nodeId, AVG(value) AS average_humidity FROM soilHumidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE GROUP BY nodeId";
-
+        nodeId.clear();
+        averageHumidity.clear();
         try (Connection AgricoltureConnection = makeConnection();
                 PreparedStatement preparedStatement = AgricoltureConnection.prepareStatement(selectQueryStatement);) {
             preparedStatement.setInt(1, minutes);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int nodeId = resultSet.getInt("nodeId");
-                    double averageHumidity = resultSet.getDouble("average_humidity");
-                    System.out.println("Node ID: " + nodeId + ", Average Humidity: " + averageHumidity);
+                    nodeId.add(resultSet.getInt("nodeId"));
+                    averageHumidity.add(resultSet.getDouble("average_humidity"));
+                    System.out.println("Node ID: " + resultSet.getInt("nodeId") + ", Average Humidity: " + resultSet.getDouble("average_humidity"));
                 }
             }
         } catch (SQLException sqlex) {
@@ -92,6 +95,8 @@ public class MysqlManager {
         }
         return;
     }
+
+    
 
     public static double selectTemperature(int minutes) {
         String selectQueryStatement = "SELECT AVG(value) AS average_temperature FROM temperature WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
@@ -115,6 +120,8 @@ public class MysqlManager {
         return temperature;
     }
 
+    
+
     public static double selectHumidity(int minutes) {
         String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
         double humidity = 0;
@@ -135,6 +142,17 @@ public class MysqlManager {
             sqlex.printStackTrace();
         }
         return humidity;
+    }
+    public static void deleteAllRecords(String tableName) {
+        String deleteQueryStatement = "DELETE FROM " + tableName + ";";
+        try (Connection agricultureConnection = makeConnection();
+            PreparedStatement preparedStatement = agricultureConnection.prepareStatement(deleteQueryStatement)) {
+            preparedStatement.executeUpdate();
+            System.out.println("Tutti i record della tabella " + tableName + " sono stati eliminati con successo.");
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        
     }
 
 }

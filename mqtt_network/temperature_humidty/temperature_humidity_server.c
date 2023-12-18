@@ -37,8 +37,9 @@
 #include "sys/etimer.h"
 #include "sys/ctimer.h"
 #include "lib/sensors.h"
-#include "dev/button-hal.h"
-#include "dev/leds.h"
+
+
+#include "os/dev/leds.h"
 #include "os/sys/log.h"
 #include "mqtt-client.h"
 #include "sys/node-id.h"
@@ -287,8 +288,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         // Publish something
         sprintf(pub_topic, "%s", "temperature_humidity");
 
-        temperature = 25 + (rand() % 10);
-        umidity = 30 + (rand() % 50);
+        temperature = (rand() % 45);
+        umidity = 5 + (rand() % 90);
 
         sprintf(app_buffer, "{\"nodeId\": %d, \"temperature\": %d, \"unit\": \"Celsius\",\"umidity\": %d,\"type\": \"percentage\"}", node_id, temperature,umidity);
 

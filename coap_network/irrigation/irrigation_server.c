@@ -43,6 +43,8 @@
 #include "net/ipv6/uip-debug.h"
 #include "routing/routing.h"
 #include "irrigation_control.h"
+#include "os/dev/button-hal.h"
+#include "os/dev/leds.h"
 
 #include "coap-engine.h"
 #include "coap-blocking-api.h"
@@ -70,7 +72,7 @@ static bool registered = false;
 static struct etimer wait_connectivity;
 static struct etimer wait_registration;
 static bool blink_state = false;
-
+static bool activate = false;
 // static struct etimer simulation;
 
 extern coap_resource_t irrigation_actuator;
@@ -183,10 +185,10 @@ PROCESS_THREAD(irrigation_server, ev, data)
             if (activate)
             {
                 leds_off(LEDS_ALL);
-                leds_on(LEDS_BLU);
+                leds_on(LEDS_BLUE);
             }
             else
-                leds_off(LEDS_BLU);
+                leds_off(LEDS_BLUE);
         }
     }
 

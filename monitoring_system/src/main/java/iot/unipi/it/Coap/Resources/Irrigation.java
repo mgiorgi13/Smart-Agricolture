@@ -65,6 +65,10 @@ public class Irrigation {
         System.out.println("");
     }
 
+    public boolean checkDeviceSoilHumidity(int index) {
+        return index >= 0 && index < clientIrrigationSwitchList.size();
+    }
+    
 
     public JSONObject getStatusHandler(CoapResponse response) {
         System.out.println("Response: " + response.getResponseText());
