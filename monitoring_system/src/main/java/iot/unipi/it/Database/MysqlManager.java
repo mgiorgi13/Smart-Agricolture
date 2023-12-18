@@ -143,5 +143,16 @@ public class MysqlManager {
         }
         return humidity;
     }
+    public static void deleteAllRecords(String tableName) {
+        String deleteQueryStatement = "DELETE FROM " + tableName + ";";
+        try (Connection agricultureConnection = makeConnection();
+            PreparedStatement preparedStatement = agricultureConnection.prepareStatement(deleteQueryStatement)) {
+            preparedStatement.executeUpdate();
+            System.out.println("Tutti i record della tabella " + tableName + " sono stati eliminati con successo.");
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        
+    }
 
 }
