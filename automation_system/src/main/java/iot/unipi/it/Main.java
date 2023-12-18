@@ -38,6 +38,7 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String command;
         String[] parts;
+
         double get_temperature=0.0;
         int low_temperature = 15;
         int normal_temperature = 25;
@@ -57,8 +58,11 @@ public class Main {
         
         ArrayList<Integer> nodeId = new ArrayList<>();
         ArrayList<Double> get_soil_humidity = new ArrayList<>();
-        int timeMin = 5;
-        
+        int timeMin = 1;
+        MysqlManager.deleteAllRecords("humidity");
+        MysqlManager.deleteAllRecords("temperature");
+        MysqlManager.deleteAllRecords("soilHumidity");
+
         
         while (true) {
             try {
@@ -75,7 +79,7 @@ public class Main {
                 if (get_humidity == 0.0)
                 {
                     System.err.println("I'm waiting...");
-                    Thread.sleep(100000);
+                    Thread.sleep(1000);
                     continue;
                 }
                 if (get_humidity <= low_humidity){
@@ -92,7 +96,7 @@ public class Main {
                         System.out.println("\t\t Action: [turn off windows] + [turn on heater] + [turn on humidifier] + [turn on fan]");
                     }
                     //se tempreatura è normale e switch = off
-                    if (low_temperature < get_temperature && get_temperature < high_humidity) {
+                    if (low_temperature < get_temperature && get_temperature < high_temperature) {
                         System.out.println("\tCondition: Temperature is normal-->" + get_temperature);
                         // se windsow è on
                             // window off
@@ -134,7 +138,7 @@ public class Main {
 
                     }
                     //se tempreatura è normale e switch = off
-                    if (low_temperature < get_temperature && get_temperature < high_humidity){
+                    if (low_temperature < get_temperature && get_temperature < high_temperature){
                         System.out.println("\tCondition: Temperature is normal-->" + get_temperature);
 
                         // se windsow è on
@@ -175,7 +179,7 @@ public class Main {
                         coapNetworkHandler.activateHeater(normal_temperature,normal_fan_speed);
                         System.out.println("\t\t Action: [turn off windows] + [turn on heater] + [turn off humidifier] + [turn on fan]");
                     }
-                    if (get_temperature >= low_humidity)
+                    if (get_temperature >= low_temperature)
                         System.out.println("\tCondition: Temperature is not low-->" + get_temperature);
 
                     {
@@ -196,20 +200,26 @@ public class Main {
                 MysqlManager.selectSoilHumidity(timeMin,  nodeId, get_soil_humidity);
                 for(int j=0; j < get_soil_humidity.size(); j++){
                     if (get_humidity == 0.0)
-                {
-                    System.err.println("I'm waiting...");
-                    Thread.sleep(100000);
-                    continue;
-                }
+                    {
+                        System.err.println("I'm waiting...");
+                        Thread.sleep(1000);
+                        continue;
+                    }
+                    if (!coapNetworkHandler.checkDeviceSoilHumidity(j))
+                        {
+                            System.out.println("There is no actuator to pair with this sensor");
+                            continue;
+                        }
                     //se umidità del suolo bassa e switch = off
                     if (get_soil_humidity.get(j) <= low_soil_humidity){
                         System.out.println("In Zone"+ nodeId.get(j)+", the soil humidity is NOT good-->"+ get_soil_humidity.get(j));
-
+                        
                         //attivo irrigazione
                         coapNetworkHandler.turnOnIrrigation(j);
                         System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn on irrgation]");
                     }
                     else{
+                        
                         System.out.println("In Zone"+ nodeId.get(j)+", the soil humidity is good-->"+ get_soil_humidity.get(j));
                         coapNetworkHandler.turnOffIrrigation(j);
                         System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn off irrgation]");

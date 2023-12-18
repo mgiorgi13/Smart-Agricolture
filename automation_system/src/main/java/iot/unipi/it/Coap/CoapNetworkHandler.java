@@ -172,4 +172,8 @@ public class CoapNetworkHandler {
         window_actuator.printDevices();
         irrigation_actuator.printDevices();
     }
+    
+    public boolean checkDeviceSoilHumidity(int index) {
+        return irrigation_actuator.checkDeviceSoilHumidity(index);
+    }
 }
