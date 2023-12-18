@@ -205,7 +205,9 @@ PROCESS_THREAD(conditioner_server, ev, data)
                 if (btn->unique_id == BUTTON_HAL_ID_BUTTON_ZERO)
                 {
                     mode = (mode + 1) % 5;
-                    switch (mode + 1)
+                    if(mode == 0) // skip none state
+                        mode = 1;
+                    switch (mode)
                     {
                     case 1:
                         LOG_INFO("Mode: heater\n");
@@ -228,10 +230,11 @@ PROCESS_THREAD(conditioner_server, ev, data)
                     case 4:
                         LOG_INFO("Mode: wind\n");
                         leds_off(LEDS_ALL);
-                        leds_on(LEDS_YELLOW);
+                        leds_on(LEDS_GREEN);
                         set_conditioner_state(0, DEFAULT_FAN_SPEED, 0, 4);
                         break;
                     default:
+                        leds_off(LEDS_ALL);
                         break;
                     }
                 }
