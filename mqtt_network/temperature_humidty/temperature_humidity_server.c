@@ -291,7 +291,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         temperature = (rand() % 45);
         umidity = 5 + (rand() % 90);
 
-        sprintf(app_buffer, "{\"nodeId\": %d, \"temperature\": %d, \"unit\": \"Celsius\",\"umidity\": %d,\"type\": \"percentage\"}", node_id, temperature,umidity);
+        sprintf(app_buffer, "{\"nodeId\": %d, \"temperature\": %d,\"humidity\": %d}", node_id, temperature,umidity);
 
         mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                      strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);

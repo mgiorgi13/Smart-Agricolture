@@ -51,32 +51,46 @@ public class Monitoring {
                         helpFunction(parts);
                         break;
                     case "!get_conditioner_status":
+                        if (parts.length != 2)
+                            break;
                         // controllare che la lista di client non sia vuota
-                        status = coapNetworkHandler.getConditionerStatus(0);
+                        status = coapNetworkHandler.getConditionerStatus(Integer.parseInt(parts[1]));
                         System.out.println(status);
                         break;
                     case "!get_conditioner_switch":
-                        status = coapNetworkHandler.getConditionerSwitchStatus(0);
+                        if (parts.length != 2)
+                            break;
+                        status = coapNetworkHandler.getConditionerSwitchStatus(Integer.parseInt(parts[1]));
                         System.out.println(status);
                         break;
                     case "!turn_on_heater_humidifier":
+                        if (parts.length != 4)
+                            break;
                         coapNetworkHandler.activateHeaterHumidifier(Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
                         break;
                     case "!turn_on_heater":
+                        if (parts.length != 3)
+                            break;
                         coapNetworkHandler.activateHeater(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
                         break;
                     case "!turn_on_humidifier":
+                        if (parts.length != 3)
+                            break;
                         coapNetworkHandler.activateHumidifier(Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
                         break;
                     case "!turn_on_wind":
+                        if (parts.length != 2)
+                            break;
                         coapNetworkHandler.activateWind(Integer.parseInt(parts[1]));
                         break;
                     case "!turn_off_conditioner":
                         coapNetworkHandler.turnOffConditioner();
                         break;
                     case "!get_window_switch_status":
-                        status = coapNetworkHandler.getWindowSwitchStatus(0);
+                        if (parts.length != 2)
+                            break;
+                        status = coapNetworkHandler.getWindowSwitchStatus(Integer.parseInt(parts[1]));
                         System.out.println(status);
                         break;
                     case "!turn_on_windows":
@@ -89,27 +103,39 @@ public class Monitoring {
                         coapNetworkHandler.getIrrigationSwitchStatus();
                         break;
                     case "!turn_on_irrigation":
+                        if (parts.length != 2)
+                            break;
                         coapNetworkHandler.turnOnIrrigation(Integer.parseInt(parts[1]));
                         break;
                     case "!turn_off_irrigation":
+                        if (parts.length != 2)
+                            break;
                         coapNetworkHandler.turnOffIrrigation(Integer.parseInt(parts[1]));
                         break;
                     case "!get_avg_soil_humidity":
+                        if (parts.length != 2)
+                            break;
                         MysqlManager.selectSoilHumidity(Integer.parseInt(parts[1]), nodeId, get_soil_humidity);
                         System.out.println("Motes: " + nodeId);
                         System.err.println("Humidity: " + get_soil_humidity);
                         break;
                     case "!get_avg_temperature":
+                        if (parts.length != 2)
+                            break;
                         MysqlManager.selectTemperature(Integer.parseInt(parts[1]));
-                        System.out.println("AVG Temperature: " + MysqlManager.selectTemperature(Integer.parseInt(parts[1])) + "°C\n");
+                        System.out.println("AVG Temperature: "
+                                + MysqlManager.selectTemperature(Integer.parseInt(parts[1])) + "°C\n");
                         break;
                     case "!get_avg_humidity":
+                        if (parts.length != 2)
+                            break;
                         MysqlManager.selectHumidity(Integer.parseInt(parts[1]));
-                        System.out.println("AVG Humidity: " + MysqlManager.selectHumidity(Integer.parseInt(parts[1])) + "%\n");
+                        System.out.println(
+                                "AVG Humidity: " + MysqlManager.selectHumidity(Integer.parseInt(parts[1])) + "%\n");
                         break;
                     case "!print_all_device":
                         coapNetworkHandler.printAllDevices();
-                        if (mqttHandler!=null)
+                        if (mqttHandler != null)
                             mqttHandler.printAllDevices();
                         break;
                     case "!exit":
@@ -131,15 +157,16 @@ public class Monitoring {
         System.out.println("***************************** Smart Agricolture *****************************\n" +
                 "The following commands are available:\n" +
                 "1) !help <command> --> shows the details of a command\n" +
-                "2) !get_conditioner_status --> shows the status of the conditioner\n" +
-                "3) !get_conditioner_switch --> shows the switch status of the conditioner\n" +
+                "2) !get_conditioner_status <index of the conditioner> --> shows the status of the conditioner\n" +
+                "3) !get_conditioner_switch <index of the conditioner> --> shows the switch status of the conditioner\n"
+                +
                 "4) !turn_on_heater <temperature> <fanSpeed> --> activates the heater\n" +
                 "5) !turn_on_heater_humidifier <temperature> <fanSpeed> <humidity>--> activates the heater-humidifier\n"
                 +
                 "6) !turn_on_humidifier <fanSpeed> <humidity> --> activates the umidifier\n" +
                 "7) !turn_on_wind <fanSpeed> --> activates the wind\n" +
                 "8) !turn_off_conditioner --> turns off the conditioner\n" +
-                "9) !get_window_switch_status --> shows the switch status of the window\n" +
+                "9) !get_window_switch_status <index of the window> --> shows the switch status of the window\n" +
                 "10) !turn_on_windows --> open the window \n" +
                 "11) !turn_off_windows --> closed the window\n" +
                 "12) !get_irrigation_switch_status --> shows the switch status of the irrigation\n" +
@@ -163,10 +190,12 @@ public class Monitoring {
                     System.out.println("!help shows the details of the command passed as parameter.\n");
                     break;
                 case "!get_conditioner_status":
-                    System.out.println("!get_conditioner_status shows the status of the conditioner.\n");
+                    System.out.println(
+                            "!get_conditioner_status <index of the conditioner> shows the status of the conditioner.\n");
                     break;
                 case "!get_conditioner_switch":
-                    System.out.println("!get_conditioner_switch shows the switch status of the conditioner.\n");
+                    System.out.println(
+                            "!get_conditioner_switch <index of the conditioner> shows the switch status of the conditioner.\n");
                     break;
                 case "!turn_on_heater":
                     System.out.println("!turn_on_heater <temperature> <fanSpeed> activates the heater.\n");
@@ -185,7 +214,8 @@ public class Monitoring {
                     System.out.println("!turn_off_conditioner turns off the conditioner.\n");
                     break;
                 case "!get_window_switch_status":
-                    System.out.println("!get_window_switch_status shows the switch status of the window.\n");
+                    System.out.println(
+                            "!get_window_switch_status <index of the window> shows the switch status of the window.\n");
                     break;
                 case "!turn_on_windows":
                     System.out.println("!turn_on_windows open the window.\n");

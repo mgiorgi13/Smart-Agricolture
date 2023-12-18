@@ -62,7 +62,7 @@ public class Conditioner {
         int i = 0;
         System.out.println("Conditioner actuators:");
         for (CoapClient cc : clientConditionerList)
-            System.out.println("\t" +i +":"+ cc.getURI());
+            System.out.println("\t" +i +": "+ cc.getURI());
         System.out.println("");
     }
 
@@ -73,7 +73,6 @@ public class Conditioner {
     }
 
     public JSONObject getStatusHandler(CoapResponse response) {
-        System.out.println("Response: " + response.getResponseText());
         if (response != null) {
             JSONParser parser = new JSONParser();
             JSONObject json = new JSONObject();

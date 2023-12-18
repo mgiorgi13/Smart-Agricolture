@@ -59,7 +59,7 @@ public class Window {
         int i = 0;
         System.out.println("Window actuators:");
         for (CoapClient cc : clientWindowSwitchList)
-            System.out.println("\t" +i +":"+ cc.getURI());
+            System.out.println("\t" +i +": "+ cc.getURI());
         System.out.println("");
     }
 
