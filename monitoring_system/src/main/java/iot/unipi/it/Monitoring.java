@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.SocketException;
+import java.util.ArrayList;
+
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import iot.unipi.it.Coap.CoapNetworkHandler;
@@ -11,7 +13,7 @@ import iot.unipi.it.Coap.CoapRegistrationServer;
 import iot.unipi.it.Database.MysqlManager;
 import iot.unipi.it.MQTT.MQTThandler;
 
-public class Main {
+public class Monitoring {
     public static void main(String[] args) {
         MQTThandler mqttHandler = null;
         try {
@@ -35,6 +37,8 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String command;
         String[] parts;
+        ArrayList<Integer> nodeId = new ArrayList<>();
+        ArrayList<Double> get_soil_humidity = new ArrayList<>();
 
         while (true) {
             System.out.print("> ");
@@ -91,7 +95,9 @@ public class Main {
                         coapNetworkHandler.turnOffIrrigation(Integer.parseInt(parts[1]));
                         break;
                     case "!get_avg_soil_humidity":
-                        MysqlManager.selectSoilHumidity(Integer.parseInt(parts[1]));
+                        MysqlManager.selectSoilHumidity(Integer.parseInt(parts[1]), nodeId, get_soil_humidity);
+                        System.out.println("Motes: " + nodeId);
+                        System.err.println("Humidity: " + get_soil_humidity);
                         break;
                     case "!get_avg_temperature":
                         MysqlManager.selectTemperature(Integer.parseInt(parts[1]));

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class MysqlManager {
     private final static String databaseIP = "localhost";
     private final static String databasePort = "3306";
@@ -95,6 +96,8 @@ public class MysqlManager {
         return;
     }
 
+    
+
     public static double selectTemperature(int minutes) {
         String selectQueryStatement = "SELECT AVG(value) AS average_temperature FROM temperature WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
         double temperature = 0;
@@ -117,6 +120,8 @@ public class MysqlManager {
         return temperature;
     }
 
+    
+
     public static double selectHumidity(int minutes) {
         String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? MINUTE;";
         double humidity = 0;
@@ -137,6 +142,17 @@ public class MysqlManager {
             sqlex.printStackTrace();
         }
         return humidity;
+    }
+    public static void deleteAllRecords(String tableName) {
+        String deleteQueryStatement = "DELETE FROM " + tableName + ";";
+        try (Connection agricultureConnection = makeConnection();
+            PreparedStatement preparedStatement = agricultureConnection.prepareStatement(deleteQueryStatement)) {
+            preparedStatement.executeUpdate();
+            System.out.println("Tutti i record della tabella " + tableName + " sono stati eliminati con successo.");
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        
     }
 
 }

@@ -14,7 +14,7 @@ import iot.unipi.it.Database.MysqlManager;
 import iot.unipi.it.MQTT.MQTThandler;
 
 
-public class Main {
+public class Automation {
     public static void main(String[] args) {
         MQTThandler mqttHandler = null;
         try {
