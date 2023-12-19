@@ -1,8 +1,4 @@
 package iot.unipi.it;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.lang.Thread;

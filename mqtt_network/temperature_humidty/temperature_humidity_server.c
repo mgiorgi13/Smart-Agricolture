@@ -38,7 +38,6 @@
 #include "sys/ctimer.h"
 #include "lib/sensors.h"
 
-
 #include "os/dev/leds.h"
 #include "os/sys/log.h"
 #include "mqtt-client.h"
@@ -112,8 +111,10 @@ static struct mqtt_connection conn;
 mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-static int temperature = 0;
-static int umidity = 0;
+static int temperature = (rand() % 45);
+static int humidity = 5 + (rand() % 90);
+static int target_temperature = -1;
+static int target_humidity = -1;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(mqtt_client_process, "MQTT Client");
@@ -126,11 +127,32 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
          topic_len, chunk_len);
 
-  if (strcmp(topic, "actuator") == 0)
+  if (strcmp(topic, "temperature_condition") == 0)
   {
-    printf("Received Actuator command\n");
+    printf("Received temperature command\n");
     printf("%s\n", chunk);
-    // Do something :)
+    // search in chunk (formatted as json) the value of temperature
+    char *temperature_start = strstr((char *)chunk, "\"temperature\":");
+    if (temperature_start)
+    {
+      temperature_start += strlen("\"temperature\":");
+      target_temperature = atoi(temperature_start);
+      printf("Temperature: %d\n", target_temperature);
+    }
+    return;
+  }
+  if (strcmp(topic, "humidity_condition") == 0)
+  {
+    printf("Received humidity command\n");
+    printf("%s\n", chunk);
+    // search in chunk (formatted as json) the value of humidity
+    char *humidity_start = strstr((char *)chunk, "\"humidity\":");
+    if (humidity_start)
+    {
+      humidity_start += strlen("\"humidity\":");
+      target_humidity = atoi(humidity_start);
+      printf("Humidity: %d\n", target_humidity);
+    }
     return;
   }
 }
@@ -262,41 +284,100 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         leds_on(LEDS_YELLOW);
       }
 
-      // if (state == STATE_CONNECTED)
-      // {
-
-      //   // Subscribe to a topic
-      //   strcpy(sub_topic, "actuator");
-
-      //   status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
-
-      //   printf("Subscribing!\n");
-      //   if (status == MQTT_STATUS_OUT_QUEUE_FULL)
-      //   {
-      //     LOG_ERR("Tried to subscribe but command queue was full!\n");
-      //     PROCESS_EXIT();
-      //   }
-
-      //   state = STATE_SUBSCRIBED;
-      //   PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
-      //   STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
-      // }
-
       if (state == STATE_CONNECTED)
+      {
+
+        // Subscribe to the "humidity_condition" topic
+        strcpy(sub_topic_humidity, "humidity_condition");
+        status = mqtt_subscribe(&conn, NULL, sub_topic_humidity, MQTT_QOS_LEVEL_0);
+
+        // Check the subscription status for "humidity_condition"
+        printf("Subscribing to 'humidity_condition' topic!\n");
+        if (status == MQTT_STATUS_OUT_QUEUE_FULL)
+        {
+          LOG_ERR("Tried to subscribe to 'humidity_condition' but command queue was full!\n");
+          PROCESS_EXIT();
+        }
+
+        // Subscribe to the "temperature_condition" topic
+        strcpy(sub_topic_temperature, "temperature_condition");
+        status = mqtt_subscribe(&conn, NULL, sub_topic_temperature, MQTT_QOS_LEVEL_0);
+
+        // Check the subscription status for "temperature_condition"
+        printf("Subscribing to 'temperature_condition' topic!\n");
+        if (status == MQTT_STATUS_OUT_QUEUE_FULL)
+        {
+          LOG_ERR("Tried to subscribe to 'temperature_condition' but command queue was full!\n");
+          PROCESS_EXIT();
+        }
+
+        state = STATE_SUBSCRIBED;
+        PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
+        STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
+      }
+
+      if (state == STATE_SUBSCRIBED)
       {
         LOG_INFO("I try to publish a message\n");
         // Publish something
         sprintf(pub_topic, "%s", "temperature_humidity");
 
-        temperature = (rand() % 45);
-        umidity = 5 + (rand() % 90);
+        // humidity
+        if (target_humidity == -1)
+        {
+          // Applica l'incremento al valore corrente di humidity [-5,+5]
+          humidity = humidity + (rand() % 11 - 5);
+        }
+        else
+        {
+          // start increasing/decreasing values humidity until it reaches the target
+          if (humidity < target_humidity)
+          {
+            humidity++;
+          }
+          else if (humidity > target_humidity)
+          {
+            humidity--;
+          }
+          else if (humidity == target_humidity)
+          {
+            target_humidity = -1;
+          } 
+        }
+        // Assicurati che humidity sia compreso tra 0 e 100
+        if (humidity < 0)
+        {
+          humidity = 0;
+        }
+        else if (humidity > 100)
+        {
+          humidity = 100;
+        }
 
-        sprintf(app_buffer, "{\"nodeId\": %d, \"temperature\": %d,\"humidity\": %d}", node_id, temperature,umidity);
+        // temperature
+        if(target_temperature == -1){
+          // Applica l'incremento al valore corrente di temperature [-1,+1]
+          temperature = temperature + (rand() % 2 - 1);
+        }
+        else{
+          // start increasing/decreasing values temperature until it reaches the target
+          if (temperature < target_temperature)
+          {
+            temperature++;
+          }
+          else if (temperature > target_temperature)
+          {
+            temperature--;
+          }
+          else if (temperature == target_temperature)
+          {
+            target_temperature = -1;
+          } 
+        }
+        sprintf(app_buffer, "{\"nodeId\": %d, \"temperature\": %d,\"humidity\": %d}", node_id, temperature, humidity);
 
         mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                      strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
-        PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
-        STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
         leds_off(LEDS_ALL);
         leds_on(LEDS_GREEN);
       }

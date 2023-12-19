@@ -313,6 +313,251 @@
       },
       "fieldConfig": {
         "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "dataset": "smart_agricolture",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fda51bf1-4b05-4c75-a386-f9c7468a1a37"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT AVG(value) FROM smart_agricolture.soilHumidity WHERE nodeId = 19836 ORDER BY timestamp DESC LIMIT 6 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 6,
+            "orderBy": {
+              "property": {
+                "name": "timestamp",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC",
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "b8aba9a8-cdef-4012-b456-718c7da8a620",
+                  "properties": {
+                    "field": "nodeId",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      19836
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "88aaabab-89ab-4cde-b012-318c7d7b0293",
+              "type": "group"
+            },
+            "whereString": "nodeId = 19836"
+          },
+          "table": "soilHumidity"
+        }
+      ],
+      "title": "AVGSoilHumidity1",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fda51bf1-4b05-4c75-a386-f9c7468a1a37"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 7,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "dataset": "smart_agricolture",
+          "datasource": {
+            "type": "mysql",
+            "uid": "fda51bf1-4b05-4c75-a386-f9c7468a1a37"
+          },
+          "editorMode": "builder",
+          "format": "table",
+          "rawSql": "SELECT AVG(value) FROM smart_agricolture.soilHumidity WHERE nodeId = 23778 ORDER BY timestamp DESC LIMIT 6 ",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "name": "AVG",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "functionParameter"
+                  }
+                ],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 6,
+            "orderBy": {
+              "property": {
+                "name": "timestamp",
+                "type": "string"
+              },
+              "type": "property"
+            },
+            "orderByDirection": "DESC",
+            "whereJsonTree": {
+              "children1": [
+                {
+                  "id": "b8aba9a8-cdef-4012-b456-718c7da8a620",
+                  "properties": {
+                    "field": "nodeId",
+                    "fieldSrc": "field",
+                    "operator": "equal",
+                    "value": [
+                      23778
+                    ],
+                    "valueSrc": [
+                      "value"
+                    ],
+                    "valueType": [
+                      "number"
+                    ]
+                  },
+                  "type": "rule"
+                }
+              ],
+              "id": "88aaabab-89ab-4cde-b012-318c7d7b0293",
+              "type": "group"
+            },
+            "whereString": "nodeId = 23778"
+          },
+          "table": "soilHumidity"
+        }
+      ],
+      "title": "AVGSoilHumidity2",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fda51bf1-4b05-4c75-a386-f9c7468a1a37"
+      },
+      "fieldConfig": {
+        "defaults": {
           "color": {
             "mode": "palette-classic"
           },
@@ -384,8 +629,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
-        "y": 8
+        "x": 6,
+        "y": 16
       },
       "id": 3,
       "options": {
@@ -451,8 +696,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "orange",
@@ -470,8 +714,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 8
+        "x": 0,
+        "y": 24
       },
       "id": 4,
       "options": {
@@ -559,7 +803,7 @@
           "table": "soilHumidity"
         }
       ],
-      "title": "AVGSoilHumidity3",
+      "title": "AVGSoilHumidity1-cooja",
       "type": "gauge"
     },
     {
@@ -593,8 +837,8 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
-        "y": 16
+        "x": 12,
+        "y": 24
       },
       "id": 5,
       "options": {
@@ -682,7 +926,7 @@
           "table": "soilHumidity"
         }
       ],
-      "title": "AVGSoilHumidity8",
+      "title": "AVGSoilHumidity2-cooja",
       "type": "gauge"
     }
   ],
@@ -693,13 +937,13 @@
     "list": []
   },
   "time": {
-    "from": "2023-12-18T21:46:08.583Z",
-    "to": "2023-12-18T21:47:08.370Z"
+    "from": "2023-12-19T02:32:31.000Z",
+    "to": "2023-12-19T02:33:30.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Smart-Agricolture",
   "uid": "b3c08816-3029-49cf-9d01-af9036a93cea",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }

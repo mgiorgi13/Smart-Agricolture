@@ -111,7 +111,8 @@ static struct mqtt_connection conn;
 mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-static int soil_umidity = 0;
+static int soil_umidity = (rand() % 99);
+static int target_soil_umidity = -1;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(mqtt_client_process, "MQTT Client");
@@ -124,11 +125,18 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
   printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
          topic_len, chunk_len);
 
-  if (strcmp(topic, "actuator") == 0)
+  if (strcmp(topic, "irrigation") == 0)
   {
-    printf("Received Actuator command\n");
+    printf("Received irrigation command\n");
     printf("%s\n", chunk);
-    // Do something :)
+    // search in chunk (formatted as json) the value of soil_umidity
+    char *humidity_start = strstr((char *)chunk, "\"soil_umidity\":");
+    if (humidity_start)
+    {
+      humidity_start += strlen("\"humidity\":");
+      target_soil_umidity = atoi(humidity_start);
+      printf("Humidity: %d\n", target_soil_umidity);
+    }
     return;
   }
 }
@@ -257,43 +265,72 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                      (DEFAULT_PUBLISH_INTERVAL * 3) / CLOCK_SECOND,
                      MQTT_CLEAN_SESSION_ON);
         state = STATE_CONNECTING;
-        leds_on(LEDS_YELLOW);
+        led_on(LEDS_GREEN);
+        leds_off(LEDS_BLUE);
       }
 
-      // if (state == STATE_CONNECTED)
-      // {
-
-      //   // Subscribe to a topic
-      //   strcpy(sub_topic, "actuator");
-
-      //   status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
-
-      //   printf("Subscribing!\n");
-      //   if (status == MQTT_STATUS_OUT_QUEUE_FULL)
-      //   {
-      //     LOG_ERR("Tried to subscribe but command queue was full!\n");
-      //     PROCESS_EXIT();
-      //   }
-
-      //   state = STATE_SUBSCRIBED;
-      //   PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
-      //   STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
-      // }
-
       if (state == STATE_CONNECTED)
+      {
+
+        // Subscribe to a topic
+        strcpy(sub_topic, "irrigation");
+
+        status = mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
+
+        printf("Subscribing!\n");
+        if (status == MQTT_STATUS_OUT_QUEUE_FULL)
+        {
+          LOG_ERR("Tried to subscribe but command queue was full!\n");
+          PROCESS_EXIT();
+        }
+
+        state = STATE_SUBSCRIBED;
+        PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
+        STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
+      }
+
+      if (state == STATE_SUBSCRIBED)
       {
         LOG_INFO("I try to publish a message\n");
         // Publish something
         sprintf(pub_topic, "%s", "soilHumidity");
 
-        soil_umidity = (rand() % 99);
+        if (target_soil_umidity == -1)
+        {
+          // Applica l'incremento al valore corrente di soil_umidity [-3,+3]
+          soil_umidity = soil_umidity + (rand() % 7 - 3);
+        }
+        else
+        {
+          // start incrementing/decrementing soil_umidity to reach target_soil_umidity
+          if (soil_umidity < target_soil_umidity)
+          {
+            soil_umidity++;
+          }
+          else if (soil_umidity > target_soil_umidity)
+          {
+            soil_umidity--;
+          }
+          else
+          {
+            target_soil_umidity = -1;
+          }
+        }
+        
+        // Assicurati che soil_umidity sia compreso tra 0 e 100
+        if (soil_umidity < 0)
+        {
+          soil_umidity = 0;
+        }
+        else if (soil_umidity > 100)
+        {
+          soil_umidity = 100;
+        }
 
         sprintf(app_buffer, "{\"nodeId\": %d,\"soil_humidity\": %d}", node_id, soil_umidity);
 
         mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                      strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
-        PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
-        STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
         leds_off(LEDS_ALL);
         leds_on(LEDS_GREEN);
       }
