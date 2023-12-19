@@ -115,6 +115,11 @@ static int temperature = (rand() % 45);
 static int humidity = 5 + (rand() % 90);
 static int target_temperature = -1;
 static int target_humidity = -1;
+static char *start_msg = null;
+static int temp_increment = 0;
+static int hum_increment = 0;
+static bool heating = false;
+static bool humidifying = false;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(mqtt_client_process, "MQTT Client");
@@ -132,12 +137,25 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
     printf("Received temperature command\n");
     printf("%s\n", chunk);
     // search in chunk (formatted as json) the value of temperature
-    char *temperature_start = strstr((char *)chunk, "\"temperature\":");
-    if (temperature_start)
+    start_msg = strstr((char *)chunk, "\"temperature\":");
+    if (start_msg)
     {
-      temperature_start += strlen("\"temperature\":");
-      target_temperature = atoi(temperature_start);
-      printf("Temperature: %d\n", target_temperature);
+      start_msg += strlen("\"temperature\":");
+      target_temperature = atoi(start_msg);
+    }
+    // start_msg = strstr((char *)chunk, "\"increment\":");
+    if (start_msg)
+    {
+      start_msg += strlen("\"increment\":");
+      temp_increment = atoi(start_msg);
+    }
+    if (temperature < target_temperature)
+    {
+      heating = true;
+    }
+    else
+    {
+      heating = false;
     }
     return;
   }
@@ -146,12 +164,26 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
     printf("Received humidity command\n");
     printf("%s\n", chunk);
     // search in chunk (formatted as json) the value of humidity
-    char *humidity_start = strstr((char *)chunk, "\"humidity\":");
-    if (humidity_start)
+    start_msg = strstr((char *)chunk, "\"humidity\":");
+    if (start_msg)
     {
-      humidity_start += strlen("\"humidity\":");
-      target_humidity = atoi(humidity_start);
+      start_msg += strlen("\"humidity\":");
+      target_humidity = atoi(start_msg);
       printf("Humidity: %d\n", target_humidity);
+    }
+    // start_msg = strstr((char *)chunk, "\"increment\":");
+    if (start_msg)
+    {
+      start_msg += strlen("\"increment\":");
+      hum_increment = atoi(start_msg);
+    }
+    if (humidity < target_humidity)
+    {
+      humidifying = true;
+    }
+    else
+    {
+      humidifying = false;
     }
     return;
   }
@@ -325,24 +357,25 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         // humidity
         if (target_humidity == -1)
         {
-          // Applica l'incremento al valore corrente di humidity [-5,+5]
-          humidity = humidity + (rand() % 11 - 5);
+          // Applica l'incremento al valore corrente di humidity [-3,+3]
+          humidity +=(rand() % 7 - 3);
         }
         else
         {
           // start increasing/decreasing values humidity until it reaches the target
-          if (humidity < target_humidity)
-          {
-            humidity++;
+          if(humidifying){
+            humidity += hum_increment;
+            if(humidity >= target_humidity){
+              target_humidity = -1;
+              hum_increment = 0;
+            }
+          }else{
+            humidity -= hum_increment;
+            if(humidity <= target_humidity){
+              target_humidity = -1;
+              hum_increment = 0;
+            }
           }
-          else if (humidity > target_humidity)
-          {
-            humidity--;
-          }
-          else if (humidity == target_humidity)
-          {
-            target_humidity = -1;
-          } 
         }
         // Assicurati che humidity sia compreso tra 0 e 100
         if (humidity < 0)
@@ -355,24 +388,27 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         }
 
         // temperature
-        if(target_temperature == -1){
+        if (target_temperature == -1)
+        {
           // Applica l'incremento al valore corrente di temperature [-1,+1]
-          temperature = temperature + (rand() % 2 - 1);
+          temperature += (rand() % 2 - 1);
         }
-        else{
+        else
+        {
           // start increasing/decreasing values temperature until it reaches the target
-          if (temperature < target_temperature)
-          {
-            temperature++;
+          if(heating){
+            temperature += temp_increment;
+            if(temperature >= target_temperature){
+              target_temperature = -1;
+              temp_increment = 0;
+            }
+          }else{
+            temperature -= temp_increment;
+            if(temperature <= target_temperature){
+              target_temperature = -1;
+              temp_increment = 0;
+            }
           }
-          else if (temperature > target_temperature)
-          {
-            temperature--;
-          }
-          else if (temperature == target_temperature)
-          {
-            target_temperature = -1;
-          } 
         }
         sprintf(app_buffer, "{\"nodeId\": %d, \"temperature\": %d,\"humidity\": %d}", node_id, temperature, humidity);
 

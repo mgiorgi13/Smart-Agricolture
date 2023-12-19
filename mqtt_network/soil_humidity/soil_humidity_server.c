@@ -113,6 +113,9 @@ char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
 static int soil_umidity = (rand() % 99);
 static int target_soil_umidity = -1;
+static int node_id_msg = -1;
+static char *start_msg = null;
+static int increment = 0;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(mqtt_client_process, "MQTT Client");
@@ -129,13 +132,29 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
   {
     printf("Received irrigation command\n");
     printf("%s\n", chunk);
-    // search in chunk (formatted as json) the value of soil_umidity
-    char *humidity_start = strstr((char *)chunk, "\"soil_umidity\":");
-    if (humidity_start)
+    // search in chunk (formatted as json) the value of node_id
+    start_msg = strstr((char *)chunk, "\"nodeId\":");
+    if (start_msg)
     {
-      humidity_start += strlen("\"humidity\":");
-      target_soil_umidity = atoi(humidity_start);
-      printf("Humidity: %d\n", target_soil_umidity);
+      start_msg += strlen("\"nodeId\":");
+      node_id_msg = atoi(start_msg);
+    }
+    if (node_id_msg == node_id)
+    {
+      // search in chunk (formatted as json) the value of soil_umidity
+      start_msg = strstr((char *)chunk, "\"soil_umidity\":");
+      if (start_msg)
+      {
+        start_msg += strlen("\"soil_umidity\":");
+        target_soil_umidity = atoi(start_msg);
+      }
+      // search in chunk (formatted as json) the value of increment
+      start_msg = strstr((char *)chunk, "\"increment\":");
+      if (start_msg)
+      {
+        start_msg += strlen("\"increment\":");
+        increment = atoi(start_msg);
+      }
     }
     return;
   }
@@ -297,26 +316,24 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 
         if (target_soil_umidity == -1)
         {
-          // Applica l'incremento al valore corrente di soil_umidity [-3,+3]
-          soil_umidity = soil_umidity + (rand() % 7 - 3);
+          // Applica l'incremento al valore corrente di soil_umidity [-5,+2]
+          soil_umidity += (rand() % 8) - 5;
         }
         else
         {
-          // start incrementing/decrementing soil_umidity to reach target_soil_umidity
+          // start incrementing soil_umidity to reach target_soil_umidity
           if (soil_umidity < target_soil_umidity)
           {
-            soil_umidity++;
-          }
-          else if (soil_umidity > target_soil_umidity)
-          {
-            soil_umidity--;
+            soil_umidity += increment;
           }
           else
           {
+            // target_soil_umidity reached
             target_soil_umidity = -1;
+            increment = 0;
           }
         }
-        
+
         // Assicurati che soil_umidity sia compreso tra 0 e 100
         if (soil_umidity < 0)
         {

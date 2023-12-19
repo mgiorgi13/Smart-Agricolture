@@ -10,6 +10,9 @@ import iot.unipi.it.Logger.Logger;
 public class MQTThandler implements MqttCallback {
     private String temperature_humidityTopic = "temperature_humidity";
     private String soilHumidityTopic = "soilHumidity";
+    private String irrigation = "irrigation";
+    private String temperature_condition = "temperature_condition";
+    private String humidity_condition = "humidity_condition";
     private ArrayList<Integer> temperature_humidityList;
     private ArrayList<Integer> soil_humidityList;
 
@@ -23,6 +26,37 @@ public class MQTThandler implements MqttCallback {
         this.topicSubscribe();
         temperature_humidityList = new ArrayList();
         soil_humidityList = new ArrayList();
+    }
+
+    public void publish(final String topic, final String content) throws MqttException{
+        try {
+            MqttMessage message = new MqttMessage(content.getBytes());
+            this.mqttClient.publish(topic, message);
+        } catch(MqttException me) {
+            me.printStackTrace();
+        }
+    }
+
+    // send the irrigation this json {"humidity": value}
+    public void sendIrrigation(int nodeId, int humidity) throws MqttException {
+        JSONObject irrigationMessage = new JSONObject();
+        irrigationMessage.put("nodeId", nodeId);
+        irrigationMessage.put("humidity", humidity);
+        this.publish(this.irrigation, irrigationMessage.toJSONString());
+    } 
+
+    // send the temperature condition this json {"temperature": value}
+    public void sendTemperatureCondition(int temperature) throws MqttException {
+        JSONObject temperatureConditionMessage = new JSONObject();
+        temperatureConditionMessage.put("temperature", temperature);
+        this.publish(this.temperature_condition, temperatureConditionMessage.toJSONString());
+    }
+
+    // send the humidity condition this json {"humidity": value}
+    public void sendHumidityCondition(int humidity) throws MqttException {
+        JSONObject humidityConditionMessage = new JSONObject();
+        humidityConditionMessage.put("humidity", humidity);
+        this.publish(this.humidity_condition, humidityConditionMessage.toJSONString());
     }
 
     public void topicSubscribe() {
