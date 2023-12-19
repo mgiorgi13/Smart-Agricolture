@@ -144,4 +144,8 @@ public class Conditioner {
 
     }
 
+    public boolean registrationTerminated() {
+        return clientConditionerList.size() > 0;
+    }
+
 }

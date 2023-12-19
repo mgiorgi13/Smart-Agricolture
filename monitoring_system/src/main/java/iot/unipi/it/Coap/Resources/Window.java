@@ -92,4 +92,8 @@ public class Window {
 
     }
 
+    public boolean registrationTerminated() {
+        return clientWindowSwitchList.size() > 0;
+    }
+
 }

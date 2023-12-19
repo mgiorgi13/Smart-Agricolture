@@ -43,6 +43,10 @@ public class Irrigation {
         System.out.println("");
     }
 
+    public boolean registrationTerminated() {
+        return clientIrrigationSwitchList.size() == 2;
+    }
+
     public boolean checkDeviceSoilHumidity(int index) {
         return index >= 0 && index < clientIrrigationSwitchList.size();
     }

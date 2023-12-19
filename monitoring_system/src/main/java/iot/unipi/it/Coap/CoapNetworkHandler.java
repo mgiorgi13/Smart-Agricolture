@@ -192,4 +192,9 @@ public class CoapNetworkHandler {
     public boolean checkDeviceSoilHumidity(int index) {
         return irrigation_actuator.checkDeviceSoilHumidity(index);
     }
+
+    public boolean registrationTerminated() {
+        return conditioner_actuator.registrationTerminated() && window_actuator.registrationTerminated()
+                && irrigation_actuator.registrationTerminated();
+    }
 }
