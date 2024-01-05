@@ -16,26 +16,12 @@ import iot.unipi.it.Logger.Logger;
 public class Irrigation {
     private List<CoapClient> clientIrrigationSwitchList = new ArrayList<>();
     
-    // private List<CoapObserveRelation> observeActuatorList = new ArrayList<>();
-
     // SERVER SIDE
     public void addIrrigationActuator(String ip) {
         Logger.log("The Irrigation actuator: [" + ip + "] is now registered");
 
         // Add the Irrigation actuator to the list
         CoapClient newIrrigationSwitch = new CoapClient("coap://[" + ip + "]/irrigation_switch");
-        // observeActuatorList.add(newIrrigationActuator.observe(
-        // new CoapHandler() {
-        // public void onLoad(CoapResponse response) {
-        // getHandler(response);
-        // }
-
-        // public void onError() {
-        // System.err.println("OBSERVING FAILED");
-        // }
-        // }));
-        // IrrigationSystemDbManager.insertTemperature(temperatureDetected);
-        
         clientIrrigationSwitchList.add(newIrrigationSwitch);
     }
 
@@ -43,16 +29,9 @@ public class Irrigation {
         for (int i = 0; i < clientIrrigationSwitchList.size(); i++) {
             if (clientIrrigationSwitchList.get(i).getURI().equals(ip)) {
                 clientIrrigationSwitchList.remove(i);
-                // observeActuatorList.get(i).proactiveCancel();
-                // observeActuatorList.remove(i);
-                // remove from db
             }
         }
     }
-
-    // public void cutAllConnection() {
-    // observeSensor.proactiveCancel();
-    // }
 
     // CLIENT SIDE
     public void printDevices() {
@@ -71,7 +50,6 @@ public class Irrigation {
     
 
     public JSONObject getStatusHandler(CoapResponse response) {
-        System.out.println("Response: " + response.getResponseText());
         if (response != null) {
             JSONParser parser = new JSONParser();
             JSONObject json = new JSONObject();

@@ -63,11 +63,9 @@ public class MQTThandler implements MqttCallback {
             if (topic.equals(this.temperature_humidityTopic)) {
                 if (sensorMessage.containsKey("nodeId")
                         && sensorMessage.containsKey("temperature")
-                        && sensorMessage.containsKey("unit")
-                        && sensorMessage.containsKey("umidity")
-                        && sensorMessage.containsKey("type")) {
+                        && sensorMessage.containsKey("humidity")) {
                     Integer numericTemperatureValue = Integer.parseInt(sensorMessage.get("temperature").toString());
-                    Integer numericUmidityValue = Integer.parseInt(sensorMessage.get("umidity").toString());
+                    Integer numericUmidityValue = Integer.parseInt(sensorMessage.get("humidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
                     Integer nodeIdvalue = Integer.parseInt(nodeId);
                     if (!temperature_humidityList.contains(nodeIdvalue))
@@ -76,9 +74,8 @@ public class MQTThandler implements MqttCallback {
                     }
                             
                     Logger.log(String.format(
-                            "[MQTT Java Client]: Received temperature_humidity value from node %s: %d %s, %d %s",
-                            nodeId, numericTemperatureValue, sensorMessage.get("unit").toString(),
-                            numericUmidityValue, sensorMessage.get("type").toString()));
+                            "[MQTT Java Client]: Received temperature_humidity value from node %s: %d Celsius, %d percentage",
+                            nodeId, numericTemperatureValue,numericUmidityValue));
 
                     MysqlManager.insertTemperatureAndUmidity(nodeId, numericTemperatureValue, numericUmidityValue);
 
@@ -87,9 +84,8 @@ public class MQTThandler implements MqttCallback {
                 }
             } else if (topic.equals(this.soilHumidityTopic)) {
                 if (sensorMessage.containsKey("nodeId")
-                        && sensorMessage.containsKey("soil_umidity")
-                        && sensorMessage.containsKey("type")) {
-                    Integer numericSoilUmidityValue = Integer.parseInt(sensorMessage.get("soil_umidity").toString());
+                        && sensorMessage.containsKey("soil_humidity")) {
+                    Integer numericSoilUmidityValue = Integer.parseInt(sensorMessage.get("soil_humidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
                     Integer nodeIdvalue = Integer.parseInt(nodeId);
                     if (!soil_humidityList.contains(nodeIdvalue))
@@ -97,8 +93,8 @@ public class MQTThandler implements MqttCallback {
                         soil_humidityList.add(nodeIdvalue);
                     }
                     Logger.log(
-                            String.format("[MQTT Java Client]: Received soilHumidity value from node %s: %d %s",
-                                    nodeId, numericSoilUmidityValue, sensorMessage.get("type").toString()));
+                            String.format("[MQTT Java Client]: Received soilHumidity value from node %s: %d percentage",
+                                    nodeId, numericSoilUmidityValue));
 
                     MysqlManager.insertSoilMoistureValue(nodeId, numericSoilUmidityValue);
                 } else {

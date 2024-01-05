@@ -288,7 +288,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 
         soil_umidity = (rand() % 99);
 
-        sprintf(app_buffer, "{\"nodeId\": %d,\"soil_umidity\": %d,\"type\": \"percentage\"}", node_id, soil_umidity);
+        sprintf(app_buffer, "{\"nodeId\": %d,\"soil_humidity\": %d}", node_id, soil_umidity);
 
         mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                      strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
