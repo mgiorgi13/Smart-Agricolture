@@ -130,8 +130,7 @@ static void
 pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
             uint16_t chunk_len)
 {
-  LOG_INFO("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
-         topic_len, chunk_len);
+  LOG_INFO("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
 
   if (strcmp(topic, "temperature_condition") == 0)
   {
@@ -204,12 +203,13 @@ static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data
 		{
 			printf("MQTT connection disconnected. Reason: %u\n", *((mqtt_event_t *)data));
 			state = STATE_DISCONNECTED;
-			process_poll(&aquifer_level_detector_process);
+			process_poll(&mqtt_client_process);
 			break;
 		}
 		case MQTT_EVENT_PUBLISH:
 		{
 			msg_ptr = data;
+      LOG_INFO("Message recived)\n");
 			pub_handler(msg_ptr->topic, strlen(msg_ptr->topic), msg_ptr->payload_chunk, msg_ptr->payload_length);
 			break;
 		}
