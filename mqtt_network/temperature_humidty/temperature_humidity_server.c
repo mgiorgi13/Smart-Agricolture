@@ -92,7 +92,8 @@ AUTOSTART_PROCESSES(&mqtt_client_process);
 
 static char client_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
-// static char sub_topic[BUFFER_SIZE];
+static char sub_topic_humidity[BUFFER_SIZE];
+static char sub_topic_temperature[BUFFER_SIZE];
 
 // Periodic timer to check the state of the MQTT client
 static struct etimer periodic_timer;
@@ -111,11 +112,11 @@ static struct mqtt_connection conn;
 mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-static int temperature = (rand() % 45);
-static int humidity = 5 + (rand() % 90);
+static int temperature;
+static int humidity;
 static int target_temperature = -1;
 static int target_humidity = -1;
-static char *start_msg = null;
+static char *start_msg = NULL;
 static int temp_increment = 0;
 static int hum_increment = 0;
 static bool heating = false;
@@ -129,7 +130,7 @@ static void
 pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
             uint16_t chunk_len)
 {
-  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
+  LOG_INFO("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
          topic_len, chunk_len);
 
   if (strcmp(topic, "temperature_condition") == 0)
@@ -270,6 +271,9 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 
   printf("MQTT Client Process\n");
 
+  humidity = 5 + (rand() % 90);
+  temperature = (rand() % 45);
+
   // Initialize the ClientID as MAC address
   snprintf(client_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
            linkaddr_node_addr.u8[0], linkaddr_node_addr.u8[1],
@@ -313,7 +317,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                      (DEFAULT_PUBLISH_INTERVAL * 3) / CLOCK_SECOND,
                      MQTT_CLEAN_SESSION_ON);
         state = STATE_CONNECTING;
-        leds_on(LEDS_YELLOW);
       }
 
       if (state == STATE_CONNECTED)
@@ -321,7 +324,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 
         // Subscribe to the "humidity_condition" topic
         strcpy(sub_topic_humidity, "humidity_condition");
-        status = mqtt_subscribe(&conn, NULL, sub_topic_humidity, MQTT_QOS_LEVEL_0);
+        mqtt_subscribe(&conn, NULL, sub_topic_humidity, MQTT_QOS_LEVEL_0);
 
         // Check the subscription status for "humidity_condition"
         printf("Subscribing to 'humidity_condition' topic!\n");
@@ -333,7 +336,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 
         // Subscribe to the "temperature_condition" topic
         strcpy(sub_topic_temperature, "temperature_condition");
-        status = mqtt_subscribe(&conn, NULL, sub_topic_temperature, MQTT_QOS_LEVEL_0);
+        mqtt_subscribe(&conn, NULL, sub_topic_temperature, MQTT_QOS_LEVEL_0);
 
         // Check the subscription status for "temperature_condition"
         printf("Subscribing to 'temperature_condition' topic!\n");
@@ -342,7 +345,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
           LOG_ERR("Tried to subscribe to 'temperature_condition' but command queue was full!\n");
           PROCESS_EXIT();
         }
-
+        leds_on(LEDS_GREEN);
+        leds_off(LEDS_BLUE);
         state = STATE_SUBSCRIBED;
         PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
         STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
@@ -358,20 +362,25 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         if (target_humidity == -1)
         {
           // Applica l'incremento al valore corrente di humidity [-3,+3]
-          humidity +=(rand() % 7 - 3);
+          humidity += (rand() % 7 - 3);
         }
         else
         {
           // start increasing/decreasing values humidity until it reaches the target
-          if(humidifying){
+          if (humidifying)
+          {
             humidity += hum_increment;
-            if(humidity >= target_humidity){
+            if (humidity >= target_humidity)
+            {
               target_humidity = -1;
               hum_increment = 0;
             }
-          }else{
+          }
+          else
+          {
             humidity -= hum_increment;
-            if(humidity <= target_humidity){
+            if (humidity <= target_humidity)
+            {
               target_humidity = -1;
               hum_increment = 0;
             }
@@ -396,15 +405,20 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
         else
         {
           // start increasing/decreasing values temperature until it reaches the target
-          if(heating){
+          if (heating)
+          {
             temperature += temp_increment;
-            if(temperature >= target_temperature){
+            if (temperature >= target_temperature)
+            {
               target_temperature = -1;
               temp_increment = 0;
             }
-          }else{
+          }
+          else
+          {
             temperature -= temp_increment;
-            if(temperature <= target_temperature){
+            if (temperature <= target_temperature)
+            {
               target_temperature = -1;
               temp_increment = 0;
             }

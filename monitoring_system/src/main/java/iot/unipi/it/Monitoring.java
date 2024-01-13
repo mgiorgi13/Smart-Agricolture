@@ -68,18 +68,22 @@ public class Monitoring {
                             break;
                         coapNetworkHandler.activateHeaterHumidifier(conditionerIndex, Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+                        mqttHandler.sendTemperatureCondition(Integer.parseInt(parts[1]), 5);
+                        mqttHandler.sendHumidityCondition(Integer.parseInt(parts[3]), 3);
                         break;
                     case "!turn_on_heater":
                         if (parts.length != 3)
                             break;
                         coapNetworkHandler.activateHeater(conditionerIndex, Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]));
+                        mqttHandler.sendTemperatureCondition(Integer.parseInt(parts[1]), 5);
                         break;
                     case "!turn_on_humidifier":
                         if (parts.length != 3)
                             break;
                         coapNetworkHandler.activateHumidifier(conditionerIndex, Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]));
+                        mqttHandler.sendHumidityCondition(Integer.parseInt(parts[3]), 3);
                         break;
                     case "!turn_on_wind":
                         if (parts.length != 2)
@@ -106,6 +110,7 @@ public class Monitoring {
                         if (parts.length != 2)
                             break;
                         coapNetworkHandler.turnOnIrrigation(Integer.parseInt(parts[1]));
+                        mqttHandler.sendIrrigation(Integer.parseInt(parts[1]), 50, 5);
                         break;
                     case "!turn_off_irrigation":
                         if (parts.length != 2)
@@ -181,8 +186,8 @@ public class Monitoring {
 
     private static void warning() {
         System.out.println("***************************** Warning *****************************\n" +
-                "You must wait until all actuators are registered\n" 
-                +"before using the relative commands\n ");
+                "You must wait until all actuators are registered\n"
+                + "before using the relative commands\n ");
     }
 
     private static void helpFunction(String[] parts) {

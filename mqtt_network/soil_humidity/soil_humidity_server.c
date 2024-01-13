@@ -92,7 +92,7 @@ AUTOSTART_PROCESSES(&mqtt_client_process);
 
 static char client_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
-// static char sub_topic[BUFFER_SIZE];
+static char sub_topic[BUFFER_SIZE];
 
 // Periodic timer to check the state of the MQTT client
 static struct etimer periodic_timer;
@@ -111,10 +111,10 @@ static struct mqtt_connection conn;
 mqtt_status_t status;
 char broker_address[CONFIG_IP_ADDR_STR_LEN];
 
-static int soil_umidity = (rand() % 99);
+static int soil_umidity;
 static int target_soil_umidity = -1;
 static int node_id_msg = -1;
-static char *start_msg = null;
+static char *start_msg = NULL;
 static int increment = 0;
 
 /*---------------------------------------------------------------------------*/
@@ -240,6 +240,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
   PROCESS_BEGIN();
 
   printf("MQTT Client Process\n");
+  
+  soil_umidity = (rand() % 99);
 
   // Initialize the ClientID as MAC address
   snprintf(client_id, BUFFER_SIZE, "%02x%02x%02x%02x%02x%02x",
@@ -284,13 +286,10 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
                      (DEFAULT_PUBLISH_INTERVAL * 3) / CLOCK_SECOND,
                      MQTT_CLEAN_SESSION_ON);
         state = STATE_CONNECTING;
-        led_on(LEDS_GREEN);
-        leds_off(LEDS_BLUE);
       }
 
       if (state == STATE_CONNECTED)
       {
-
         // Subscribe to a topic
         strcpy(sub_topic, "irrigation");
 
@@ -302,7 +301,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
           LOG_ERR("Tried to subscribe but command queue was full!\n");
           PROCESS_EXIT();
         }
-
+        leds_on(LEDS_GREEN);
+        leds_off(LEDS_BLUE);
         state = STATE_SUBSCRIBED;
         PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
         STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;

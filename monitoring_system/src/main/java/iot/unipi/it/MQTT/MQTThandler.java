@@ -28,9 +28,10 @@ public class MQTThandler implements MqttCallback {
         soil_humidityList = new ArrayList();
     }
 
-    public void publish(final String topic, final String content) throws MqttException{
+    public void publish(final String topic, final String content){
         try {
             MqttMessage message = new MqttMessage(content.getBytes());
+            System.out.println(content);
             this.mqttClient.publish(topic, message);
         } catch(MqttException me) {
             me.printStackTrace();
@@ -38,24 +39,27 @@ public class MQTThandler implements MqttCallback {
     }
 
     // send the irrigation this json {"humidity": value}
-    public void sendIrrigation(int nodeId, int humidity) throws MqttException {
+    public void sendIrrigation(int nodeId, int humidity, int increment){
         JSONObject irrigationMessage = new JSONObject();
         irrigationMessage.put("nodeId", nodeId);
         irrigationMessage.put("humidity", humidity);
+        irrigationMessage.put("increment", increment);
         this.publish(this.irrigation, irrigationMessage.toJSONString());
     } 
 
     // send the temperature condition this json {"temperature": value}
-    public void sendTemperatureCondition(int temperature) throws MqttException {
+    public void sendTemperatureCondition(int temperature, int increment){
         JSONObject temperatureConditionMessage = new JSONObject();
         temperatureConditionMessage.put("temperature", temperature);
+        temperatureConditionMessage.put("increment", increment);
         this.publish(this.temperature_condition, temperatureConditionMessage.toJSONString());
     }
 
     // send the humidity condition this json {"humidity": value}
-    public void sendHumidityCondition(int humidity) throws MqttException {
+    public void sendHumidityCondition(int humidity, int increment){
         JSONObject humidityConditionMessage = new JSONObject();
         humidityConditionMessage.put("humidity", humidity);
+        humidityConditionMessage.put("increment", increment);
         this.publish(this.humidity_condition, humidityConditionMessage.toJSONString());
     }
 
@@ -93,7 +97,7 @@ public class MQTThandler implements MqttCallback {
         byte[] payload = message.getPayload();
         try {
             JSONObject sensorMessage = (JSONObject) JSONValue.parseWithException(new String(payload));
-
+            System.out.println(sensorMessage.toJSONString());
             if (topic.equals(this.temperature_humidityTopic)) {
                 if (sensorMessage.containsKey("nodeId")
                         && sensorMessage.containsKey("temperature")
