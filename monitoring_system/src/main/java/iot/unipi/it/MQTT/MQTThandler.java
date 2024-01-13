@@ -1,9 +1,17 @@
 package iot.unipi.it.MQTT;
 
-import org.eclipse.paho.client.mqttv3.*;
-
-import org.json.simple.*;
 import java.util.ArrayList;
+
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
 import iot.unipi.it.Database.MysqlManager;
 import iot.unipi.it.Logger.Logger;
 
@@ -11,8 +19,7 @@ public class MQTThandler implements MqttCallback {
     private String temperature_humidityTopic = "temperature_humidity";
     private String soilHumidityTopic = "soilHumidity";
     private String irrigation = "irrigation";
-    private String temperature_condition = "temperature_condition";
-    private String humidity_condition = "humidity_condition";
+    private String temperature_humidity_condition = "condition";
     private ArrayList<Integer> temperature_humidityList;
     private ArrayList<Integer> soil_humidityList;
 
@@ -20,47 +27,45 @@ public class MQTThandler implements MqttCallback {
     private String clientId = "JavaApp";
     private MqttClient mqttClient = null;
 
+    private final MqttConnectOptions connOpts = new MqttConnectOptions();
+
     public MQTThandler() throws MqttException {
         this.mqttClient = new MqttClient(this.broker, this.clientId);
         this.mqttClient.setCallback(this);
         this.topicSubscribe();
-        temperature_humidityList = new ArrayList();
-        soil_humidityList = new ArrayList();
+
+        temperature_humidityList = new ArrayList<>();
+        soil_humidityList = new ArrayList<>();
     }
 
-    public void publish(final String topic, final String content){
+    public void publish(final String topic, final String content) {
         try {
             MqttMessage message = new MqttMessage(content.getBytes());
             System.out.println(content);
             this.mqttClient.publish(topic, message);
-        } catch(MqttException me) {
+        } catch (MqttException me) {
             me.printStackTrace();
         }
     }
 
     // send the irrigation this json {"humidity": value}
-    public void sendIrrigation(int nodeId, int humidity, int increment){
+    public void sendIrrigation(int nodeId, int humidity, int increment) {
         JSONObject irrigationMessage = new JSONObject();
         irrigationMessage.put("nodeId", nodeId);
         irrigationMessage.put("humidity", humidity);
         irrigationMessage.put("increment", increment);
         this.publish(this.irrigation, irrigationMessage.toJSONString());
-    } 
-
-    // send the temperature condition this json {"temperature": value}
-    public void sendTemperatureCondition(int temperature, int increment){
-        JSONObject temperatureConditionMessage = new JSONObject();
-        temperatureConditionMessage.put("temperature", temperature);
-        temperatureConditionMessage.put("increment", increment);
-        this.publish(this.temperature_condition, temperatureConditionMessage.toJSONString());
     }
 
-    // send the humidity condition this json {"humidity": value}
-    public void sendHumidityCondition(int humidity, int increment){
-        JSONObject humidityConditionMessage = new JSONObject();
-        humidityConditionMessage.put("humidity", humidity);
-        humidityConditionMessage.put("increment", increment);
-        this.publish(this.humidity_condition, humidityConditionMessage.toJSONString());
+    // send the temperature condition this json {"temperature": value}
+    public void sendTemperatureHumidityCondition(int temperature, int tempIncrement, int humidity,
+            int humIncrement) {
+        JSONObject temperatureHumidityConditionMessage = new JSONObject();
+        temperatureHumidityConditionMessage.put("temperature", temperature);
+        temperatureHumidityConditionMessage.put("temp_increment", tempIncrement);
+        temperatureHumidityConditionMessage.put("humidity", humidity);
+        temperatureHumidityConditionMessage.put("hum_increment", humIncrement);
+        this.publish(this.temperature_humidity_condition, temperatureHumidityConditionMessage.toJSONString());
     }
 
     public void topicSubscribe() {
@@ -90,6 +95,23 @@ public class MQTThandler implements MqttCallback {
     }
 
     public void connectionLost(Throwable cause) {
+        connOpts.setCleanSession(true);
+        connOpts.setConnectionTimeout(60);
+        connOpts.setKeepAliveInterval(30);
+        connOpts.setAutomaticReconnect(true);
+
+        // Verifica se il client è già connesso prima di tentare una nuova connessione
+        if (!this.mqttClient.isConnected()) {
+            try {
+                this.mqttClient.connect(connOpts);
+            } catch (MqttSecurityException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (MqttException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
         this.topicSubscribe();
     }
 
@@ -106,14 +128,13 @@ public class MQTThandler implements MqttCallback {
                     Integer numericUmidityValue = Integer.parseInt(sensorMessage.get("humidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
                     Integer nodeIdvalue = Integer.parseInt(nodeId);
-                    if (!temperature_humidityList.contains(nodeIdvalue))
-                    {
+                    if (!temperature_humidityList.contains(nodeIdvalue)) {
                         temperature_humidityList.add(nodeIdvalue);
                     }
-                            
+
                     Logger.log(String.format(
                             "[MQTT Java Client]: Received temperature_humidity value from node %s: %d Celsius, %d percentage",
-                            nodeId, numericTemperatureValue,numericUmidityValue));
+                            nodeId, numericTemperatureValue, numericUmidityValue));
 
                     MysqlManager.insertTemperatureAndUmidity(nodeId, numericTemperatureValue, numericUmidityValue);
 
@@ -126,8 +147,7 @@ public class MQTThandler implements MqttCallback {
                     Integer numericSoilUmidityValue = Integer.parseInt(sensorMessage.get("soil_humidity").toString());
                     String nodeId = sensorMessage.get("nodeId").toString();
                     Integer nodeIdvalue = Integer.parseInt(nodeId);
-                    if (!soil_humidityList.contains(nodeIdvalue))
-                    {
+                    if (!soil_humidityList.contains(nodeIdvalue)) {
                         soil_humidityList.add(nodeIdvalue);
                     }
                     Logger.log(
@@ -149,24 +169,20 @@ public class MQTThandler implements MqttCallback {
     public void deliveryComplete(IMqttDeliveryToken token) {
         // TODO Auto-generated method stub
     }
-    public ArrayList<Integer> getSoilHumiditylist()
-    {
+
+    public ArrayList<Integer> getSoilHumiditylist() {
         return soil_humidityList;
     }
-    public void printAllDevices()
-    {
+
+    public void printAllDevices() {
         System.out.println("Soil Humidity sensors:");
-        for (int i= 0; i < soil_humidityList.size(); i++)
-        {
-            System.out.println("\t"+i +": " + soil_humidityList.get(i));
+        for (int i = 0; i < soil_humidityList.size(); i++) {
+            System.out.println("\t" + i + ": " + soil_humidityList.get(i));
         }
         System.out.println("Temperature and Humidity sensors:");
-        for (int i= 0; i < temperature_humidityList.size(); i++)
-        {
-            System.out.println("\t"+i +": "  + temperature_humidityList.get(i));
+        for (int i = 0; i < temperature_humidityList.size(); i++) {
+            System.out.println("\t" + i + ": " + temperature_humidityList.get(i));
         }
     }
-
-    
 
 }

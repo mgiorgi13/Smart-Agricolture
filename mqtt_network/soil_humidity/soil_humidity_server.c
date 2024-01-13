@@ -125,8 +125,8 @@ static void
 pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
             uint16_t chunk_len)
 {
-  printf("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic,
-         topic_len, chunk_len);
+  LOG_INFO("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n %s\n", topic,
+         topic_len, chunk_len, chunk);
 
   if (strcmp(topic, "irrigation") == 0)
   {
@@ -329,7 +329,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
           else
           {
             // target_soil_umidity reached
-            target_soil_umidity = -1;
             increment = 0;
           }
         }

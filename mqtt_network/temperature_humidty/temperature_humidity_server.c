@@ -92,8 +92,7 @@ AUTOSTART_PROCESSES(&mqtt_client_process);
 
 static char client_id[BUFFER_SIZE];
 static char pub_topic[BUFFER_SIZE];
-static char sub_topic_humidity[BUFFER_SIZE];
-static char sub_topic_temperature[BUFFER_SIZE];
+static char sub_topic[BUFFER_SIZE];
 
 // Periodic timer to check the state of the MQTT client
 static struct etimer periodic_timer;
@@ -130,11 +129,10 @@ static void
 pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
             uint16_t chunk_len)
 {
-  LOG_INFO("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n", topic, topic_len, chunk_len);
-
-  if (strcmp(topic, "temperature_condition") == 0)
+  LOG_INFO("Pub Handler: topic='%s' (len=%u), chunk_len=%u\n %s\n", topic,
+           topic_len, chunk_len, chunk);
+  if (strcmp(topic, "condition") == 0)
   {
-    printf("Received temperature command\n");
     printf("%s\n", chunk);
     // search in chunk (formatted as json) the value of temperature
     start_msg = strstr((char *)chunk, "\"temperature\":");
@@ -143,10 +141,11 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
       start_msg += strlen("\"temperature\":");
       target_temperature = atoi(start_msg);
     }
-    // start_msg = strstr((char *)chunk, "\"increment\":");
+    // start_msg = strstr((char *)chunk, "\"temp_increment\":");
+    start_msg = strstr((char *)chunk, "\"temp_increment\":");
     if (start_msg)
     {
-      start_msg += strlen("\"increment\":");
+      start_msg += strlen("\"temp_increment\":");
       temp_increment = atoi(start_msg);
     }
     if (temperature < target_temperature)
@@ -157,24 +156,19 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
     {
       heating = false;
     }
-    return;
-  }
-  else if (strcmp(topic, "humidity_condition") == 0)
-  {
-    printf("Received humidity command\n");
-    printf("%s\n", chunk);
+
     // search in chunk (formatted as json) the value of humidity
     start_msg = strstr((char *)chunk, "\"humidity\":");
     if (start_msg)
     {
       start_msg += strlen("\"humidity\":");
       target_humidity = atoi(start_msg);
-      printf("Humidity: %d\n", target_humidity);
     }
     // start_msg = strstr((char *)chunk, "\"increment\":");
+    start_msg = strstr((char *)chunk, "\"hum_increment\":");
     if (start_msg)
     {
-      start_msg += strlen("\"increment\":");
+      start_msg += strlen("\"hum_increment\":");
       hum_increment = atoi(start_msg);
     }
     if (humidity < target_humidity)
@@ -191,59 +185,59 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
 /*---------------------------------------------------------------------------*/
 static void mqtt_event(struct mqtt_connection *m, mqtt_event_t event, void *data)
 {
-	switch(event)
-	{
-		case MQTT_EVENT_CONNECTED:
-		{
-			LOG_INFO("MQTT connection acquired\n");
-			state = STATE_CONNECTED;
-			break;
-		}
-		case MQTT_EVENT_DISCONNECTED:
-		{
-			printf("MQTT connection disconnected. Reason: %u\n", *((mqtt_event_t *)data));
-			state = STATE_DISCONNECTED;
-			process_poll(&mqtt_client_process);
-			break;
-		}
-		case MQTT_EVENT_PUBLISH:
-		{
-			msg_ptr = data;
-      LOG_INFO("Message recived)\n");
-			pub_handler(msg_ptr->topic, strlen(msg_ptr->topic), msg_ptr->payload_chunk, msg_ptr->payload_length);
-			break;
-		}
-		case MQTT_EVENT_SUBACK:
-		{
-			#if MQTT_311
-			mqtt_suback_event_t *suback_event = (mqtt_suback_event_t *)data;
-			if(suback_event->success)
-			{
-				LOG_INFO("Application has subscribed to the topic\n");
-			}
-			else
-			{
-				LOG_ERR("Application failed to subscribe to topic (ret code %x)\n", suback_event->return_code);
-			}
-			#else
-			LOG_INFO("Application has subscribed to the topic\n");
-			#endif
-			break;
-		}
-		case MQTT_EVENT_UNSUBACK:
-		{
-			LOG_INFO("Application is unsubscribed to topic successfully\n");
-			break;
-		}
-		case MQTT_EVENT_PUBACK:
-		{
-			LOG_INFO("Publishing complete.\n");
-			break;
-		}
-		default:
-			LOG_INFO("Application got a unhandled MQTT event: %i\n", event);
-			break;
-	}
+  switch (event)
+  {
+  case MQTT_EVENT_CONNECTED:
+  {
+    LOG_INFO("MQTT connection acquired\n");
+    state = STATE_CONNECTED;
+    break;
+  }
+  case MQTT_EVENT_DISCONNECTED:
+  {
+    printf("MQTT connection disconnected. Reason: %u\n", *((mqtt_event_t *)data));
+    state = STATE_DISCONNECTED;
+    process_poll(&mqtt_client_process);
+    break;
+  }
+  case MQTT_EVENT_PUBLISH:
+  {
+    msg_ptr = data;
+    LOG_INFO("Message recived)\n");
+    pub_handler(msg_ptr->topic, strlen(msg_ptr->topic), msg_ptr->payload_chunk, msg_ptr->payload_length);
+    break;
+  }
+  case MQTT_EVENT_SUBACK:
+  {
+#if MQTT_311
+    mqtt_suback_event_t *suback_event = (mqtt_suback_event_t *)data;
+    if (suback_event->success)
+    {
+      LOG_INFO("Application has subscribed to the topic\n");
+    }
+    else
+    {
+      LOG_ERR("Application failed to subscribe to topic (ret code %x)\n", suback_event->return_code);
+    }
+#else
+    LOG_INFO("Application has subscribed to the topic\n");
+#endif
+    break;
+  }
+  case MQTT_EVENT_UNSUBACK:
+  {
+    LOG_INFO("Application is unsubscribed to topic successfully\n");
+    break;
+  }
+  case MQTT_EVENT_PUBACK:
+  {
+    LOG_INFO("Publishing complete.\n");
+    break;
+  }
+  default:
+    LOG_INFO("Application got a unhandled MQTT event: %i\n", event);
+    break;
+  }
 }
 
 static bool
@@ -316,27 +310,15 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
       if (state == STATE_CONNECTED)
       {
 
-        // Subscribe to the "humidity_condition" topic
-        strcpy(sub_topic_humidity, "humidity_condition");
-        mqtt_subscribe(&conn, NULL, sub_topic_humidity, MQTT_QOS_LEVEL_0);
+        // Subscribe to the "condition" topic
+        strcpy(sub_topic, "condition");
+        mqtt_subscribe(&conn, NULL, sub_topic, MQTT_QOS_LEVEL_0);
 
         // Check the subscription status for "humidity_condition"
-        printf("Subscribing to 'humidity_condition' topic!\n");
+        printf("Subscribing to 'condition' topic!\n");
         if (status == MQTT_STATUS_OUT_QUEUE_FULL)
         {
-          LOG_ERR("Tried to subscribe to 'humidity_condition' but command queue was full!\n");
-          PROCESS_EXIT();
-        }
-
-        // Subscribe to the "temperature_condition" topic
-        strcpy(sub_topic_temperature, "temperature_condition");
-        mqtt_subscribe(&conn, NULL, sub_topic_temperature, MQTT_QOS_LEVEL_0);
-
-        // Check the subscription status for "temperature_condition"
-        printf("Subscribing to 'temperature_condition' topic!\n");
-        if (status == MQTT_STATUS_OUT_QUEUE_FULL)
-        {
-          LOG_ERR("Tried to subscribe to 'temperature_condition' but command queue was full!\n");
+          LOG_ERR("Tried to subscribe to 'condition' but command queue was full!\n");
           PROCESS_EXIT();
         }
         leds_on(LEDS_GREEN);
@@ -366,7 +348,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             humidity += hum_increment;
             if (humidity >= target_humidity)
             {
-              target_humidity = -1;
               hum_increment = 0;
             }
           }
@@ -375,7 +356,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             humidity -= hum_increment;
             if (humidity <= target_humidity)
             {
-              target_humidity = -1;
               hum_increment = 0;
             }
           }
@@ -404,7 +384,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             temperature += temp_increment;
             if (temperature >= target_temperature)
             {
-              target_temperature = -1;
               temp_increment = 0;
             }
           }
@@ -413,7 +392,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             temperature -= temp_increment;
             if (temperature <= target_temperature)
             {
-              target_temperature = -1;
               temp_increment = 0;
             }
           }

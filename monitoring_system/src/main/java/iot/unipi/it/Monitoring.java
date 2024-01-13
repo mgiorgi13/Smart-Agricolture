@@ -68,22 +68,22 @@ public class Monitoring {
                             break;
                         coapNetworkHandler.activateHeaterHumidifier(conditionerIndex, Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
-                        mqttHandler.sendTemperatureCondition(Integer.parseInt(parts[1]), 5);
-                        mqttHandler.sendHumidityCondition(Integer.parseInt(parts[3]), 3);
+                        mqttHandler.sendTemperatureHumidityCondition(Integer.parseInt(parts[1]), 1,
+                                Integer.parseInt(parts[3]), 3);
                         break;
                     case "!turn_on_heater":
                         if (parts.length != 3)
                             break;
                         coapNetworkHandler.activateHeater(conditionerIndex, Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]));
-                        mqttHandler.sendTemperatureCondition(Integer.parseInt(parts[1]), 5);
+                        mqttHandler.sendTemperatureHumidityCondition(Integer.parseInt(parts[1]), 1, -1, 0);
                         break;
                     case "!turn_on_humidifier":
                         if (parts.length != 3)
                             break;
                         coapNetworkHandler.activateHumidifier(conditionerIndex, Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]));
-                        mqttHandler.sendHumidityCondition(Integer.parseInt(parts[3]), 3);
+                        mqttHandler.sendTemperatureHumidityCondition(-1, 0, Integer.parseInt(parts[3]), 3);
                         break;
                     case "!turn_on_wind":
                         if (parts.length != 2)
@@ -92,6 +92,7 @@ public class Monitoring {
                         break;
                     case "!turn_off_conditioner":
                         coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        mqttHandler.sendTemperatureHumidityCondition(-1, 0, -1, 0);
                         break;
                     case "!get_window_switch_status":
                         status = coapNetworkHandler.getWindowSwitchStatus(windowIndex);
@@ -99,9 +100,12 @@ public class Monitoring {
                         break;
                     case "!turn_on_windows":
                         coapNetworkHandler.turnOnWindow(windowIndex);
+                        // supponendo di avere tempExt e umidità inferiore
+                        mqttHandler.sendTemperatureHumidityCondition(22, 1, 50, 3);
                         break;
                     case "!turn_off_windows":
                         coapNetworkHandler.turnOffWindow(windowIndex);
+                        mqttHandler.sendTemperatureHumidityCondition(-1, 0, -1, 0);
                         break;
                     case "!get_irrigation_switch_status":
                         coapNetworkHandler.getIrrigationSwitchStatus();
@@ -110,12 +114,13 @@ public class Monitoring {
                         if (parts.length != 2)
                             break;
                         coapNetworkHandler.turnOnIrrigation(Integer.parseInt(parts[1]));
-                        mqttHandler.sendIrrigation(Integer.parseInt(parts[1]), 50, 5);
+                        mqttHandler.sendIrrigation(Integer.parseInt(parts[1]), 60, 5);
                         break;
                     case "!turn_off_irrigation":
                         if (parts.length != 2)
                             break;
                         coapNetworkHandler.turnOffIrrigation(Integer.parseInt(parts[1]));
+                        mqttHandler.sendIrrigation(Integer.parseInt(parts[1]), -1, 0);
                         break;
                     case "!get_avg_soil_humidity":
                         if (parts.length != 2)
