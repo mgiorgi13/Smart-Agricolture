@@ -348,6 +348,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             humidity += hum_increment;
             if (humidity >= target_humidity)
             {
+              humidity = target_humidity;
               hum_increment = 0;
             }
           }
@@ -356,6 +357,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             humidity -= hum_increment;
             if (humidity <= target_humidity)
             {
+              humidity = target_humidity;
               hum_increment = 0;
             }
           }
@@ -384,6 +386,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             temperature += temp_increment;
             if (temperature >= target_temperature)
             {
+              temperature = target_temperature;
               temp_increment = 0;
             }
           }
@@ -392,6 +395,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             temperature -= temp_increment;
             if (temperature <= target_temperature)
             {
+              temperature = target_temperature;
               temp_increment = 0;
             }
           }

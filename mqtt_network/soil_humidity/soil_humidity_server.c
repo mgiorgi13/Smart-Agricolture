@@ -142,10 +142,10 @@ pub_handler(const char *topic, uint16_t topic_len, const uint8_t *chunk,
     if (node_id_msg == node_id)
     {
       // search in chunk (formatted as json) the value of soil_umidity
-      start_msg = strstr((char *)chunk, "\"soil_umidity\":");
+      start_msg = strstr((char *)chunk, "\"humidity\":");
       if (start_msg)
       {
-        start_msg += strlen("\"soil_umidity\":");
+        start_msg += strlen("\"humidity\":");
         target_soil_umidity = atoi(start_msg);
       }
       // search in chunk (formatted as json) the value of increment
@@ -329,6 +329,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
           else
           {
             // target_soil_umidity reached
+            soil_umidity = target_soil_umidity;
             increment = 0;
           }
         }

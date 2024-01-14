@@ -51,7 +51,12 @@ public class MQTThandler implements MqttCallback {
     // send the irrigation this json {"humidity": value}
     public void sendIrrigation(int nodeId, int humidity, int increment) {
         JSONObject irrigationMessage = new JSONObject();
-        irrigationMessage.put("nodeId", nodeId);
+        int id = -1;
+        
+        if (nodeId >= 0 && nodeId < soil_humidityList.size())
+            id = soil_humidityList.get(nodeId);
+
+        irrigationMessage.put("nodeId", id);
         irrigationMessage.put("humidity", humidity);
         irrigationMessage.put("increment", increment);
         this.publish(this.irrigation, irrigationMessage.toJSONString());
@@ -69,6 +74,10 @@ public class MQTThandler implements MqttCallback {
     }
 
     public void topicSubscribe() {
+        connOpts.setCleanSession(true);
+        connOpts.setConnectionTimeout(60);
+        connOpts.setKeepAliveInterval(30);
+        connOpts.setAutomaticReconnect(true);
         int timeWindow = 3000;
 
         do {
@@ -77,7 +86,7 @@ public class MQTThandler implements MqttCallback {
                 System.exit(1);
             }
             try {
-                this.mqttClient.connect();
+                this.mqttClient.connect(connOpts);
 
                 this.mqttClient.subscribe(this.temperature_humidityTopic);
                 this.mqttClient.subscribe(this.soilHumidityTopic);
@@ -95,23 +104,6 @@ public class MQTThandler implements MqttCallback {
     }
 
     public void connectionLost(Throwable cause) {
-        connOpts.setCleanSession(true);
-        connOpts.setConnectionTimeout(60);
-        connOpts.setKeepAliveInterval(30);
-        connOpts.setAutomaticReconnect(true);
-
-        // Verifica se il client è già connesso prima di tentare una nuova connessione
-        if (!this.mqttClient.isConnected()) {
-            try {
-                this.mqttClient.connect(connOpts);
-            } catch (MqttSecurityException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (MqttException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
         this.topicSubscribe();
     }
 
