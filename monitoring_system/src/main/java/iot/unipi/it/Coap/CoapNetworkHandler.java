@@ -67,7 +67,7 @@ public class CoapNetworkHandler {
     /* SET METHODS */
 
     public void activateHeater(int index, int temperature, int fanSpeed) {
-        if (temperature < 18 || temperature > 30) {
+        if (temperature < 10 || temperature > 38) {
             System.out.println("Temperature must be between 18 and 30");
             return;
         }
@@ -81,7 +81,7 @@ public class CoapNetworkHandler {
     }
 
     public void activateHeaterHumidifier(int index, int temperature, int fanSpeed, int humidity) {
-        if (temperature < 18 || temperature > 30) {
+        if (temperature < 10 || temperature > 38) {
             System.out.println("Temperature must be between 18 and 30");
             return;
         }

@@ -100,7 +100,6 @@ public class Monitoring {
                         break;
                     case "!turn_on_windows":
                         coapNetworkHandler.turnOnWindow(windowIndex);
-                        // supponendo di avere tempExt e umidità inferiore
                         mqttHandler.sendTemperatureHumidityCondition(22, 1, 50, 3);
                         break;
                     case "!turn_off_windows":
