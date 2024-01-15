@@ -42,6 +42,7 @@ public class Automation {
         }
         CoapNetworkHandler coapNetworkHandler = CoapNetworkHandler.getInstance();
 
+        // hum 20 temp 12 / 
         double get_temperature = 0.0;
         int low_temperature = 15;
         int normal_temperature = 25;
@@ -64,7 +65,7 @@ public class Automation {
         MysqlManager.deleteAllRecords("soilHumidity");
 
         try {
-            int count = 3;
+            int count = 4;
             // loop for wainting until we reach starting condition
             while (true) {
                 get_humidity = MysqlManager.selectHumidity(timeSec);
@@ -74,15 +75,16 @@ public class Automation {
                     System.err.println("Waiting for humidity and temperature data");
                     Thread.sleep(1000);
                     continue;
+                } else if (count == 4) {
+                    mqttHandler.sendTemperatureHumidityCondition(start_temp, 5, start_hum, 5);
+                    count--;
                 }
                 // wait for all coap resource to be registered
                 if (!coapNetworkHandler.registrationTerminated()) {
                     System.out.println("Waiting for registration of all actuators");
                     Thread.sleep(1000);
                     continue;
-                } else
-                    mqttHandler.sendTemperatureHumidityCondition(start_temp, 5, start_hum, 5);
-
+                }
                 if (get_humidity == start_hum && get_temperature == start_temp)
                     count--;
                 if (count == 0) {
@@ -105,9 +107,9 @@ public class Automation {
                     if (get_temperature <= low_temperature) {
                         System.out.println("\tCondition: Temperature is low-->" + get_temperature);
                         coapNetworkHandler.turnOffWindow(windowIndex);
-                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateHeaterHumidifier(conditionerIndex, normal_temperature,
-                                normal_fan_speed, normal_humidity); // temperature, faanspeed,humidity
+                                normal_fan_speed, normal_humidity); // temperature, fanspeed, humidity
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, normal_humidity, 3);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn on heater] + [turn on humidifier] + [turn on fan]");
@@ -116,9 +118,9 @@ public class Automation {
                     if (low_temperature < get_temperature && get_temperature < high_temperature) {
                         System.out.println("\tCondition: Temperature is normal-->" + get_temperature);
                         coapNetworkHandler.turnOffWindow(windowIndex);
-                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
-                        coapNetworkHandler.activateHumidifier(conditionerIndex, normal_fan_speed, normal_humidity); // fan
-                                                                                                                    // ,humidify
+                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateHumidifier(conditionerIndex, normal_fan_speed, normal_humidity); // fan,
+                                                                                                                    // humidify
                         mqttHandler.sendTemperatureHumidityCondition(-1, 0, normal_humidity, 3);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn off heater] + [turn on humidifier] + [turn on fan]");
@@ -148,7 +150,7 @@ public class Automation {
                         // window off
                         coapNetworkHandler.turnOffWindow(windowIndex);
                         // heater
-                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateHeater(conditionerIndex, normal_temperature, normal_fan_speed); // temperature
                                                                                                                    // fanSpeed
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, -1, 0);
@@ -179,7 +181,7 @@ public class Automation {
                         // window on
                         coapNetworkHandler.turnOnWindow(windowIndex);
                         // wind
-                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateWind(conditionerIndex, 50); // fanSpeed
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 2, -1, 0);
                         System.out.println(
@@ -198,23 +200,23 @@ public class Automation {
                         // window off
                         coapNetworkHandler.turnOffWindow(windowIndex);
                         // heater
-                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateHeater(conditionerIndex, normal_temperature, normal_fan_speed);
-                        mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, -1, 0);
+                        mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, normal_humidity, 1);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn on heater] + [turn off humidifier] + [turn on fan]");
-                    }
-                    if (get_temperature >= low_temperature)
+                    } else {
                         System.out.println("\tCondition: Temperature is not low-->" + get_temperature);
 
-                    {
-                        coapNetworkHandler.turnOnWindow(windowIndex);
-                        coapNetworkHandler.turnOffConditioner(conditionerIndex);
-                        coapNetworkHandler.activateWind(conditionerIndex, normal_fan_speed); // fan_speed
-                        mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 2, -1, 0);
+                        {
+                            coapNetworkHandler.turnOnWindow(windowIndex);
+                            // coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                            coapNetworkHandler.activateWind(conditionerIndex, normal_fan_speed); // fan_speed
+                            mqttHandler.sendTemperatureHumidityCondition(-1, 0, normal_humidity, 3);
 
-                        System.out.println(
-                                "\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
+                            System.out.println(
+                                    "\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
+                        }
                     }
                 }
 
@@ -236,22 +238,24 @@ public class Automation {
 
                         // attivo irrigazione
                         coapNetworkHandler.turnOnIrrigation(j);
-                        mqttHandler.sendIrrigation(nodeId.get(j),normal_soil_humidity,2);
-                        System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn on irrgation]");
+                        mqttHandler.sendIrrigation(j, normal_soil_humidity, 2);
+                        System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn on irrigation]");
                     } else {
 
                         System.out.println("In Zone" + nodeId.get(j) + ", the soil humidity is good-->"
                                 + get_soil_humidity.get(j));
-                        coapNetworkHandler.turnOffIrrigation(j);
-                        mqttHandler.sendIrrigation(nodeId.get(j), -1, 0);
-                        System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn off irrgation]");
+                        if (get_soil_humidity.get(j) >= normal_soil_humidity) {
+                            coapNetworkHandler.turnOffIrrigation(j);
+                            mqttHandler.sendIrrigation(j, -1, 0);
+                            System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn off irrigation]");
+                        }
                     }
                     // se umidità del suolo è alta è switch = on
                     // spengo l'irrigazione
                 }
                 System.out.println(
                         "_____________________________________________________________________________________________________________________________");
-                Thread.sleep(3000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 // Gestisci l'eccezione qui
                 System.out.println("Thread has been interrupted");
@@ -259,7 +263,6 @@ public class Automation {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 }

@@ -301,8 +301,7 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
           LOG_ERR("Tried to subscribe but command queue was full!\n");
           PROCESS_EXIT();
         }
-        leds_on(LEDS_GREEN);
-        leds_off(LEDS_BLUE);
+        leds_on(LEDS_BLUE);
         state = STATE_SUBSCRIBED;
         PUBLISH_INTERVAL = (10 * CLOCK_SECOND);
         STATE_MACHINE_PERIODIC = PUBLISH_INTERVAL;
@@ -348,7 +347,6 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
 
         mqtt_publish(&conn, NULL, pub_topic, (uint8_t *)app_buffer,
                      strlen(app_buffer), MQTT_QOS_LEVEL_0, MQTT_RETAIN_OFF);
-        leds_off(LEDS_ALL);
         leds_on(LEDS_GREEN);
       }
 

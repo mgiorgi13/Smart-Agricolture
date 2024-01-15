@@ -41,7 +41,6 @@ public class MQTThandler implements MqttCallback {
     public void publish(final String topic, final String content) {
         try {
             MqttMessage message = new MqttMessage(content.getBytes());
-            System.out.println(content);
             this.mqttClient.publish(topic, message);
         } catch (MqttException me) {
             me.printStackTrace();
@@ -111,7 +110,6 @@ public class MQTThandler implements MqttCallback {
         byte[] payload = message.getPayload();
         try {
             JSONObject sensorMessage = (JSONObject) JSONValue.parseWithException(new String(payload));
-            System.out.println(sensorMessage.toJSONString());
             if (topic.equals(this.temperature_humidityTopic)) {
                 if (sensorMessage.containsKey("nodeId")
                         && sensorMessage.containsKey("temperature")
