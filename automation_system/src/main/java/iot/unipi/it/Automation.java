@@ -42,7 +42,18 @@ public class Automation {
         }
         CoapNetworkHandler coapNetworkHandler = CoapNetworkHandler.getInstance();
 
-        // hum 20 temp 12 / 
+        //low humidity
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10 20
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25 20
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 38 20
+        //medium humidity
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10 50
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25 50
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 38 50
+        //high humidity 
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10 78
+        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25 78
+
         double get_temperature = 0.0;
         int low_temperature = 15;
         int normal_temperature = 25;
@@ -208,15 +219,14 @@ public class Automation {
                     } else {
                         System.out.println("\tCondition: Temperature is not low-->" + get_temperature);
 
-                        {
-                            coapNetworkHandler.turnOnWindow(windowIndex);
-                            // coapNetworkHandler.turnOffConditioner(conditionerIndex);
-                            coapNetworkHandler.activateWind(conditionerIndex, normal_fan_speed); // fan_speed
-                            mqttHandler.sendTemperatureHumidityCondition(-1, 0, normal_humidity, 3);
+                        coapNetworkHandler.turnOnWindow(windowIndex);
+                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.activateWind(conditionerIndex, normal_fan_speed); // fan_speed
+                        mqttHandler.sendTemperatureHumidityCondition(-1, 0, normal_humidity, 3);
 
-                            System.out.println(
-                                    "\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
-                        }
+                        System.out.println(
+                                "\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
+
                     }
                 }
 
