@@ -112,31 +112,30 @@ public class Automation {
                 get_humidity = MysqlManager.selectHumidity(timeSec);
                 get_temperature = MysqlManager.selectTemperature(timeSec);
 
+                // umidità bassa
                 if (get_humidity <= low_humidity) {
                     System.out.println("Condition: Humidity is low-->" + get_humidity);
-                    // se temperatura è bassa e switch = off
+                    // se temperatura è bassa
                     if (get_temperature <= low_temperature) {
                         System.out.println("\tCondition: Temperature is low-->" + get_temperature);
                         coapNetworkHandler.turnOffWindow(windowIndex);
-                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateHeaterHumidifier(conditionerIndex, normal_temperature,
                                 normal_fan_speed, normal_humidity); // temperature, fanspeed, humidity
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, normal_humidity, 3);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn on heater] + [turn on humidifier] + [turn on fan]");
                     }
-                    // se temperatura è normale e switch = off
+                    // se temperatura è normale
                     if (low_temperature < get_temperature && get_temperature < high_temperature) {
                         System.out.println("\tCondition: Temperature is normal-->" + get_temperature);
                         coapNetworkHandler.turnOffWindow(windowIndex);
-                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateHumidifier(conditionerIndex, normal_fan_speed, normal_humidity); // fan,
                                                                                                                     // humidify
                         mqttHandler.sendTemperatureHumidityCondition(-1, 0, normal_humidity, 3);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn off heater] + [turn on humidifier] + [turn on fan]");
                     }
-                    // se temperatura è alta e switch = off
+                    // se temperatura è alta
                     if (get_temperature >= high_temperature) {
                         System.out.println("\tCondition: Temperature is high-->" + get_temperature);
                         coapNetworkHandler.turnOnWindow(windowIndex);
@@ -154,29 +153,20 @@ public class Automation {
                 else if (low_humidity < get_humidity && get_humidity < high_humidity) {
                     System.out.println("Condition: Humidity is normal-->" + get_humidity);
 
-                    // se temperatura è bassa e switch = off
+                    // se temperatura è bassa
                     if (get_temperature <= low_temperature) {
-                        System.out.println("\tCondition: Temperature is low-->" + get_temperature);
-                        // se windsow è on
-                        // window off
+                        System.out.println("\tCondition: Temperature is low-->" + get_temperature);                    
                         coapNetworkHandler.turnOffWindow(windowIndex);
-                        // heater
-                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateHeater(conditionerIndex, normal_temperature, normal_fan_speed); // temperature
                                                                                                                    // fanSpeed
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, -1, 0);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn on heater] + [turn off humidifier] + [turn on fan]");
                     }
-                    // se tempreatura è normale e switch = off
+                    // se temperatura è normale
                     if (low_temperature < get_temperature && get_temperature < high_temperature) {
                         System.out.println("\tCondition: Temperature is normal-->" + get_temperature);
-
-                        // se windsow è on
-                        // window off
                         coapNetworkHandler.turnOffWindow(windowIndex);
-                        // se contidioner on
-                        // conditioner off
                         coapNetworkHandler.turnOffConditioner(conditionerIndex);
 
                         mqttHandler.sendTemperatureHumidityCondition(-1, 0, -1, 0);
@@ -187,13 +177,9 @@ public class Automation {
                     // se temperatura è alta e switch = off
                     if (get_temperature >= high_temperature) {
                         System.out.println("\tCondition: Temperature is high-->" + get_temperature);
-
-                        // se windsow è off
-                        // window on
                         coapNetworkHandler.turnOnWindow(windowIndex);
-                        // wind
-                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateWind(conditionerIndex, 50); // fanSpeed
+                       
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 2, -1, 0);
                         System.out.println(
                                 "\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
@@ -204,24 +190,20 @@ public class Automation {
                 // se umidità è alta
                 else if (get_humidity >= high_humidity) {
                     System.out.println("Condition: Humidity is high-->" + get_humidity);
-                    // se temperatura è bassa e switch = off
+                    // se temperatura è bassa
                     if (get_temperature <= low_temperature) {
                         System.out.println("\tCondition: Temperature is low-->" + get_temperature);
-                        // se windsow è on
-                        // window off
                         coapNetworkHandler.turnOffWindow(windowIndex);
-                        // heater
-                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
                         coapNetworkHandler.activateHeater(conditionerIndex, normal_temperature, normal_fan_speed);
+                        
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, normal_humidity, 1);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn on heater] + [turn off humidifier] + [turn on fan]");
                     } else {
                         System.out.println("\tCondition: Temperature is not low-->" + get_temperature);
-
-                        coapNetworkHandler.turnOnWindow(windowIndex);
-                        // coapNetworkHandler.turnOffConditioner(conditionerIndex);
+                        coapNetworkHandler.turnOnWindow(windowIndex);                        
                         coapNetworkHandler.activateWind(conditionerIndex, normal_fan_speed); // fan_speed
+                        
                         mqttHandler.sendTemperatureHumidityCondition(-1, 0, normal_humidity, 3);
 
                         System.out.println(
@@ -241,13 +223,13 @@ public class Automation {
                         System.out.println("There is no actuator to pair with this sensor");
                         continue;
                     }
-                    // se umidità del suolo bassa e switch = off
+
+                    // se umidità del suolo bassa
                     if (get_soil_humidity.get(j) <= low_soil_humidity) {
                         System.out.println("In Zone" + nodeId.get(j) + ", the soil humidity is NOT good-->"
                                 + get_soil_humidity.get(j));
-
-                        // attivo irrigazione
                         coapNetworkHandler.turnOnIrrigation(j);
+
                         mqttHandler.sendIrrigation(j, normal_soil_humidity, 2);
                         System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn on irrigation]");
                     } else {
@@ -256,12 +238,11 @@ public class Automation {
                                 + get_soil_humidity.get(j));
                         if (get_soil_humidity.get(j) >= normal_soil_humidity) {
                             coapNetworkHandler.turnOffIrrigation(j);
+                            
                             mqttHandler.sendIrrigation(j, -1, 0);
                             System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn off irrigation]");
                         }
                     }
-                    // se umidità del suolo è alta è switch = on
-                    // spengo l'irrigazione
                 }
                 System.out.println(
                         "_____________________________________________________________________________________________________________________________");
