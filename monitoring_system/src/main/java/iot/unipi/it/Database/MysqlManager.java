@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 public class MysqlManager {
     private final static String databaseIP = "localhost";
     private final static String databasePort = "3306";
@@ -87,7 +86,8 @@ public class MysqlManager {
                 while (resultSet.next()) {
                     nodeId.add(resultSet.getInt("nodeId"));
                     averageHumidity.add(resultSet.getDouble("average_humidity"));
-                    System.out.println("Node ID: " + resultSet.getInt("nodeId") + ", Average Humidity: " + resultSet.getDouble("average_humidity"));
+                    System.out.println("Node ID: " + resultSet.getInt("nodeId") + ", Average Humidity: "
+                            + resultSet.getDouble("average_humidity"));
                 }
             }
         } catch (SQLException sqlex) {
@@ -95,8 +95,6 @@ public class MysqlManager {
         }
         return;
     }
-
-    
 
     public static double selectTemperature(int seconds) {
         String selectQueryStatement = "SELECT AVG(value) AS average_temperature FROM temperature WHERE timestamp >= NOW() - INTERVAL ? SECOND;";
@@ -120,8 +118,6 @@ public class MysqlManager {
         return temperature;
     }
 
-    
-
     public static double selectHumidity(int seconds) {
         String selectQueryStatement = "SELECT AVG(value) AS average_humidity FROM humidity WHERE timestamp >= NOW() - INTERVAL ? SECOND;";
         double humidity = 0;
@@ -143,16 +139,36 @@ public class MysqlManager {
         }
         return humidity;
     }
+
     public static void deleteAllRecords(String tableName) {
         String deleteQueryStatement = "DELETE FROM " + tableName + ";";
         try (Connection agricultureConnection = makeConnection();
-            PreparedStatement preparedStatement = agricultureConnection.prepareStatement(deleteQueryStatement)) {
+                PreparedStatement preparedStatement = agricultureConnection.prepareStatement(deleteQueryStatement)) {
             preparedStatement.executeUpdate();
             System.out.println("Tutti i record della tabella " + tableName + " sono stati eliminati con successo.");
         } catch (SQLException sqlex) {
             sqlex.printStackTrace();
         }
-        
+
+    }
+
+    public static int countRecords(String tableName) {
+        String countQueryStatement = "";
+        countQueryStatement = "SELECT COUNT(*) AS count FROM " + tableName + ";";
+
+        int count = 0;
+
+        try (Connection agricultureConnection = makeConnection();
+                PreparedStatement preparedStatement = agricultureConnection.prepareStatement(countQueryStatement)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    count = resultSet.getInt("count");
+                }
+            }
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+        }
+        return count;
     }
 
 }

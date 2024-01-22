@@ -42,24 +42,34 @@ public class Automation {
         }
         CoapNetworkHandler coapNetworkHandler = CoapNetworkHandler.getInstance();
 
-        //low humidity
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10 20
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25 20
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 38 20
-        //medium humidity
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10 50
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25 50
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 38 50
-        //high humidity 
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10 78
-        //java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25 78
+        // low humidity
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10
+        // 20
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25
+        // 20
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 38
+        // 20
+        // medium humidity
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10
+        // 50
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25
+        // 50
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 38
+        // 50
+        // high humidity
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 10
+        // 78
+        // java -jar target/automation_system-1.0-SNAPSHOT-jar-with-dependencies.jar 25
+        // 78
 
         double get_temperature = 0.0;
+        int count_temperature = 0;
         int low_temperature = 15;
         int normal_temperature = 25;
         int high_temperature = 35;
 
         double get_humidity = 0.0;
+        int count_humidity = 0;
         int low_humidity = 25;
         int normal_humidity = 50;
         int high_humidity = 75;
@@ -79,10 +89,12 @@ public class Automation {
             int count = 4;
             // loop for wainting until we reach starting condition
             while (true) {
+                count_temperature = MysqlManager.countRecords("temperature");
+                count_humidity = MysqlManager.countRecords("humidity");
                 get_humidity = MysqlManager.selectHumidity(timeSec);
                 get_temperature = MysqlManager.selectTemperature(timeSec);
                 // wait for mqtt sensor to start publishing
-                if (get_humidity == 0.0) {
+                if (count_temperature == 0 || count_humidity == 0) {
                     System.err.println("Waiting for humidity and temperature data");
                     Thread.sleep(1000);
                     continue;
@@ -155,7 +167,7 @@ public class Automation {
 
                     // se temperatura è bassa
                     if (get_temperature <= low_temperature) {
-                        System.out.println("\tCondition: Temperature is low-->" + get_temperature);                    
+                        System.out.println("\tCondition: Temperature is low-->" + get_temperature);
                         coapNetworkHandler.turnOffWindow(windowIndex);
                         coapNetworkHandler.activateHeater(conditionerIndex, normal_temperature, normal_fan_speed); // temperature
                                                                                                                    // fanSpeed
@@ -179,7 +191,7 @@ public class Automation {
                         System.out.println("\tCondition: Temperature is high-->" + get_temperature);
                         coapNetworkHandler.turnOnWindow(windowIndex);
                         coapNetworkHandler.activateWind(conditionerIndex, 50); // fanSpeed
-                       
+
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 2, -1, 0);
                         System.out.println(
                                 "\t\t Action: [turn on windows] + [turn off heater] + [turn off humidifier] + [turn on fan]");
@@ -195,15 +207,15 @@ public class Automation {
                         System.out.println("\tCondition: Temperature is low-->" + get_temperature);
                         coapNetworkHandler.turnOffWindow(windowIndex);
                         coapNetworkHandler.activateHeater(conditionerIndex, normal_temperature, normal_fan_speed);
-                        
+
                         mqttHandler.sendTemperatureHumidityCondition(normal_temperature, 1, normal_humidity, 1);
                         System.out.println(
                                 "\t\t Action: [turn off windows] + [turn on heater] + [turn off humidifier] + [turn on fan]");
                     } else {
                         System.out.println("\tCondition: Temperature is not low-->" + get_temperature);
-                        coapNetworkHandler.turnOnWindow(windowIndex);                        
+                        coapNetworkHandler.turnOnWindow(windowIndex);
                         coapNetworkHandler.activateWind(conditionerIndex, normal_fan_speed); // fan_speed
-                        
+
                         mqttHandler.sendTemperatureHumidityCondition(-1, 0, normal_humidity, 3);
 
                         System.out.println(
@@ -214,11 +226,6 @@ public class Automation {
 
                 MysqlManager.selectSoilHumidity(timeSec, nodeId, get_soil_humidity);
                 for (int j = 0; j < get_soil_humidity.size(); j++) {
-                    if (get_humidity == 0.0) {
-                        System.err.println("Waiting for soil humidity data");
-                        Thread.sleep(1000);
-                        continue;
-                    }
                     if (!coapNetworkHandler.checkDeviceSoilHumidity(j)) {
                         System.out.println("There is no actuator to pair with this sensor");
                         continue;
@@ -238,7 +245,7 @@ public class Automation {
                                 + get_soil_humidity.get(j));
                         if (get_soil_humidity.get(j) >= normal_soil_humidity) {
                             coapNetworkHandler.turnOffIrrigation(j);
-                            
+
                             mqttHandler.sendIrrigation(j, -1, 0);
                             System.out.println("\t Action: nodeID: " + nodeId.get(j) + " [turn off irrigation]");
                         }
