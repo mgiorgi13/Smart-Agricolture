@@ -2711,3 +2711,534 @@
 2024-01-22T10:37:18.464Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 56 percentage
 2024-01-22T10:37:18.570Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 22 Celsius, 64 percentage
 2024-01-22T10:37:22.087Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 65 percentage
+2024-01-25T20:38:54.375Z [LOG] The Window actuator: [fd00:0:0:0:f6ce:363e:f75b:d9a5] is now registered
+2024-01-25T20:38:57.161Z [LOG] The Irrigation actuator: [fd00:0:0:0:f6ce:36fe:b4b1:4d36] is now registered
+2024-01-25T20:39:04.535Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 33 Celsius, 90 percentage
+2024-01-25T20:39:07.693Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 81 percentage
+2024-01-25T20:39:08.676Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 26 percentage
+2024-01-25T20:39:14.458Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 28 Celsius, 85 percentage
+2024-01-25T20:39:15.500Z [LOG] The conditioner actuator: [fd00:0:0:0:f6ce:366f:fc5e:24c0] is now registered
+2024-01-25T20:39:17.639Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 82 percentage
+2024-01-25T20:39:18.628Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 28 percentage
+2024-01-25T20:39:23.633Z [LOG] The Irrigation actuator: [fd00:0:0:0:f6ce:36fe:4909:2bfe] is now registered
+2024-01-25T20:39:24.449Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 25 Celsius, 80 percentage
+2024-01-25T20:39:27.676Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 83 percentage
+2024-01-25T20:39:28.597Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 24 percentage
+2024-01-25T20:39:34.467Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 25 Celsius, 78 percentage
+2024-01-25T20:39:37.714Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 83 percentage
+2024-01-25T20:39:38.612Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 26 percentage
+2024-01-25T20:39:44.419Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 25 Celsius, 78 percentage
+2024-01-25T20:39:47.632Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 79 percentage
+2024-01-25T20:39:48.619Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 24 percentage
+2024-01-25T20:39:54.477Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 24 Celsius, 75 percentage
+2024-01-25T20:39:57.636Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 78 percentage
+2024-01-25T20:39:58.597Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 24 percentage
+2024-01-25T20:40:04.401Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 24 Celsius, 72 percentage
+2024-01-25T20:40:07.628Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 77 percentage
+2024-01-25T20:40:08.612Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 25 percentage
+2024-01-25T20:40:14.462Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 23 Celsius, 71 percentage
+2024-01-25T20:40:18.596Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 22 percentage
+2024-01-25T20:40:19.705Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 77 percentage
+2024-01-25T20:40:24.473Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 22 Celsius, 70 percentage
+2024-01-25T20:40:27.620Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 73 percentage
+2024-01-25T20:40:28.597Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 22 percentage
+2024-01-25T20:40:34.320Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 22 Celsius, 71 percentage
+2024-01-25T20:40:37.659Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 69 percentage
+2024-01-25T20:40:38.641Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 17 percentage
+2024-01-25T20:40:44.380Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 21 Celsius, 71 percentage
+2024-01-25T20:40:47.644Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 71 percentage
+2024-01-25T20:40:48.557Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 19 percentage
+2024-01-25T20:40:54.406Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 21 Celsius, 72 percentage
+2024-01-25T20:40:57.620Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 71 percentage
+2024-01-25T20:40:58.620Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 21 percentage
+2024-01-25T20:41:04.424Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 21 Celsius, 75 percentage
+2024-01-25T20:41:07.670Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 68 percentage
+2024-01-25T20:41:08.627Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 23 percentage
+2024-01-25T20:41:14.405Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 20 Celsius, 78 percentage
+2024-01-25T20:41:17.700Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 68 percentage
+2024-01-25T20:41:18.609Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 25 percentage
+2024-01-25T20:41:24.369Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 20 Celsius, 75 percentage
+2024-01-25T20:41:27.648Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 63 percentage
+2024-01-25T20:41:28.633Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 27 percentage
+2024-01-25T20:41:34.439Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 19 Celsius, 72 percentage
+2024-01-25T20:42:51.235Z [LOG] The Irrigation actuator: [fd00:0:0:0:f6ce:36fe:4909:2bfe] is now registered
+2024-01-25T20:42:54.149Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 58 percentage
+2024-01-25T20:42:54.444Z [LOG] The conditioner actuator: [fd00:0:0:0:f6ce:366f:fc5e:24c0] is now registered
+2024-01-25T20:42:57.088Z [LOG] The Irrigation actuator: [fd00:0:0:0:f6ce:36fe:b4b1:4d36] is now registered
+2024-01-25T20:42:57.340Z [LOG] The Window actuator: [fd00:0:0:0:f6ce:363e:f75b:d9a5] is now registered
+2024-01-25T20:42:57.593Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 45 percentage
+2024-01-25T20:42:58.146Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 22 Celsius, 82 percentage
+2024-01-25T20:43:04.055Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 56 percentage
+2024-01-25T20:43:07.556Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 44 percentage
+2024-01-25T20:43:08.109Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 17 Celsius, 77 percentage
+2024-01-25T20:43:14.047Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 51 percentage
+2024-01-25T20:43:17.521Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 40 percentage
+2024-01-25T20:43:18.081Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 12 Celsius, 72 percentage
+2024-01-25T20:43:24.093Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 52 percentage
+2024-01-25T20:43:27.591Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 42 percentage
+2024-01-25T20:43:28.127Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 67 percentage
+2024-01-25T20:43:34.064Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 51 percentage
+2024-01-25T20:43:37.483Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 37 percentage
+2024-01-25T20:43:38.127Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 62 percentage
+2024-01-25T20:43:44.078Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 46 percentage
+2024-01-25T20:43:47.592Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 33 percentage
+2024-01-25T20:43:48.135Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 57 percentage
+2024-01-25T20:43:54.121Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 41 percentage
+2024-01-25T20:43:57.545Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 29 percentage
+2024-01-25T20:43:58.140Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 52 percentage
+2024-01-25T20:44:04.080Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 36 percentage
+2024-01-25T20:44:07.592Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 31 percentage
+2024-01-25T20:44:08.133Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 47 percentage
+2024-01-25T20:44:14.067Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 32 percentage
+2024-01-25T20:44:17.561Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 28 percentage
+2024-01-25T20:44:18.162Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 42 percentage
+2024-01-25T20:44:24.052Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 27 percentage
+2024-01-25T20:44:27.560Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 23 percentage
+2024-01-25T20:44:28.144Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 37 percentage
+2024-01-25T20:44:34.082Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 22 percentage
+2024-01-25T20:44:37.548Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 22 percentage
+2024-01-25T20:44:38.112Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 32 percentage
+2024-01-25T20:44:44.036Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 18 percentage
+2024-01-25T20:44:47.521Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 24 percentage
+2024-01-25T20:44:48.223Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 27 percentage
+2024-01-25T20:44:54.050Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 20 percentage
+2024-01-25T20:44:57.560Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 24 percentage
+2024-01-25T20:44:58.141Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 22 percentage
+2024-01-25T20:45:04.068Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 16 percentage
+2024-01-25T20:45:07.552Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 21 percentage
+2024-01-25T20:45:08.176Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 20 percentage
+2024-01-25T20:45:14.021Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 12 percentage
+2024-01-25T20:45:17.502Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 21 percentage
+2024-01-25T20:45:18.103Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 20 percentage
+2024-01-25T20:45:24.048Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 9 percentage
+2024-01-25T20:45:27.552Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 23 percentage
+2024-01-25T20:45:28.132Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 11 Celsius, 23 percentage
+2024-01-25T20:45:34.097Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 10 percentage
+2024-01-25T20:45:37.520Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 25 percentage
+2024-01-25T20:45:38.157Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 12 Celsius, 26 percentage
+2024-01-25T20:45:44.069Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 10 percentage
+2024-01-25T20:45:47.520Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 27 percentage
+2024-01-25T20:45:48.054Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 13 Celsius, 29 percentage
+2024-01-25T20:45:54.029Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 8 percentage
+2024-01-25T20:45:57.560Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 29 percentage
+2024-01-25T20:45:58.164Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 31 percentage
+2024-01-25T20:46:04.085Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 4 percentage
+2024-01-25T20:46:07.523Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 31 percentage
+2024-01-25T20:46:08.068Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 31 percentage
+2024-01-25T20:46:14.069Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 4 percentage
+2024-01-25T20:46:17.484Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 33 percentage
+2024-01-25T20:46:18.285Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 34 percentage
+2024-01-25T20:46:24.112Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 2 percentage
+2024-01-25T20:46:27.536Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 35 percentage
+2024-01-25T20:46:28.147Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 35 percentage
+2024-01-25T20:46:34.088Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:46:37.557Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 37 percentage
+2024-01-25T20:46:38.169Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 38 percentage
+2024-01-25T20:46:44.052Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 1 percentage
+2024-01-25T20:46:47.504Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 39 percentage
+2024-01-25T20:46:48.140Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 38 percentage
+2024-01-25T20:46:54.133Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:46:57.513Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 41 percentage
+2024-01-25T20:46:58.137Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 37 percentage
+2024-01-25T20:47:04.068Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 1 percentage
+2024-01-25T20:47:07.542Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 43 percentage
+2024-01-25T20:47:08.169Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 35 percentage
+2024-01-25T20:47:14.044Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:47:17.552Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 45 percentage
+2024-01-25T20:47:18.165Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 38 percentage
+2024-01-25T20:47:24.056Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:47:27.497Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 47 percentage
+2024-01-25T20:47:28.136Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 39 percentage
+2024-01-25T20:47:34.117Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:47:38.141Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 49 percentage
+2024-01-25T20:47:38.163Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 38 percentage
+2024-01-25T20:47:44.040Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:47:47.524Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 51 percentage
+2024-01-25T20:47:48.104Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 39 percentage
+2024-01-25T20:47:54.100Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:47:57.548Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 53 percentage
+2024-01-25T20:47:58.148Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 42 percentage
+2024-01-25T20:48:04.040Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:48:07.556Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 55 percentage
+2024-01-25T20:48:08.206Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 44 percentage
+2024-01-25T20:48:14.141Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:48:17.581Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 57 percentage
+2024-01-25T20:48:18.121Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 44 percentage
+2024-01-25T20:48:24.048Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 1 percentage
+2024-01-25T20:48:27.536Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 59 percentage
+2024-01-25T20:48:28.099Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 45 percentage
+2024-01-25T20:48:34.093Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:48:37.524Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 61 percentage
+2024-01-25T20:48:38.141Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 48 percentage
+2024-01-25T20:48:44.060Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:48:47.488Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 63 percentage
+2024-01-25T20:48:48.136Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 46 percentage
+2024-01-25T20:48:54.328Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:48:57.578Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 65 percentage
+2024-01-25T20:48:58.124Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 43 percentage
+2024-01-25T20:49:04.032Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 2 percentage
+2024-01-25T20:49:07.509Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 65 percentage
+2024-01-25T20:49:08.136Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 41 percentage
+2024-01-25T20:49:14.024Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:49:17.494Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 65 percentage
+2024-01-25T20:49:18.072Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 38 percentage
+2024-01-25T20:49:24.069Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:49:27.556Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 65 percentage
+2024-01-25T20:49:28.157Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 40 percentage
+2024-01-25T20:49:34.113Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T20:49:37.477Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 65 percentage
+2024-01-25T20:49:38.078Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 40 percentage
+2024-01-25T21:02:25.207Z [LOG] The Window actuator: [fd00:0:0:0:206:6:6:6] is now registered
+2024-01-25T21:02:28.101Z [LOG] The conditioner actuator: [fd00:0:0:0:202:2:2:2] is now registered
+2024-01-25T21:02:28.557Z [LOG] The Irrigation actuator: [fd00:0:0:0:205:5:5:5] is now registered
+2024-01-25T21:02:39.243Z [LOG] The Irrigation actuator: [fd00:0:0:0:204:4:4:4] is now registered
+2024-01-25T21:02:39.451Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 69 percentage
+2024-01-25T21:02:49.327Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 70 percentage
+2024-01-25T21:02:53.227Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 25 Celsius, 61 percentage
+2024-01-25T21:02:57.067Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 81 percentage
+2024-01-25T21:02:59.392Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 68 percentage
+2024-01-25T21:03:03.136Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 20 Celsius, 56 percentage
+2024-01-25T21:03:07.224Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 82 percentage
+2024-01-25T21:03:09.403Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 63 percentage
+2024-01-25T21:03:13.100Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 51 percentage
+2024-01-25T21:03:17.175Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 80 percentage
+2024-01-25T21:03:19.407Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 60 percentage
+2024-01-25T21:03:23.157Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 46 percentage
+2024-01-25T21:03:27.343Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 80 percentage
+2024-01-25T21:03:29.613Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 60 percentage
+2024-01-25T21:03:33.320Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 41 percentage
+2024-01-25T21:03:37.299Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 77 percentage
+2024-01-25T21:03:39.609Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 56 percentage
+2024-01-25T21:03:43.292Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 36 percentage
+2024-01-25T21:03:47.376Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 74 percentage
+2024-01-25T21:03:49.596Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 58 percentage
+2024-01-25T21:03:53.330Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 31 percentage
+2024-01-25T21:03:57.378Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 74 percentage
+2024-01-25T21:03:59.639Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 59 percentage
+2024-01-25T21:04:03.322Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 26 percentage
+2024-01-25T21:04:07.370Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 74 percentage
+2024-01-25T21:04:09.616Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 55 percentage
+2024-01-25T21:04:13.385Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 21 percentage
+2024-01-25T21:04:17.421Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 72 percentage
+2024-01-25T21:04:19.661Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 50 percentage
+2024-01-25T21:04:23.376Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 20 percentage
+2024-01-25T21:04:27.368Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 74 percentage
+2024-01-25T21:04:29.626Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 45 percentage
+2024-01-25T21:04:33.370Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 10 Celsius, 20 percentage
+2024-01-25T21:04:37.294Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 71 percentage
+2024-01-25T21:04:39.783Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 44 percentage
+2024-01-25T21:04:43.336Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 11 Celsius, 23 percentage
+2024-01-25T21:04:47.383Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 69 percentage
+2024-01-25T21:04:49.673Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 43 percentage
+2024-01-25T21:04:53.371Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 12 Celsius, 26 percentage
+2024-01-25T21:04:57.310Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 67 percentage
+2024-01-25T21:04:59.675Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 44 percentage
+2024-01-25T21:05:03.369Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 13 Celsius, 29 percentage
+2024-01-25T21:05:07.413Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 67 percentage
+2024-01-25T21:05:09.706Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 46 percentage
+2024-01-25T21:05:13.408Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 30 percentage
+2024-01-25T21:05:17.327Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 63 percentage
+2024-01-25T21:05:19.603Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 41 percentage
+2024-01-25T21:05:23.419Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 31 percentage
+2024-01-25T21:05:27.448Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 62 percentage
+2024-01-25T21:05:29.679Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 43 percentage
+2024-01-25T21:05:33.349Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:05:37.413Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 63 percentage
+2024-01-25T21:05:39.676Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 43 percentage
+2024-01-25T21:05:43.352Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 31 percentage
+2024-01-25T21:05:47.411Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 63 percentage
+2024-01-25T21:05:49.744Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 38 percentage
+2024-01-25T21:05:53.344Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 31 percentage
+2024-01-25T21:05:57.479Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 65 percentage
+2024-01-25T21:05:59.667Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 39 percentage
+2024-01-25T21:06:03.439Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 34 percentage
+2024-01-25T21:06:07.511Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 66 percentage
+2024-01-25T21:06:09.768Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 41 percentage
+2024-01-25T21:06:13.468Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 31 percentage
+2024-01-25T21:06:17.530Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 64 percentage
+2024-01-25T21:06:19.738Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 38 percentage
+2024-01-25T21:06:23.540Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 29 percentage
+2024-01-25T21:06:27.508Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 64 percentage
+2024-01-25T21:06:29.738Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 40 percentage
+2024-01-25T21:06:33.504Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 31 percentage
+2024-01-25T21:06:37.464Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 59 percentage
+2024-01-25T21:06:39.731Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 41 percentage
+2024-01-25T21:06:43.576Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 29 percentage
+2024-01-25T21:06:47.490Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 55 percentage
+2024-01-25T21:06:49.753Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 41 percentage
+2024-01-25T21:06:53.737Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 27 percentage
+2024-01-25T21:06:57.559Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 55 percentage
+2024-01-25T21:06:59.770Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 39 percentage
+2024-01-25T21:07:03.451Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:07:07.475Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 53 percentage
+2024-01-25T21:07:09.777Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 34 percentage
+2024-01-25T21:07:13.609Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 28 percentage
+2024-01-25T21:07:17.509Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 50 percentage
+2024-01-25T21:07:19.816Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 36 percentage
+2024-01-25T21:07:23.524Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:07:27.546Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 50 percentage
+2024-01-25T21:07:29.808Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 34 percentage
+2024-01-25T21:07:33.615Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:07:37.643Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 47 percentage
+2024-01-25T21:07:39.814Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 32 percentage
+2024-01-25T21:07:43.565Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 32 percentage
+2024-01-25T21:07:47.577Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 47 percentage
+2024-01-25T21:07:49.868Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 28 percentage
+2024-01-25T21:07:53.556Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 30 percentage
+2024-01-25T21:07:57.592Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 44 percentage
+2024-01-25T21:07:59.823Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 27 percentage
+2024-01-25T21:08:03.578Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 30 percentage
+2024-01-25T21:08:07.617Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 44 percentage
+2024-01-25T21:08:09.870Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 27 percentage
+2024-01-25T21:08:13.640Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:08:17.579Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 41 percentage
+2024-01-25T21:08:19.963Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 23 percentage
+2024-01-25T21:08:23.731Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 28 percentage
+2024-01-25T21:08:27.673Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 38 percentage
+2024-01-25T21:08:30.012Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 18 percentage
+2024-01-25T21:08:33.700Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 28 percentage
+2024-01-25T21:08:37.708Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 36 percentage
+2024-01-25T21:08:40.058Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 15 percentage
+2024-01-25T21:08:43.716Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 28 percentage
+2024-01-25T21:08:47.723Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 35 percentage
+2024-01-25T21:08:50.020Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 17 percentage
+2024-01-25T21:08:53.669Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:08:57.793Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 30 percentage
+2024-01-25T21:09:00.040Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 19 percentage
+2024-01-25T21:09:03.820Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:09:07.751Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 29 percentage
+2024-01-25T21:09:10.080Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 21 percentage
+2024-01-25T21:09:13.837Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 29 percentage
+2024-01-25T21:09:17.787Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 28 percentage
+2024-01-25T21:09:20.122Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 23 percentage
+2024-01-25T21:09:23.763Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 29 percentage
+2024-01-25T21:09:27.772Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 29 percentage
+2024-01-25T21:09:30.120Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 25 percentage
+2024-01-25T21:09:33.888Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 26 percentage
+2024-01-25T21:09:37.869Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 31 percentage
+2024-01-25T21:09:40.086Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 27 percentage
+2024-01-25T21:09:43.745Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 24 percentage
+2024-01-25T21:09:47.817Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 32 percentage
+2024-01-25T21:09:50.080Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 29 percentage
+2024-01-25T21:09:53.758Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 27 percentage
+2024-01-25T21:09:57.883Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 28 percentage
+2024-01-25T21:10:00.076Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 31 percentage
+2024-01-25T21:10:03.850Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:10:07.890Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 27 percentage
+2024-01-25T21:10:10.139Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 33 percentage
+2024-01-25T21:10:13.887Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 26 percentage
+2024-01-25T21:10:17.948Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 27 percentage
+2024-01-25T21:10:20.200Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 35 percentage
+2024-01-25T21:10:23.791Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 24 percentage
+2024-01-25T21:10:27.909Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 25 percentage
+2024-01-25T21:10:30.173Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 37 percentage
+2024-01-25T21:10:33.917Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 27 percentage
+2024-01-25T21:10:37.925Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 24 percentage
+2024-01-25T21:10:40.222Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 39 percentage
+2024-01-25T21:10:43.831Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 24 percentage
+2024-01-25T21:10:47.896Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 20 percentage
+2024-01-25T21:10:50.265Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 41 percentage
+2024-01-25T21:10:53.973Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 24 percentage
+2024-01-25T21:10:58.008Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 22 percentage
+2024-01-25T21:11:00.220Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 43 percentage
+2024-01-25T21:11:03.939Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 27 percentage
+2024-01-25T21:11:08.067Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 21 percentage
+2024-01-25T21:11:10.208Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 45 percentage
+2024-01-25T21:11:13.937Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 29 percentage
+2024-01-25T21:11:17.960Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 20 percentage
+2024-01-25T21:11:20.206Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 47 percentage
+2024-01-25T21:11:23.967Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 26 percentage
+2024-01-25T21:11:28.051Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 19 percentage
+2024-01-25T21:11:30.245Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 49 percentage
+2024-01-25T21:11:33.999Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 27 percentage
+2024-01-25T21:11:38.013Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 21 percentage
+2024-01-25T21:11:40.260Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 51 percentage
+2024-01-25T21:11:44.101Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 27 percentage
+2024-01-25T21:11:48.085Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 23 percentage
+2024-01-25T21:11:50.304Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 53 percentage
+2024-01-25T21:11:54.208Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 25 percentage
+2024-01-25T21:11:58.078Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 25 percentage
+2024-01-25T21:12:00.285Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 55 percentage
+2024-01-25T21:12:03.979Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 25 percentage
+2024-01-25T21:12:08.064Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 27 percentage
+2024-01-25T21:12:10.286Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 57 percentage
+2024-01-25T21:12:14.049Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 28 percentage
+2024-01-25T21:12:18.020Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 29 percentage
+2024-01-25T21:12:20.292Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 59 percentage
+2024-01-25T21:12:24.020Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 27 percentage
+2024-01-25T21:12:27.995Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 31 percentage
+2024-01-25T21:12:30.281Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 61 percentage
+2024-01-25T21:12:34.058Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 29 percentage
+2024-01-25T21:12:38.059Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 33 percentage
+2024-01-25T21:12:40.299Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 63 percentage
+2024-01-25T21:12:44.088Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 30 percentage
+2024-01-25T21:12:48.070Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 35 percentage
+2024-01-25T21:12:50.366Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 65 percentage
+2024-01-25T21:12:54Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 31 percentage
+2024-01-25T21:12:58.079Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 37 percentage
+2024-01-25T21:13:00.351Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 65 percentage
+2024-01-25T21:13:04.047Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 30 percentage
+2024-01-25T21:13:08.121Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 39 percentage
+2024-01-25T21:13:10.435Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 63 percentage
+2024-01-25T21:13:14.102Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 31 percentage
+2024-01-25T21:13:18.097Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 41 percentage
+2024-01-25T21:13:20.401Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 64 percentage
+2024-01-25T21:13:24.068Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 29 percentage
+2024-01-25T21:13:28.118Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 43 percentage
+2024-01-25T21:13:30.396Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 66 percentage
+2024-01-25T21:13:34.068Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 27 percentage
+2024-01-25T21:13:38.093Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 45 percentage
+2024-01-25T21:13:40.358Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 62 percentage
+2024-01-25T21:13:44.171Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 24 percentage
+2024-01-25T21:13:48.110Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 47 percentage
+2024-01-25T21:13:50.374Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 57 percentage
+2024-01-25T21:13:54.110Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 22 percentage
+2024-01-25T21:13:58.152Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 49 percentage
+2024-01-25T21:14:00.396Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 52 percentage
+2024-01-25T21:14:04.096Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 25 percentage
+2024-01-25T21:14:08.135Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 51 percentage
+2024-01-25T21:14:10.386Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 47 percentage
+2024-01-25T21:14:14.156Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 28 percentage
+2024-01-25T21:14:18.195Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 53 percentage
+2024-01-25T21:14:20.386Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 43 percentage
+2024-01-25T21:14:24.157Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 28 percentage
+2024-01-25T21:14:28.093Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 55 percentage
+2024-01-25T21:14:30.477Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 41 percentage
+2024-01-25T21:14:34.051Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 27 percentage
+2024-01-25T21:14:38.165Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 57 percentage
+2024-01-25T21:14:40.398Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 40 percentage
+2024-01-25T21:14:44.131Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 30 percentage
+2024-01-25T21:14:48.121Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 59 percentage
+2024-01-25T21:14:50.406Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 36 percentage
+2024-01-25T21:14:54.119Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 33 percentage
+2024-01-25T21:14:58.213Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 61 percentage
+2024-01-25T21:15:00.375Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 31 percentage
+2024-01-25T21:15:04.191Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 35 percentage
+2024-01-25T21:15:08.183Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 63 percentage
+2024-01-25T21:15:10.407Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 29 percentage
+2024-01-25T21:15:14.213Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 38 percentage
+2024-01-25T21:15:18.165Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 65 percentage
+2024-01-25T21:15:20.395Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 30 percentage
+2024-01-25T21:15:24.122Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 41 percentage
+2024-01-25T21:15:28.116Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 65 percentage
+2024-01-25T21:15:30.429Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 28 percentage
+2024-01-25T21:15:34.148Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 40 percentage
+2024-01-25T21:15:38.122Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 61 percentage
+2024-01-25T21:15:40.459Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 29 percentage
+2024-01-25T21:15:44.059Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 14 Celsius, 37 percentage
+2024-01-25T21:15:48.190Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 58 percentage
+2024-01-25T21:15:50.428Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 30 percentage
+2024-01-25T21:15:54.169Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 15 Celsius, 35 percentage
+2024-01-25T21:15:58.174Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 8: 57 percentage
+2024-01-25T21:16:00.421Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 3: 29 percentage
+2024-01-25T21:16:04.231Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 7: 16 Celsius, 37 percentage
+2024-01-25T21:21:13.877Z [LOG] The Irrigation actuator: [fd00:0:0:0:f6ce:36fe:b4b1:4d36] is now registered
+2024-01-25T21:21:18.586Z [LOG] The Window actuator: [fd00:0:0:0:f6ce:363e:f75b:d9a5] is now registered
+2024-01-25T21:21:19.087Z [LOG] The Irrigation actuator: [fd00:0:0:0:f6ce:36fe:4909:2bfe] is now registered
+2024-01-25T21:21:20.328Z [LOG] The conditioner actuator: [fd00:0:0:0:f6ce:366f:fc5e:24c0] is now registered
+2024-01-25T21:21:25.508Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 10 percentage
+2024-01-25T21:21:27.919Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 10 percentage
+2024-01-25T21:21:33.621Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 48 percentage
+2024-01-25T21:21:35.457Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 9 percentage
+2024-01-25T21:21:37.936Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 6 percentage
+2024-01-25T21:21:43.441Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 43 percentage
+2024-01-25T21:21:45.361Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 8 percentage
+2024-01-25T21:21:47.908Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 5 percentage
+2024-01-25T21:21:53.483Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 38 percentage
+2024-01-25T21:21:55.421Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 5 percentage
+2024-01-25T21:21:57.917Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 1 percentage
+2024-01-25T21:22:03.449Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 33 percentage
+2024-01-25T21:22:05.419Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 7 percentage
+2024-01-25T21:22:07.868Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T21:22:13.398Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 28 percentage
+2024-01-25T21:22:15.408Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 2 percentage
+2024-01-25T21:22:17.899Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 0 percentage
+2024-01-25T21:22:23.464Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 23 percentage
+2024-01-25T21:22:25.467Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 1 percentage
+2024-01-25T21:22:27.946Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 2 percentage
+2024-01-25T21:22:33.512Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 20 percentage
+2024-01-25T21:22:35.374Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 0 percentage
+2024-01-25T21:22:37.922Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 2 percentage
+2024-01-25T21:22:43.483Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 10 Celsius, 20 percentage
+2024-01-25T21:22:45.424Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 2 percentage
+2024-01-25T21:22:47.948Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 4 percentage
+2024-01-25T21:22:53.491Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 11 Celsius, 23 percentage
+2024-01-25T21:22:55.441Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 4 percentage
+2024-01-25T21:22:57.912Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 6 percentage
+2024-01-25T21:23:03.456Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 12 Celsius, 26 percentage
+2024-01-25T21:23:05.392Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 6 percentage
+2024-01-25T21:23:07.893Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 8 percentage
+2024-01-25T21:23:13.464Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 13 Celsius, 29 percentage
+2024-01-25T21:23:15.438Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 8 percentage
+2024-01-25T21:23:17.844Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 10 percentage
+2024-01-25T21:23:23.455Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 31 percentage
+2024-01-25T21:23:25.531Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 10 percentage
+2024-01-25T21:23:27.875Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 12 percentage
+2024-01-25T21:23:33.473Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 29 percentage
+2024-01-25T21:23:35.396Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 12 percentage
+2024-01-25T21:23:37.902Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 14 percentage
+2024-01-25T21:23:43.446Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 26 percentage
+2024-01-25T21:23:45.376Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 14 percentage
+2024-01-25T21:23:47.860Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 16 percentage
+2024-01-25T21:23:53.532Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 23 percentage
+2024-01-25T21:23:55.380Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 16 percentage
+2024-01-25T21:23:57.901Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 18 percentage
+2024-01-25T21:24:03.438Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 26 percentage
+2024-01-25T21:24:05.358Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 18 percentage
+2024-01-25T21:24:07.852Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 20 percentage
+2024-01-25T21:24:13.572Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 29 percentage
+2024-01-25T21:24:15.386Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 20 percentage
+2024-01-25T21:24:17.856Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 22 percentage
+2024-01-25T21:24:23.468Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 32 percentage
+2024-01-25T21:24:25.394Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 22 percentage
+2024-01-25T21:24:27.937Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 24 percentage
+2024-01-25T21:24:33.603Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 30 percentage
+2024-01-25T21:24:35.404Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 24 percentage
+2024-01-25T21:24:37.979Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 26 percentage
+2024-01-25T21:24:43.493Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 33 percentage
+2024-01-25T21:24:45.405Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 26 percentage
+2024-01-25T21:24:47.916Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 28 percentage
+2024-01-25T21:24:53.493Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 31 percentage
+2024-01-25T21:24:55.388Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 28 percentage
+2024-01-25T21:24:57.891Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 30 percentage
+2024-01-25T21:25:03.789Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 33 percentage
+2024-01-25T21:25:05.452Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 30 percentage
+2024-01-25T21:25:07.874Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 32 percentage
+2024-01-25T21:25:13.495Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 32 percentage
+2024-01-25T21:25:15.379Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 32 percentage
+2024-01-25T21:25:17.971Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 34 percentage
+2024-01-25T21:25:23.431Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 33 percentage
+2024-01-25T21:25:25.391Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 34 percentage
+2024-01-25T21:25:27.910Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 36 percentage
+2024-01-25T21:25:33.544Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 33 percentage
+2024-01-25T21:25:35.407Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 36 percentage
+2024-01-25T21:25:37.908Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 38 percentage
+2024-01-25T21:25:43.467Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 36 percentage
+2024-01-25T21:25:45.412Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 38 percentage
+2024-01-25T21:25:47.856Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 40 percentage
+2024-01-25T21:25:53.510Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 34 percentage
+2024-01-25T21:25:55.402Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 40 percentage
+2024-01-25T21:25:57.911Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 42 percentage
+2024-01-25T21:26:03.480Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 32 percentage
+2024-01-25T21:26:05.383Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 42 percentage
+2024-01-25T21:26:07.877Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 44 percentage
+2024-01-25T21:26:13.459Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 30 percentage
+2024-01-25T21:26:15.544Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 44 percentage
+2024-01-25T21:26:17.876Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 46 percentage
+2024-01-25T21:26:23.483Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 28 percentage
+2024-01-25T21:26:25.558Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 46 percentage
+2024-01-25T21:26:27.884Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 48 percentage
+2024-01-25T21:26:33.497Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 14 Celsius, 27 percentage
+2024-01-25T21:26:35.398Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 48 percentage
+2024-01-25T21:26:37.889Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 50 percentage
+2024-01-25T21:26:43.463Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 27 percentage
+2024-01-25T21:26:45.377Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 50 percentage
+2024-01-25T21:26:47.850Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 52 percentage
+2024-01-25T21:26:53.471Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 24 percentage
+2024-01-25T21:26:55.396Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 52 percentage
+2024-01-25T21:26:57.885Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 54 percentage
+2024-01-25T21:27:03.416Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 16 Celsius, 25 percentage
+2024-01-25T21:27:05.356Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 54 percentage
+2024-01-25T21:27:07.912Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 23778: 56 percentage
+2024-01-25T21:27:13.501Z [LOG] [MQTT Java Client]: Received temperature_humidity value from node 833: 15 Celsius, 28 percentage
+2024-01-25T21:27:15.402Z [LOG] [MQTT Java Client]: Received soilHumidity value from node 19836: 56 percentage
